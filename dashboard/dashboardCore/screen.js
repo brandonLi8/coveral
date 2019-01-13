@@ -11,7 +11,7 @@
     pointer to the actual parent (no id/classname needed)
  */
 "use strict";
-export default class AppendDiv {
+export default class Screen {
   /**
    * main method to add a div: it creates the div and appends it to the parent
    * @param {String} type - the type of div, ex :"h1"
@@ -48,12 +48,12 @@ export default class AppendDiv {
     return newDiv; //"none" will only execute the return
   }
   //@public
-  toParentId(type, id, className, text, parent) {
+  addChildToParentId(type, id, className, text, parent) {
      //add a div to a user specified id
      return this.addDiv(type, id, className, text, "id", parent);
   }
   //@public
-  toClass(type, id, className, text, parent){
+  addChildToParentClass(type, id, className, text, parent){
     return this.addDiv(type, id, className, text, "class", parent);
   }
   //@public
@@ -61,13 +61,17 @@ export default class AppendDiv {
     return this.addDiv(type, id, className, text, "none");
   }
   //@public
-  toParentNode(type, id, className, text, parentNode){
+  addDivToNode(type, id, className, text, parentNode){
     return this.addDiv(type, id, className, text, "given", "", parentNode);
   }
   //@param parentType is the query selector
-  byType(typeOfChild, id, className, text, parentType){
+  addDivToParentType(typeOfChild, id, className, text, parentType){
     var parent = document.getElementsByTagName(parentType)[0];
-    return this.toParentNode(typeOfChild, id, className, text, parent);
+    return this.addDivToNode(typeOfChild, id, className, text, parent);
+  }
+
+  changePage(url){
+    console.log("herer");
   }
 
 }
