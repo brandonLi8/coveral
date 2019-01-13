@@ -7,18 +7,18 @@
 'use strict';
 
 // modules
-import AppendDiv from "./../dashboardCore/appendDiv.js";
-var appendDiv = new AppendDiv();
+import Screen from "./../dashboardCore/screen.js";
+var screen = new Screen();
 
 //set up initial strucutre
-appendDiv.byType("div", "main_wrapper", "", "", "body");
-appendDiv.toParentId("div", "app_wrapper", "", "", "main_wrapper");
+screen.addDivToParentType("div", "main_wrapper", "", "", "body");
+screen.addChildToParentId("div", "app_wrapper", "", "", "main_wrapper");
 
 // load the footer items
 var footer = ["2019© By Brandon Li", "brandon.li820@icloud.com", "303-717-1568"];
 
 for (var i = 0; i < footer.length; i++){
-  appendDiv.toParentId("p",  "" , "", footer[i], "content");
+  screen.addChildToParentId("p",  "" , "", footer[i], "content");
 }
 
 //define apps
@@ -38,7 +38,8 @@ var Calculator = {
   title: "Calculator",
   src: "assets/calculatorIcon.png",
   hover: "assets/calculatorHoverIcon.png",
-  url: "google.com"
+  url: "../calculator.html",
+  // loadingImage:
 }
 
 var apps = {
@@ -55,14 +56,14 @@ for (var i = 0 ; i < appsList.length; i ++){
 
 function addApp(title, src, url){
     //add the app container
-    let app = appendDiv.toParentId("div", "", "app", "", "app_wrapper");
-    //add a to app
-    let link = appendDiv.toParentNode("a", "", "", "", app);
+    let app = screen.addChildToParentId("div", "", "app", "", "app_wrapper");
+    
+    let link = screen.addDivToNode("a", "", "", "", app);
     link.setAttribute("target", "_self");
     link.setAttribute("href", url);
     //add a button and set attributes
-    let button = appendDiv.toParentNode("input", title, "", "", link);
-    let label = appendDiv.toParentNode("p", "", "", title, app);
+    let button = screen.addDivToNode("input", title, "", "", link);
+    let label = screen.addDivToNode("p", "", "", title, app);
     button.type = "image";
     button.src = src;
     
@@ -78,9 +79,10 @@ var hoverApp = function(element){
   }
 }
 //change back when unhovering
-var unHoverApp = function (element){
+var unHoverApp = function(element){
   let obj = apps[element.id];
   if (obj) {
     element.setAttribute("src", obj.src);
   }
 }
+
