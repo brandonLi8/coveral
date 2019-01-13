@@ -58,18 +58,17 @@ function addApp(title, src, url){
     //add the app container
     let app = screen.addChildToParentId("div", "", "app", "", "app_wrapper");
     
-    // let link = screen.addDivToNode("a", "", "", "", app);
-    // link.setAttribute("target", "_self");
-    // link.setAttribute("href", url);
+    let link = screen.addDivToNode("a", "", "", "", app);
+    link.setAttribute("target", "_self");
+    link.setAttribute("href", url);
     //add a button and set attributes
-    let button = screen.addDivToNode("input", title, "", "", app);
+    let button = screen.addDivToNode("input", title, "", "", link);
     let label = screen.addDivToNode("p", "", "", title, app);
     button.type = "image";
     button.src = src;
     
     button.onmouseover = function() {hoverApp(this)};
     button.onmouseout = function() {unHoverApp(this)};
-    button.onclick = function() {changeUrl(this)};
 }
 
 //change image on hover
@@ -87,7 +86,3 @@ var unHoverApp = function(element){
   }
 }
 
-var changeUrl = function(element, loadingImage){
-  let obj = apps[element.id];
-  screen.changePage(obj.url, obj.loadingImage);
-}

@@ -70,8 +70,4 @@ export default class Screen {
     return this.addDivToNode(typeOfChild, id, className, text, parent);
   }
 
-  changePage(url){
-    console.log("herer");
-  }
-
 }
