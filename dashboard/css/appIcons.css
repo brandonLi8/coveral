@@ -1,0 +1,32 @@
+/*styling for the app icons */
+/*    appIcons.css
+      learning app
+      Created by Brandon Li on 1/11/19.
+      Copyright © 2019 Brandon Li. All rights reserved. 
+*/
+.app {
+    display: flex;
+    /* app icons are 140px + the border of the app*/
+    flex-direction: column;
+    flex-basis: calc(140px + 2*3px);
+    margin: 15% 3%;
+}
+
+.app input{
+    border : 3px solid #393E41;
+    border-radius: 40px;
+}
+
+.app p{
+    text-align: center;
+    font-size: 120%;
+    margin-top: 1%;
+}
+
+#app_wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
