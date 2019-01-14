@@ -13,14 +13,38 @@
  */
 export default class fillParenthesis {
   constructor(str){
-    this.str = this.addParenthesisAroundSymbols(str);
-    this.str = this.addMultiplationSigns(this.str)
+    
   }
   //@private
   /* add parenthesis around a symbol
     @recursive
   */
-  //TODO: isLegalParenthesis
+  /* @public
+  return if str has balanced parenthesis
+  */
+  hasBalancedParentheses(str){ 
+    var amount = 0;
+    var current = "";
+    var i = 0;
+    if (str.length) == 0{
+        return true;
+    }
+    while (i < str.count){
+      current = str.charAt(i)
+      if (current === "(") {
+          amount ++;
+      }
+      else (if current == ")"){
+          amount --;
+      }
+      if (amount < 0) {
+          return false;
+      }
+      i ++;
+        
+    }
+    return amount == 0
+    }
   //TODO: addParenthisis
 }
    

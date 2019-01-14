@@ -17,7 +17,7 @@
  //modules
 import Screen from "../../dashboard/dashboardCore/screen.js";
 import Stack from "../../stack/stack.js";
-import Simplifier from "/simplifier.js"
+import Simplifier from "./simplifier.js"
 
 var screen = new Screen();
 var stack = new Stack();
@@ -27,9 +27,6 @@ export default class Solver {
 
   constructor(str){
     this.str = str;
-    this.str = this.addMultiplication(str);
-        console.log(this.str)
-
     this.solve();
     // screen.addDivToParentType("h1", "", "" , "adfadfadfasdf", "body");
 
