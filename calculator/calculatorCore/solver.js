@@ -15,25 +15,31 @@
  */
 
  //modules
-import Screen from "../../dashboard/dashboardCore/screen.js";
+// import Screen from "../../dashboard/dashboardCore/screen.js";
 import Stack from "../../stack/stack.js";
-import Simplifier from "./simplifier.js"
+// import Simplifier from "./simplifier.js"
 
-var screen = new Screen();
+// var screen = new Screen();
 var stack = new Stack();
 
 export default class Solver {
   //@param {String} str- input str, ex: "1+3(4*5)"
 
   constructor(str){
-    this.str = str;
-    this.solve();
+    this.stack = new Stack(1,2,4)
+    console.log(this.stack.toString())
     // screen.addDivToParentType("h1", "", "" , "adfadfadfasdf", "body");
 
   }
   solve(){
     // console.log(this.operators)
   }
+
+  operate(value1, value2, operation){ //ex operate(1, 2, '-')-> -1
+    
+  }
+
+
 
 }
 

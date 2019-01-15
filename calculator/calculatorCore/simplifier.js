@@ -17,11 +17,13 @@
 //modules
 import Contents from "./contents.js"
 var contents = new Contents();
+// import AddMultiplicationAfterNumbers from "./addMultiplicationAfterNumbers.js"
 
 export default class Simplifier {
   constructor(str){
     this.str = this.addParenthesisAroundSymbols(str);
-    this.str = this.addMultiplationSigns(this.str)
+    this.str = this.addMultiplationSigns(this.str);
+    // this.str = new AddMultiplicationAfterNumbers(this.str);
   }
   //@private
   /* add parenthesis around a symbol
@@ -148,6 +150,7 @@ String.prototype.replace = function(newString, index){
   }
   return result;
 }
+
 String.prototype.insert = function(newString, index){
   let result;
   if (index == 0){

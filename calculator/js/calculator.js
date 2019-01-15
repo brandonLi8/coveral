@@ -13,8 +13,12 @@
    var solverTest = new SolverTest();
    solverTest.test(); 
  */
- // uncomment to test
+
+  //uncomment to test
    import SolverTest from "./../calculatorCore/solverTest.js";
    var solverTest = new SolverTest();
    solverTest.test(); 
+ 
+// import Solver from ".././calculatorCore/solver.js"
+// var solver = new Solver();
  
