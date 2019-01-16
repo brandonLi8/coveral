@@ -20,6 +20,12 @@ export default class Precendence {
         new Set(["+", "-"]): 1,
 
     }
+    this.precendence = {
+        4: new Set("(", ")")
+        3: new Set(["sin(", "cos(", "tan(", "cot(", "csc(", "sec(", "cos-1(", "sin-1(", "tan-1(", "√(", "^("]),
+        2: new Set(["*",  "/", "÷", "%"]),
+        1: new Set(["+", "-"])
+    }
   }
   operate(value1, value2, operator){
     if (isNaN(value1) || isNaN(value2)){
