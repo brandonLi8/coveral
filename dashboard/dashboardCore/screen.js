@@ -3,9 +3,7 @@
   * learning app
   * Created by Brandon Li on 1/11/19.
   * Copyright © 2019 Brandon Li. All rights reserved.
- */
-
- /*  
+  
     export module to add a div with specified contents/attributes
     user can specify the parent (both id and class name) or the 
     pointer to the actual parent (no id/classname needed)
@@ -13,6 +11,7 @@
 "use strict";
 export default class Screen {
   /**
+   * @public
    * main method to add a div: it creates the div and appends it to the parent
    * @param {String} type - the type of div, ex :"h1"
    * @param {String} id - the Id of the new div. Can be "" if user doesn't want an id
@@ -23,51 +22,52 @@ export default class Screen {
      "none" means to not add the div but to just get the div
    * @param {String} parentString; the id/class name (based on parentType)
    * @param {String} parent; the actual parent-only if parentType == "given"
+   * @return {newDiv} the node added
    */
    // @private
-  addDiv(type, id, className, text, parentType, parentString, parent){
-    var newDiv = document.createElement(type);//create element
+  addDiv( type, id, className, text, parentType, parentString, parent ){
+    var newDiv = document.createElement( type );//create element
     //set attibutes
-    newDiv.setAttribute("id", id);
+    newDiv.setAttribute( "id", id );
     newDiv.className = className;
     //create text
-    var newHeading = document.createTextNode(text); 
-    newDiv.appendChild(newHeading); 
+    var newHeading = document.createTextNode( text ); 
+    newDiv.appendChild( newHeading ); 
 
-    if (parentType === "class"){
-      let parents = document.getElementsByClassName(parentString);
-      parents[0].appendChild(newDiv);
+    if ( parentType === "class" ){
+      let parents = document.getElementsByClassName( parentString );
+      parents[ 0 ].appendChild( newDiv );
     }
-    else if (parentType === "id"){
-      document.getElementById(parentString).appendChild(newDiv);
+    else if ( parentType === "id" ){
+      document.getElementById( parentString ).appendChild( newDiv );
     }
-    else if (parentType === "given"){
+    else if ( parentType === "given" ){
       //user specified parent
-      parent.appendChild(newDiv);
+      parent.appendChild( newDiv );
     }
     return newDiv; //"none" will only execute the return
   }
   //@public
-  addChildToParentId(type, id, className, text, parent) {
+  addChildToParentId( type, id, className, text, parent ) {
      //add a div to a user specified id
-     return this.addDiv(type, id, className, text, "id", parent);
+     return this.addDiv( type, id, className, text, "id", parent );
   }
   //@public
-  addChildToParentClass(type, id, className, text, parent){
-    return this.addDiv(type, id, className, text, "class", parent);
+  addChildToParentClass( type, id, className, text, parent ){
+    return this.addDiv( type, id, className, text, "class", parent );
   }
   //@public
-  getNewDiv(type, id, className, text){
-    return this.addDiv(type, id, className, text, "none");
+  getNewDiv( type, id, className, text ){
+    return this.addDiv( type, id, className, text, "none" );
   }
   //@public
-  addDivToNode(type, id, className, text, parentNode){
-    return this.addDiv(type, id, className, text, "given", "", parentNode);
+  addDivToNode( type, id, className, text, parentNode ){
+    return this.addDiv( type, id, className, text, "given", "", parentNode );
   }
   //@param parentType is the query selector
-  addDivToParentType(typeOfChild, id, className, text, parentType){
-    var parent = document.getElementsByTagName(parentType)[0];
-    return this.addDivToNode(typeOfChild, id, className, text, parent);
+  addDivToParentType( typeOfChild, id, className, text, parentType ){
+    var parent = document.getElementsByTagName( parentType )[0];
+    return this.addDivToNode( typeOfChild, id, className, text, parent );
   }
 
 }
