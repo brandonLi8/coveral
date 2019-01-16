@@ -16,6 +16,9 @@
     border : 2px solid rgb( 80, 80, 80 );
     border-radius: 40px;
 }
+.app input:focus{
+    outline:0;
+}
 
 .app p{
     text-align: center;
