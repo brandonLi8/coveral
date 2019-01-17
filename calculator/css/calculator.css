@@ -33,6 +33,7 @@ body {
     height: 100%;
     width: 100%;
 }
+
 .backToDashboard:hover{
   cursor: pointer;
 }
@@ -41,4 +42,19 @@ body {
   width: 90px;
   height: 90px;
   margin: auto auto 2% 10%;
+}
+
+/*actual calculator*/
+#calculator{
+  border: 2px solid red;
+  background: #AEAEAE;
+  display: flex;
+  flex-direction: column;
+}
+
+.c_button{
+  height: 200px;
+  width: calc(16%);
+  background-color: #676A6B;
+  border: 2px solid #3D3E3E;
 }
