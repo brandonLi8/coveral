@@ -24,7 +24,7 @@ var screen = new Screen();
 // screen.addDivToParentType( "div", "calculator_wrapper", "", "", "body" );
 
 // //add the return-to-dashboard button
-// addReturnButton( "./assets/reset.png", "../dashboard.html", "./assets/resetHover.png" )
+addReturnButton( "./assets/reset.png", "../dashboard.html", "./assets/resetHover.png" )
 
 function addReturnButton( src, url , hoverSrc){
     //add the app container
