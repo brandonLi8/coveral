@@ -13,7 +13,7 @@ export default class Precendence {
         "ℯ": 2.71828182845904523536,
         "π": 3.14159265358979323846, 
     };
-    this.notSupported = new Set(["e"]);
+    this.notSupported = new Set( ["e"] );
     this.numbers = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
 
     this.order{

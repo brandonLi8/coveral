@@ -1,73 +1,88 @@
-/*  js: module
-  * appendDiv.js
-  * learning app
-  * Created by Brandon Li on 1/11/19.
-  * Copyright © 2019 Brandon Li. All rights reserved.
-  
-    export module to add a div with specified contents/attributes
-    user can specify the parent (both id and class name) or the 
-    pointer to the actual parent (no id/classname needed)
+/**
+ * Learning App
+ * screen.js
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/12/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * ## Functionality:
+ *  - methods to add children to any type of node
  */
 "use strict";
 export default class Screen {
   /**
+   * add child to a parent
    * @public
-   * main method to add a div: it creates the div and appends it to the parent
-   * @param {String} type - the type of div, ex :"h1"
-   * @param {String} id - the Id of the new div. Can be "" if user doesn't want an id
-   * @param {String} className- the Class of the new div. Can be "" if user doesn't want an class
-   * @param {text} text - the text for the new div. Can be ""
-   * @param {String} parentType; either "class", "id", "given", or "none" specifies the parent type, 
-     "given" means the user will give an exact parent
-     "none" means to not add the div but to just get the div
-   * @param {String} parentString; the id/class name (based on parentType)
-   * @param {String} parent; the actual parent-only if parentType == "given"
-   * @return {newDiv} the node added
+   * @param {String} type - the type of child ex: "h1", "div" etc.
+   * @param {String} id - the id of the NEW child. 
+   * @param {String} className - the class of the NEW child. 
+   * @param {String} text - the text for the new child. 
+   * @param {String} parentType:
+    -"class" means adding the child to the first instance with the CLASS name 
+    -"given" means adding the child to  an exact parent with a pointer
+    -"none" means to not add the Child and return the child
+    -"id" means adding the child to the first instance with the ID name
+   * @param {String} parentString - the id/className of the parent. Ignored if parentType is "none" or "given"
+   * @param {String} parent - the actual parent. Only used if parentType == "given"
+   * @return {newChild} the node added
    */
-   // @private
-  addDiv( type, id, className, text, parentType, parentString, parent ){
-    var newDiv = document.createElement( type );//create element
-    //set attibutes
-    newDiv.setAttribute( "id", id );
-    newDiv.className = className;
-    //create text
+  addChild( type, id, className, text, parentType, parentString, parent ){
+    var newChild = document.createElement( type ); // create element
+    // set attibutes
+    newChild.setAttribute( "id", id );
+    newChild.className = className;
+    // create text child and add it to the new child. 
     var newHeading = document.createTextNode( text ); 
-    newDiv.appendChild( newHeading ); 
-
+    newChild.appendChild( newHeading ); 
+    // append the child to the parent
     if ( parentType === "class" ){
       let parents = document.getElementsByClassName( parentString );
-      parents[ 0 ].appendChild( newDiv );
+      parents[ 0 ].appendChild( newChild );
     }
     else if ( parentType === "id" ){
-      document.getElementById( parentString ).appendChild( newDiv );
+      document.getElementById( parentString ).appendChild( newChild );
     }
     else if ( parentType === "given" ){
-      //user specified parent
-      parent.appendChild( newDiv );
+      parent.appendChild( newChild );
     }
-    return newDiv; //"none" will only execute the return
+    return newChild;
   }
-  //@public
-  addChildToParentId( type, id, className, text, parent ) {
-     //add a div to a user specified id
-     return this.addDiv( type, id, className, text, "id", parent );
+  /**
+   * add a child to a user given ID
+   * @public
+   */
+  addChildToParentId( type, id, className, text, parentId ) {
+     return this.addChild( type, id, className, text, "id", parentId );
   }
-  //@public
-  addChildToParentClass( type, id, className, text, parent ){
-    return this.addDiv( type, id, className, text, "class", parent );
+  /**
+   * add a child to a user given CLASS
+   * @public
+   */
+  addChildToParentClass( type, id, className, text, parentClassName ){
+    return this.addChild( type, id, className, text, "class", parentClassName );
   }
-  //@public
-  getNewDiv( type, id, className, text ){
-    return this.addDiv( type, id, className, text, "none" );
+  /**
+   * create a child an return it
+   * @public
+   */
+  createChild( type, id, className, text ){
+    return this.addChild( type, id, className, text, "none" );
   }
-  //@public
-  addDivToNode( type, id, className, text, parentNode ){
-    return this.addDiv( type, id, className, text, "given", "", parentNode );
+  /**
+   * add a child to a user given Parent pointer
+   * @public
+   */
+  addChildToParentNode( type, id, className, text, parentNode ){
+    return this.addChild( type, id, className, text, "given", null, parentNode );
   }
-  //@param parentType is the query selector
-  addDivToParentType( typeOfChild, id, className, text, parentType ){
+  /**
+   * add a child to a user given type of parent. ex: "body", "html" etc. 
+   * @public
+   */
+  addChildToParentType( typeOfChild, id, className, text, parentType ){
     var parent = document.getElementsByTagName( parentType )[0];
-    return this.addDivToNode( typeOfChild, id, className, text, parent );
+    return this.addChildToParentNode( typeOfChild, id, className, text, parent );
   }
 
 }

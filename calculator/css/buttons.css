@@ -1,82 +1,102 @@
-.c_button, .c_button_normal, .c_dark_button, .c_operator_button, .c_extend_button, .c_equals_button{
-      height: 50px;
-      width: 17%;
-      background-color: #777A7B;
-      border: 1px solid #3D3E3E;
-      margin: 0.5px;
-      display: flex;
-}
+/**
+ * Learning App
+ * buttons.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/17/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the buttons
+ */
+
+/**
+ * button inheritance
+ */ 
+.c_button, 
+.c_button_normal, 
+.c_dark_button, 
+.c_operator_button, 
+.c_extend_button, 
 .c_equals_button{
-    width: calc(34% + 3px);
-    background-color: #D7312D;
-}
-.c_equals_button:hover{
-    cursor: pointer;
-    background-color: #E7413D;
+  height: 50px;
+  width: 17%;
+  background-color: #777A7B;
+  border: 1px solid #3D3E3E;
+  margin: 0.5px;
+  display: flex;
 }
 .c_button:hover{
-    cursor: pointer;
-    background-color: #878A8B;
+  cursor: pointer;
+  background-color: #878A8B;
 }
+
+.c_equals_button{
+  width: calc(34% + 3px);
+  background-color: #D7312D;
+}
+.c_equals_button:hover{
+  cursor: pointer;
+  background-color: #E7413D;
+}
+
 .c_button_normal{
-    background-color: #666769;
+  background-color: #666769;
 }
 .c_button_normal:hover{
-    cursor: pointer;
-    background-color: #707170;
+  cursor: pointer;
+  background-color: #707170;
 }
 .c_dark_button{
-    background-color: #4F5152;
+  background-color: #4F5152;
 }
 .c_dark_button:hover{
-    cursor: pointer;
-    background-color: #595A5B;
+  cursor: pointer;
+  background-color: #595A5B;
 }
 .c_operator_button{
-    background-color: #F3923D;
-    font-size: 125%;
-
+  background-color: #F3923D;
+  font-size: 125%;
 }
 .c_operator_button:hover{
-    cursor: pointer;
-    background-color: #FFA24D;
+  cursor: pointer;
+  background-color: #FFA24D;
 }
 .c_extend_button{
-    background-color: #898C8D;
+  background-color: #898C8D;
 }
 .c_extend_button:hover{
-    cursor: pointer;
-    background-color: #999C9D;
+  cursor: pointer;
+  background-color: #999C9D;
 }
 
 
 .c_row{
-    margin:  0 0.1%;
-    display: flex;
-    flex-direction: row;
-
+  margin:  0 0.1%;
+  display: flex;
+  flex-direction: row;
 }
 
 #input{
-    border-radius: 10px 10px 0 0;
-    height: 90px;
-    width: 100%;
-    background-color: #2E2F2F; 
-    color: rgb(255,255,255);
-    border: none;
-    font-size: 190%;
-    color: rgb(240, 240, 240);
-    font-weight: 60;
+  border-radius: 10px 10px 0 0;
+  height: 90px;
+  width: 100%;
+  background-color: #2E2F2F; 
+  color: rgb(255,255,255);
+  border: none;
+  font-size: 190%;
+  color: rgb(240, 240, 240);
+  font-weight: 60;
 }
+
 #input:focus {
-    outline:0;
+  outline:0;
 }
 
 .button_text{
-    margin: auto; 
-    text-align: center; 
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    font-size: 115%;
-    color: rgb(240, 240, 240);
-    font-weight: 60;
+  margin: auto; 
+  text-align: center; 
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 115%;
+  color: rgb(240, 240, 240);
+  font-weight: 60;
 }

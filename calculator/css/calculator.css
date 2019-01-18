@@ -1,56 +1,59 @@
-/*  
-    dashboard.css
-    learning app
-    Created by Brandon Li on 1/11/19.
-    Copyright © 2019 Brandon Li. All rights reserved. 
-*/
+/**
+ * Learning App
+ * calculator.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/11/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the main elements of the page
+ */
 
 html, body{
-    max-width: 100%;
-    overflow-x: hidden;
-    height: 100%;
-    background: #DEDAD8;
-    font-family: "Verdana" , Geneva, sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  background: #DEDAD8;
+  font-family: "Verdana" , Geneva, sans-serif;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
 
 }
 
 #calculator_wrapper{
-    width:80%;
-    margin: 2% auto;
-    display: flex;
-    flex-direction: column;
+  width:80%;
+  margin: 2% auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .backToDashboard{
-    border-radius: 50%;
-    height: 100%;
-    width: 100%;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
 }
 
 .backToDashboard:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #backToDashboardButton{
-    width: 90px;
-    height: 90px;
-    margin: auto auto 2% 0%;
+  width: 90px;
+  height: 90px;
+  margin: auto auto 2% 0%;
 }
 
-/*actual calculator*/
 #calculator{
-      background: #515151;
-      border: 2px solid #3D3E3E;
-      margin:  0 25%;
-      display: flex;
-      flex-direction: column;
-      border-radius: 10px 10px 3px 3px;
-      padding: 0.3% 0.1%;
+  background: #515151;
+  border: 2px solid #3D3E3E;
+  margin:  0 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 10px 3px 3px;
+  padding: 0.3% 0.1%;
 }
 
