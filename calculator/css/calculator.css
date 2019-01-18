@@ -45,11 +45,12 @@ body {
 
 /*actual calculator*/
 #calculator{
-      background: #4E4F4F;
+      background: #515151;
       border: 2px solid #3D3E3E;
-      margin:  0 18%;
+      margin:  0 25%;
       display: flex;
       flex-direction: column;
       border-radius: 10px 10px 3px 3px;
+      padding: 0.3% 0.1%;
 }
 

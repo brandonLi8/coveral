@@ -1,13 +1,13 @@
 .c_button, .c_button_normal, .c_dark_button, .c_operator_button, .c_extend_button, .c_equals_button{
-      height: 70px;
+      height: 50px;
       width: 17%;
       background-color: #777A7B;
       border: 1px solid #3D3E3E;
-      margin: 1px;
+      margin: 0.5px;
       display: flex;
 }
 .c_equals_button{
-    width: calc(34% + 4px);
+    width: calc(34% + 3px);
     background-color: #D7312D;
 }
 .c_equals_button:hover{
@@ -34,6 +34,8 @@
 }
 .c_operator_button{
     background-color: #F3923D;
+    font-size: 125%;
+
 }
 .c_operator_button:hover{
     cursor: pointer;
@@ -57,11 +59,14 @@
 
 #input{
     border-radius: 10px 10px 0 0;
-    height: 95px;
+    height: 90px;
     width: 100%;
     background-color: #2E2F2F; 
     color: rgb(255,255,255);
     border: none;
+    font-size: 190%;
+    color: rgb(240, 240, 240);
+    font-weight: 60;
 }
 #input:focus {
     outline:0;
@@ -70,4 +75,8 @@
 .button_text{
     margin: auto; 
     text-align: center; 
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 115%;
+    color: rgb(240, 240, 240);
+    font-weight: 60;
 }
