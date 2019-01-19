@@ -77,5 +77,83 @@ function addCalculatorButton( row, buttonNode ){
   let button = screen.addChildToParentNode( "div", buttonNode.text, buttonNode.type, "", row );   
   //add the label
   let text = screen.addChildToParentNode( "p", null, "button_text", buttonNode.text, button );
-  button.onclick = function() { buttonNode.handlePressed() };
+  button.onclick = function() { handlePressed( buttonNode ) };
 }
+/**
+ * uses the button model to update the view
+ */
+function handlePressed( buttonNode ){
+  if ( buttonNode ){ // buttonNode has to exist
+    var str = input.value;
+    let carrot = input.selectionStart;
+    let values = buttonNode.handlePressed( str, carrot );
+    input.value = values.newString;
+    input.setSelectionRange( values.newCarrot, values.newCarrot );
+  }  
+}
+
+/**
+ * function that takes in a text value and returns the buttonNode
+ * @param {text} - the text of the button
+ * @return {buttonNode} - the buttonNode that contains the text
+ */
+function getButtonNode( text ){
+  for ( var i = 0; i < buttons.length; i++ ){
+    var row = buttons[ i ];
+    for ( var j = 0; j < row.length; j++ ){
+      if ( row[ j ].text === text ){
+        return row[ j ];
+      }
+    }
+  }
+}
+/**
+ * add keyboard shortcuts
+ */
+input.addEventListener( "keydown", event => {
+    if ( event.key === "Backspace" ){
+      //do the defualt
+      return;
+    }
+    else if ( event.key == "p" ){
+      handlePressed( getButtonNode( "π" ) );
+    }
+    else if ( event.key == "e" ){
+      handlePressed( getButtonNode( "ℯ" ) );
+    }
+    else if ( event.key === "Enter" ){
+      handlePressed( getButtonNode( "=" ) );
+    }
+    else if ( event.key === "x" ){
+      handlePressed( getButtonNode( "×" ) );
+    }
+    else if ( event.key === "d" ){
+      handlePressed( getButtonNode( "÷" ) );
+    }
+    else if ( event.ctrlKey && event.key == "s" ){
+      handlePressed( getButtonNode( "arcsin(" ) );
+    }
+    else if ( event.ctrlKey && event.key == "c" ){
+      handlePressed( getButtonNode( "arccos(" ) );
+    }
+    else if ( event.ctrlKey && event.key == "t" ){
+      handlePressed( getButtonNode( "arctan(" ) );
+    }
+    else if ( event.key === "s" ){
+      handlePressed( getButtonNode( "sin(" ) );
+    }
+    else if ( event.key === "t" ){
+      handlePressed( getButtonNode( "tan(" ) );
+    }
+    else if ( event.ctrlKey && event.key == "c" ){
+      handlePressed( getButtonNode( "c" ) );
+    }
+    else if ( event.key === "c" ){
+      handlePressed( getButtonNode( "cos(" ) );
+    }
+    else {
+      handlePressed( getButtonNode( event.key ) );
+    }
+    event.preventDefault();
+} );
+

@@ -16,14 +16,31 @@
 .c_button_normal, 
 .c_dark_button, 
 .c_operator_button, 
-.c_extend_button, 
+.c_e_button, 
+.c_pi_button,
 .c_equals_button{
-  height: 50px;
+  height: 60px;
   width: 17%;
   background-color: #777A7B;
   border: 1px solid #3D3E3E;
   margin: 0.5px;
   display: flex;
+}
+
+.c_pi_button{
+  font-size: 140%;
+}
+.c_pi_button:hover{
+  cursor: pointer;
+  background-color: #878A8B;
+}
+
+.c_e_button{
+  font-size: 180%;
+}
+.c_e_button:hover{
+  cursor: pointer;
+  background-color: #878A8B;
 }
 .c_button:hover{
   cursor: pointer;
@@ -31,7 +48,7 @@
 }
 
 .c_equals_button{
-  width: calc(34% + 3px);
+  width: calc(34% + 4px);
   background-color: #D7312D;
 }
 .c_equals_button:hover{
@@ -41,6 +58,7 @@
 
 .c_button_normal{
   background-color: #666769;
+  font-weight: 100;
 }
 .c_button_normal:hover{
   cursor: pointer;
@@ -61,9 +79,6 @@
   cursor: pointer;
   background-color: #FFA24D;
 }
-.c_extend_button{
-  background-color: #898C8D;
-}
 .c_extend_button:hover{
   cursor: pointer;
   background-color: #999C9D;
@@ -77,8 +92,8 @@
 }
 
 #input{
-  border-radius: 10px 10px 0 0;
-  height: 90px;
+  border-radius: 3px 3px 0 0;
+  height: 95px;
   width: 100%;
   background-color: #2E2F2F; 
   color: rgb(255,255,255);
@@ -86,6 +101,8 @@
   font-size: 190%;
   color: rgb(240, 240, 240);
   font-weight: 60;
+  border: 1px solid #3D3E3E;
+  text-align: right;
 }
 
 #input:focus {
@@ -98,5 +115,5 @@
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 115%;
   color: rgb(240, 240, 240);
-  font-weight: 60;
+  font-weight: 80;
 }
