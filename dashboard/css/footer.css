@@ -23,14 +23,13 @@
     color: #4D96FF;
     bottom: 0;
     left: 0;
-    box-shadow: inset 0 40px 20px -10px rgba(180, 183, 180, 0.2);
+    box-shadow: inset 0 40px 200px -10px rgba(100, 100, 100, 0.6);
     border-top: 2px solid rgb(100, 100, 100);
     text-align: center;
 }
 #footer #content{
     margin-top: 2%;
 }
-
 #footer p{
     display: inline;
     margin: 1%;

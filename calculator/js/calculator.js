@@ -38,7 +38,7 @@ function addReturnButton( src, url , hoverSrc ){
   image.setAttribute( "src", src );
   // handle user input
   image.onmouseover = function() { 
-      image.setAttribute( "src", hoverSrc );
+    image.setAttribute( "src", hoverSrc );
   };
   image.onmouseout = function() { 
     image.setAttribute( "src", src );
@@ -89,6 +89,7 @@ function handlePressed( buttonNode ){
     let values = buttonNode.handlePressed( str, carrot );
     input.value = values.newString;
     input.setSelectionRange( values.newCarrot, values.newCarrot );
+    input.focus();
   }  
 }
 

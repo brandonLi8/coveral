@@ -29,6 +29,7 @@ export default class controlPanel {
         new Button( "(-)", "c_dark_button" ),
         new Button( "⌫", "c_dark_button" ),
         new Button( "÷", "c_operator_button" ) ], 
+
       [ new Button( "rad", "c_button" ),
         new Button( "10^(", "c_button" ),
         new Button( "sin(", "c_button" ),
@@ -38,6 +39,7 @@ export default class controlPanel {
         new Button( "8", "c_button_normal" ),
         new Button( "9", "c_button_normal" ),
         new Button( "×", "c_operator_button" ) ], 
+
       [ new Button( "rnd:", "c_button" ),
         new Button( "entry", "c_button" ),
         new Button( "cot(", "c_button" ),
@@ -57,6 +59,7 @@ export default class controlPanel {
         new Button( "2", "c_button_normal" ),
         new Button( "3", "c_button_normal" ),
         new Button( "+", "c_operator_button" ) ],
+        
       [ new Button( "^(-1)", "c_button" ),
         new Button( "10^(", "c_button" ),
         new Button( "rand", "c_button" ),
