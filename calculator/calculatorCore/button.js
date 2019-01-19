@@ -71,15 +71,18 @@ export default class Button {
       try {
         str = replaceSymbol( str );
         str = fillParenthesis.fill( str );
-        console.log( new Solver(str))
+        str = new Solver(str);
+        return { 
+          newString: str.str,
+          newCarrot: 0
+        };
       }catch(err){
-        console.log( err)
+        return { 
+          newString: err,
+          newCarrot: 0
+        };
       }
 
-      return { 
-        newString: str,
-        newCarrot: 0
-      };
     }
     else {
       return { 

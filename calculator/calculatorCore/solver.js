@@ -28,14 +28,49 @@ export default class Solver {
   constructor( str ){
     this.precedence = new Precedence();
     this.str = str;
-    this.solve( this.str )
+    this.str = this.solve( this.transformToList( this.str ) );
   }
 
-  solve( str ){
-    console.log(this.transformToList( str ))
+  solve( list ){
+    var values = new Stack();
+    var operators = new Stack();
+    var index = 0;
+    while ( index < list.length ){
+      if ( this.precedence.numbers.has( list[ index ].charAt(0) ) ){//is a number
+        values.push( list[ index ] );
+      }
+      else if ( this.precedence.singleCharOperators.has( list[ index ] ) ){ // single char operator
+        if ( operators.length() === 0 ){
+          operators.push( list[ index ] );
+        }
+        else if ( this.precedence.getPrecedence( list[ index ]) <= this.precedence.getPrecedence( operators.arr[ operators.length() - 1 ] ) ){
+          let value2 = values.pop();
+          let value1 = values.pop();
+          let operator = operators.pop();
+          values.push( this.operate( value1, value2, operator ) );
+          index --;
+        }
+        else {
+          operators.push( list[index] );
+        }
+      }
+      index ++;
+
+    }
+    return this.solveStack( values, operators )
   }
 
-
+  solveStack( val, ops ){
+    let values= val;
+    let operators = ops;
+    while ( values.length() > 1){
+      let value2 = values.pop();
+      let value1 = values.pop();
+      let operator = operators.pop();
+      values.push( this.operate( value1, value2, operator ) );
+    }
+    return values.arr[ 0 ];
+  }
   operate( value1, value2, operator ){
     if (isNaN(value1) || isNaN(value2)){
         throw new Error("something went wrong");

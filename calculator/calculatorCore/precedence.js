@@ -21,17 +21,17 @@ export default class Precedence {
     //     new Set(["+", "-"]): 1,
 
     // } // "sin(", "cos(", "tan(", "cot(", "csc(", "sec(", "cos-1(", "sin-1(", "tan-1(", "√(",
-    this.precendence = {
-        4: new Set( "(", ")" ),
+    this.precedence = {
+        4: new Set( ["(", ")"] ),
         3: new Set(["^"]),
         2: new Set(["×", "÷", "%"]),
         1: new Set( [ "+", "-" ] )
     }
   }
   getPrecedence( char ){
-    for (var i = 1; i <= Object.keys( this.precendence ).length; i++){
-        console.log(this.precendence[i.toString()])
-        if ( this.precendence[i].has(char) ){
+    for (var i = 1; i <= Object.keys( this.precedence ).length; i++){
+      console.log(this.precedence[i])
+        if ( this.precedence[i].has(char) ){
             return i;
         }
     }
