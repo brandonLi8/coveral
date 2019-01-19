@@ -13,7 +13,7 @@
 }
 
 .app input{
-    border : 2px solid rgb( 60, 60, 60 );
+    border : 3px solid rgb( 60, 60, 60 );
     border-radius: 40px;
     box-shadow: 1px 1px 7px 2px #4D4E4E;
 }

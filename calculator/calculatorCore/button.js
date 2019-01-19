@@ -13,6 +13,14 @@
  *  - enscapulate the properties of a button
  */
 "use strict";
+// modules
+import Solver from "./solver.js";
+import Precedence from "./Precedence.js";
+import FillParenthesis from "./fillParenthesis.js";
+
+var precedence = new Precedence();
+var fillParenthesis = new FillParenthesis();
+
 export default class Button {
   /**
    * @constructor
@@ -38,7 +46,7 @@ export default class Button {
     if ( this.text === "⌫" ) {
       return { 
         newString: str.replace( "", carrotPosition - 1 ),
-        newCarrot: carrotPosition - 1
+        newCarrot: carrotPosition - 1,
       };
     }
     if ( this.text === "C" ){
@@ -50,18 +58,26 @@ export default class Button {
     if ( this.text === "(-)" ){
       return { 
         newString: str + "-",
-        newCarrot: 0
+        newCarrot: carrotPosition + 1
       };
     }
     if ( this.text === "mod" ){
       return { 
         newString: str + "%",
-        newCarrot: 0
+        newCarrot: carrotPosition + 1
       };
     }
     if ( this.text === "=" ){
+      try {
+        str = replaceSymbol( str );
+        str = fillParenthesis.fill( str );
+        console.log( new Solver(str))
+      }catch(err){
+        console.log( err)
+      }
+
       return { 
-        newString: "",
+        newString: str,
         newCarrot: 0
       };
     }
@@ -80,6 +96,22 @@ export default class Button {
   toString(){
     return this.text;
   }
+}
+/**
+ * replace P and E symbol with numerical value wrapped around in parenthesis
+ * @helper
+ * @public
+ * @recursive
+ * @returns {String} - Return the updated string
+ */
+function replaceSymbol( str ){
+  for ( var i = 0; i < str.length; i++ ){
+    if ( precedence.symbols.has( str.charAt( i ) ) ){
+      str = str.replace( "(" + precedence.symbolValues[ str.charAt( i ) ] + ")", i );
+      replaceSymbol(str);
+    }
+  }
+  return str;
 }
 /**
  * replace a char at a index with @param {String} newString

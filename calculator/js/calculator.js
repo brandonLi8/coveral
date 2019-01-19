@@ -131,6 +131,9 @@ input.addEventListener( "keydown", event => {
     else if ( event.key === "d" ){
       handlePressed( getButtonNode( "÷" ) );
     }
+    else if ( event.keyCode === 191 ){
+      handlePressed( getButtonNode( "÷" ) );
+    }
     else if ( event.ctrlKey && event.key == "s" ){
       handlePressed( getButtonNode( "arcsin(" ) );
     }
