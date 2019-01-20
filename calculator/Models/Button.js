@@ -1,6 +1,6 @@
 /**
  * Learning App
- * button.js
+ * Button.js
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
  * Created on 1/17/19
@@ -14,9 +14,9 @@
  */
 "use strict";
 // modules
-import Solver from "./solver.js";
+import Solver from "./Solver.js";
 import Precedence from "./Precedence.js";
-import FillParenthesis from "./fillParenthesis.js";
+import FillParenthesis from "./FillParenthesis.js";
 
 var precedence = new Precedence();
 var fillParenthesis = new FillParenthesis();
@@ -39,7 +39,8 @@ export default class Button {
    * Handle the functionality of each button when pressed
    * @param {str} - the string that goes in.
    * @public
-   * @return {String} the new string that it should display after the button is pressed
+   * @return {String} the new string that it should display 
+   * after the button is pressed
    */
   handlePressed( str, carrotPosition ){
     // handle each case
@@ -68,20 +69,21 @@ export default class Button {
       };
     }
     if ( this.text === "=" ){
-      // try {
-        str = replaceSymbol( str );
+      try {
+        str = replaceSymbols( str );
         str = fillParenthesis.fill( str );
         str = new Solver(str);
         return { 
           newString: str.str,
-          newCarrot: 0
+          newCarrot: str.str.length 
         };
-      // }catch(err){
-      //   return { 
-      //     newString: err,
-      //     newCarrot: 0
-      //   };
-      // }
+      } catch( err ){
+        let error = err;
+        return { 
+          newString: error,
+          newCarrot: error.length
+        };
+      }
 
     }
     else {
@@ -107,11 +109,13 @@ export default class Button {
  * @recursive
  * @returns {String} - Return the updated string
  */
-function replaceSymbol( str ){
+function replaceSymbols( str ){
   for ( var i = 0; i < str.length; i++ ){
     if ( precedence.symbols.has( str.charAt( i ) ) ){
-      str = str.replace( "(" + precedence.symbolValues[ str.charAt( i ) ] + ")", i );
-      replaceSymbol(str);
+      str = str.replace( "(" 
+                         + precedence.symbolValues[ str.charAt( i ) ] 
+                         + ")", i );
+      replaceSymbols(str);
     }
   }
   return str;
@@ -134,7 +138,9 @@ String.prototype.replace = function( newString, index ){
     result = this.substring( 0, index ) + newString;
   }
   else{
-    result = this.substring( 0, index ) + newString + this.substring( index + 1, this.length );
+    result = this.substring( 0, index ) 
+             + newString 
+             + this.substring( index + 1, this.length );
   }
   return result;
 }
@@ -144,13 +150,15 @@ String.prototype.replace = function( newString, index ){
  * @public
  * @returns {String} - Return the updated string
  */
-String.prototype.insert = function(newString, index){
+String.prototype.insert = function( newString, index ){
   let result;
-  if (index == 0){
+  if ( index == 0 ){
     result = newString + this;
   }
   else{
-    result = this.substring(0, index) + newString + this.substring(index, this.length);
+    result = this.substring( 0, index ) 
+             + newString 
+             + this.substring( index, this.length );
   }
   return result;
 }

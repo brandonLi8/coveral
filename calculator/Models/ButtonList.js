@@ -1,6 +1,6 @@
 /**
  * Learning App
- * buttonList.js
+ * ButtonList.js
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
  * Created on 1/17/19
@@ -10,7 +10,7 @@
  */
 "use strict";
 // modules
-import Button from "./button.js";
+import Button from "./Button.js";
 
 export default class controlPanel {
   /**

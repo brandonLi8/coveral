@@ -1,6 +1,6 @@
 /**
  * Learning App
- * fillParenthesis.js
+ * FillParenthesis.js
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
  * Created on 1/19/19

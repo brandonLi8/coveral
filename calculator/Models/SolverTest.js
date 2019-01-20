@@ -1,16 +1,22 @@
-/*  js: test
-  * solverTest.js
-  * learning app
-  * Created by Brandon Li on 1/11/19.
-  * Copyright © 2019 Brandon Li. All rights reserved.
+/**
+ * Learning App
+ * SolverTest.js
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/19/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * module that takes in a string and solves it
+ *
+ * ## Functionality:
+ *  test the button model for the equals button on several strings
  */
-/*  
-test modules for calculator
- */
+ 
 'use strict';
  //modules
 import Button from "./button.js";
-var solver = new Button("=");
+var solver = new Button( "=" );
+
 export default class SolverTest {
   test(){
     var test1 = "1(1+((1+1)(1+1+1(1+1+1+1(1+1+1+1+1)))))";
@@ -23,18 +29,14 @@ export default class SolverTest {
     assert(solver.handlePressed(test2,0).newString === "450")
     console.log( "done!" + " " + test2 +" does equal " + "450")
 
-
     var test3 = "5×662÷536102456752";
-        console.log( "testing... this: " + test3 )
+    console.log( "testing... this: " + test3 )
 
     assert(solver.handlePressed(test3,0).newString === "6.174192933294465e-9")
-        console.log( "done!" + " " + test3 +" does equal " + "21")
+    console.log( "done!" + " " + test3 +" does equal " + "6.174192933294465e-9")
 
     console.log("all tests passed!")
-    // this.testSimplify();
   }
-
-
 }
 
 

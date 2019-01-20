@@ -12,15 +12,18 @@
 'use strict';
 
 // modules
-import Screen from "./../dashboardCore/screen.js";
-var screen = new Screen();
+import ScreenView from "../../ScreenView/ScreenView.js";
+var screen = new ScreenView();
 
-//set up initial strucutre
+//set up initial structre
 screen.addChildToParentType( "div", "main_wrapper", null, "", "body" );
 screen.addChildToParentId( "div", "app_wrapper", null, "", "main_wrapper" );
 
 // load the footer items
-var footer = [ "2019© By Brandon Li", "brandon.li820@icloud.com", "303-717-1568" ];
+var footer = [ "2019© By Brandon Li", 
+               "brandon.li820@icloud.com", 
+               "303-717-1568" 
+             ];
 for ( var i = 0; i < footer.length; i++ ){
   screen.addChildToParentId( "p",  null, null, footer[ i ], "content" );
 }
@@ -57,8 +60,8 @@ for ( var i = 0 ; i < appsList.length; i ++ ){
 
 function addApp( title, src, url ){
     // add the app container
-    let app = screen.addChildToParentId( "div", null, "app", "", "app_wrapper" );
-    
+    let app = screen.addChildToParentId( "div", null, "app", 
+                                         "", "app_wrapper" );
     let link = screen.addChildToParentNode( "a", null, null, "", app );
     link.setAttribute( "target", "_self" );
     link.setAttribute( "href", url );
