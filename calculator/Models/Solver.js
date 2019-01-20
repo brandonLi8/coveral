@@ -158,6 +158,7 @@ export default class Solver {
       } 
       return "" + (value1 % value2);
     }
+    throw new Error( "Unrecognized operator: " + operator )
   }
   /**
    * Transform the string into a meaningful list
