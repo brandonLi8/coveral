@@ -35,6 +35,12 @@ export default class SolverTest {
     assert(solver.handlePressed(test3,0).newString === "6.174192933294465e-9")
     console.log( "done!" + " " + test3 +" does equal " + "6.174192933294465e-9")
 
+    var test4 = "^(^(^(^(^3";
+    console.log( "testing... this: " + test4 )
+
+    assert(solver.handlePressed(test4,0).newString === "Error: syntax")
+    console.log( "done!" + " " + test3 +" does equal " + "Error: syntax")
+
     console.log("all tests passed!")
   }
 }

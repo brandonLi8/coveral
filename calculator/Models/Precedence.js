@@ -66,6 +66,13 @@ export default class Precedence {
   isOperator( str ){
     return this.singleCharOperators.has( str.charAt(0) );
   }
+  /**
+   * @public
+   * @return {bool} - return if the string is a trig function
+   */
+  isTrig( str ){
+    return this.trig.has( str ) || this.inverse.has( str );
+  }
 
 
 }

@@ -29,12 +29,9 @@ export default class Solver {
   constructor( str ){
     this.precedence = new Precedence();
     this.str = str;
-    try {
-      this.str = this.solve( this.transformToList( this.str ) );
-    }
-    catch( err ) {
-      this.str = err.toString();
-    }
+ 
+    this.str = this.solve( this.transformToList( this.str ) );
+    
   }
   /**
    * the function that solves the string
@@ -113,6 +110,7 @@ export default class Solver {
         }
       }
       index ++;
+
     }
 
     return this.solveStack( values, operators )
@@ -126,11 +124,14 @@ export default class Solver {
   solveStack( val, ops ){
     let values = val;
     let operators = ops;
-    while ( values.length() > 1 ){
+    while ( operators.length() > 0 ){
       let value2 = values.pop();
       let value1 = values.pop();
       let operator = operators.pop();
       values.push( this.operate( value1, value2, operator ) );
+    }
+    if ( values.length() != 1 ){
+      throw new Error( "syntax" ) 
     }
     return values.arr[ 0 ];
   }

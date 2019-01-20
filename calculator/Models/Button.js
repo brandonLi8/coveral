@@ -36,6 +36,19 @@ export default class Button {
     this.type = type; 
   }
   /**
+   * Get the corresponding close parenthesis index 
+   * @private
+   */
+  getCloseIndex( str, start ) {
+    var count = 0;
+    for ( var i = start + 1; i < str.length ; i++ ){
+      if ( str.charAt( i ) === "(" ) count --;
+      if ( str.charAt( i ) === ")" ) count ++;
+      if ( count === 1 ) return i;
+    }
+    throw new Error( "parenthesis" );
+  }
+  /**
    * Handle the functionality of each button when pressed
    * @param {str} - the string that goes in.
    * @public
@@ -44,28 +57,85 @@ export default class Button {
    */
   handlePressed( str, carrotPosition ){
     // handle each case
+    if ( precedence.isTrig( this.text ) ){
+      return { 
+        newString: str.insert( this.text + "()" , carrotPosition ),
+        newCarrot: carrotPosition + this.text.length + 1,
+        error: false
+      };
+    }
+    if ( this.text === "√" || this.text === "^"){
+      return { 
+        newString: str.insert( this.text + "()" , carrotPosition ),
+        newCarrot: carrotPosition + this.text.length + 1,
+        error: false
+      };
+    }
     if ( this.text === "⌫" ) {
+      if ( precedence.isTrig( 
+           str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
+        try {
+        return {
+          newString: str.substring( 0 , carrotPosition - 7 )
+                   + str.substring( this.getCloseIndex( str, 
+                                                      carrotPosition - 1 ) + 1, 
+                                      str.length ),
+          newCarrot: carrotPosition - 7,
+          error: false,
+        }
+        } catch( err ) {
+          return { 
+            newString: str.replace( "", carrotPosition - 1 ),
+            newCarrot: carrotPosition - 1,
+            error: false
+          };
+        }
+      }
+      else if ( precedence.isTrig( 
+           str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){
+        try {
+        return {
+          newString: str.substring( 0 , carrotPosition - 4 )
+                   + str.substring( this.getCloseIndex( str, 
+                                                      carrotPosition - 1 ) + 1, 
+                                      str.length ),
+          newCarrot: carrotPosition - 4,
+          error: false,
+        }
+        } catch( err ) {
+          return { 
+            newString: str.replace( "", carrotPosition - 1 ),
+            newCarrot: carrotPosition - 1,
+            error: false
+          };
+        }
+      }
+      
       return { 
         newString: str.replace( "", carrotPosition - 1 ),
         newCarrot: carrotPosition - 1,
+        error: false
       };
     }
     if ( this.text === "C" ){
       return { 
         newString: "",
-        newCarrot: 0
+        newCarrot: 0,
+        error: false
       };
     }
     if ( this.text === "(-)" ){
       return { 
-        newString: str + "-",
-        newCarrot: carrotPosition + 1
+        newString: str.insert( "-", carrotPosition ),
+        newCarrot: carrotPosition + 1,
+        error: false
       };
     }
     if ( this.text === "mod" ){
       return { 
-        newString: str + "%",
-        newCarrot: carrotPosition + 1
+        newString: str.insert( "%", carrotPosition ),
+        newCarrot: carrotPosition + 1,
+        error: false
       };
     }
     if ( this.text === "=" ){
@@ -75,13 +145,15 @@ export default class Button {
         str = new Solver(str);
         return { 
           newString: str.str,
-          newCarrot: str.str.length 
+          newCarrot: str.str.length,
+          error: false
         };
       } catch( err ){
         let error = err.toString();
         return { 
           newString: error,
-          newCarrot: error.length
+          newCarrot: error.length,
+          error: true
         };
       }
 
@@ -89,7 +161,8 @@ export default class Button {
     else {
       return { 
         newString: str.insert( this.text, carrotPosition ),
-        newCarrot: carrotPosition + this.text.length
+        newCarrot: carrotPosition + this.text.length,
+        error: false
       }
     }
   }

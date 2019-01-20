@@ -81,7 +81,9 @@ input.focus();
  * list of buttons with their attributes respectively (text, type)
  */
 var buttons = buttonList.buttons;
-
+var error = false;
+var previousEntries = [];
+var indexFromEnd = 0;
 /**
  * loop through each element of buttons -> a row
  * loop through each button in the row and add it to the screen
@@ -111,10 +113,39 @@ function addCalculatorButton( row, buttonNode ){
  * uses the button model to update the view
  */
 function handlePressed( buttonNode ){
+  // handle entry
+  if ( buttonNode && buttonNode.text === "entry" ){
+    let last = previousEntries[ previousEntries.length - indexFromEnd  - 1 ];
+    if ( last ){
+      input.value = last;
+      input.setSelectionRange( last.length, last.length );
+      error = false;
+      indexFromEnd ++;
+    }
+    input.focus();
+    return;
+  }
+ 
+  if ( error ){
+    let values = getButtonNode( "C" ).handlePressed( "", 0 );
+    input.value = values.newString
+    input.setSelectionRange( values.newCarrot, values.newCarrot );
+    error = false;
+  }
   if ( buttonNode ){ // buttonNode has to exist
     var str = input.value;
+    if ( buttonNode.text === "=" ){
+      if ( str.length === 0 ){
+        indexFromEnd = 0
+        return;
+      }
+      previousEntries.push(str)
+    }
     let carrot = input.selectionStart;
     let values = buttonNode.handlePressed( str, carrot );
+    if ( values.error ){
+      error = true;
+    }
     input.value = values.newString;
     input.setSelectionRange( values.newCarrot, values.newCarrot );
     input.focus();
@@ -141,7 +172,7 @@ function getButtonNode( text ){
  */
 input.addEventListener( "keydown", event => {
   // defualts
-  if ( event.key === "Backspace" ) return; 
+  if ( event.key === "Backspace" ) handlePressed( getButtonNode( "⌫" ) ); 
   else if ( event.keyCode <= 40 && event.keyCode >= 37 ) return; 
   // symbols pi and e
   else if ( event.key == "p" ) handlePressed( getButtonNode( "π" ) );
@@ -154,15 +185,15 @@ input.addEventListener( "keydown", event => {
   else if ( event.keyCode === 191 ) handlePressed( getButtonNode( "÷" ) ); 
   // check for inverse trig first
   else if ( event.ctrlKey && event.key == "s" ) 
-      handlePressed( getButtonNode( "arcsin(" ) );
+      handlePressed( getButtonNode( "arcsin" ) );
   else if ( event.ctrlKey && event.key == "c" ) 
-      handlePressed( getButtonNode( "arccos(" ) );
+      handlePressed( getButtonNode( "arccos" ) );
   else if ( event.ctrlKey && event.key == "t" ) 
-      handlePressed( getButtonNode( "arctan(" ) );
+      handlePressed( getButtonNode( "arctan" ) );
   // trig
-  else if ( event.key === "s" ) handlePressed( getButtonNode( "sin(" ) );
-  else if ( event.key === "t" ) handlePressed( getButtonNode( "tan(" ) );
-  else if ( event.key === "c" ) handlePressed( getButtonNode( "cos(" ) );
+  else if ( event.key === "s" ) handlePressed( getButtonNode( "sin" ) );
+  else if ( event.key === "t" ) handlePressed( getButtonNode( "tan" ) );
+  else if ( event.key === "c" ) handlePressed( getButtonNode( "cos" ) );
   // clear
   else if ( event.key == "r" ) handlePressed( getButtonNode( "C" ) );
   // handle the rest
@@ -170,3 +201,5 @@ input.addEventListener( "keydown", event => {
   event.preventDefault( );
 } );
 
+console.log("-" === "‒")      //    "‒" // new minus, different character
+        //    "-" // negative, dash on keyboard)
