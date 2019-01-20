@@ -78,7 +78,7 @@ export default class Button {
           newCarrot: str.str.length 
         };
       } catch( err ){
-        let error = err;
+        let error = err.toString();
         return { 
           newString: error,
           newCarrot: error.length

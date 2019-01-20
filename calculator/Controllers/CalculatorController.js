@@ -27,12 +27,6 @@ import SolverTest from "../Models/SolverTest.js"
 var solverTest = new SolverTest();
 solverTest.test()
 */
- // Uncomment to test. Results in the console
-import SolverTest from "../Models/SolverTest.js"
-var solverTest = new SolverTest();
-solverTest.test()
-
-
 
 // set up initial wrapper
 screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );

@@ -33,7 +33,7 @@ export default class Solver {
       this.str = this.solve( this.transformToList( this.str ) );
     }
     catch( err ) {
-      this.str = err;
+      this.str = err.toString();
     }
   }
   /**
@@ -151,7 +151,8 @@ export default class Solver {
     if ( operator === "-" ) return "" + (value1 - value2);
     if (operator === "×") return "" + (value1 * value2);
     if (operator === "÷") return "" + (value1 / value2);
-    if (operator === "%"){//modulus
+    if (operator === "^") return "" + Math.pow( value1, value2 );
+    if (operator === "%"){// modulus
       if (!Number.isInteger(value1) || !Number.isInteger(value2)) {
         throw new Error("modulus with non integer value");
       } 
