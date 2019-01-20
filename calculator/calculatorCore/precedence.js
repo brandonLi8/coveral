@@ -30,7 +30,6 @@ export default class Precedence {
   }
   getPrecedence( char ){
     for (var i = 1; i <= Object.keys( this.precedence ).length; i++){
-      console.log(this.precedence[i])
         if ( this.precedence[i].has(char) ){
             return i;
         }

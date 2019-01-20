@@ -9,28 +9,31 @@ test modules for calculator
  */
 'use strict';
  //modules
-import Solver from "./solver.js";
-import Precendence from "./precendence.js";
-// import FillParenthesis from "./fillParenthesis.js"
-
+import Button from "./button.js";
+var solver = new Button("=");
 export default class SolverTest {
   test(){
-    var solver = new Solver("");
-    var precendence = new Precendence("");
-    console.log(precendence.operate("1.0", "2", "-"))
+    var test1 = "1(1+((1+1)(1+1+1(1+1+1+1(1+1+1+1+1)))))";
+    console.log( "testing... this: " + test1 )
+    assert(solver.handlePressed(test1,0).newString === "21")
+    console.log( "done!" + " " + test1 +" does equal " + "21")
+
+    var test2 = "1(2+((3+4)(55+1+1(1+1+1+1(1+1+1+1+1" ;
+    console.log( "testing... this: " + test2 )
+    assert(solver.handlePressed(test2,0).newString === "450")
+    console.log( "done!" + " " + test2 +" does equal " + "450")
+
+
+    var test3 = "5×662÷536102456752";
+        console.log( "testing... this: " + test3 )
+
+    assert(solver.handlePressed(test3,0).newString === "6.174192933294465e-9")
+        console.log( "done!" + " " + test3 +" does equal " + "21")
+
+    console.log("all tests passed!")
     // this.testSimplify();
   }
-  // testSimplify(){
-  //   var simplifyOne = new Simplifier("πℯ+1(4)√(cot(4)3)6πππsin-1(π)π");
-  //   assert(simplifyOne.str === "(3.141592653589793)*(2.718281828459045)+1*(4)*√(cot(4)*3)*6*(3.141592653589793)*(3.141592653589793)*(3.141592653589793)*sin-1((3.141592653589793))*(3.141592653589793)");
-  //   var simplifyTwo = new Simplifier("1+(32)(4(4))");
-  //   assert(simplifyTwo.str === "1+(32)*(4*(4))");
-  //   var simplifyThree = new Simplifier("1-4*5cos(6)");
-  //   assert(simplifyThree.str === "1-4*5*cos(6)");
-  //   var simplifyFour = new Simplifier("1-cos(6)");
-  //   assert(simplifyFour.str === "1-cos(6)");
-  //   console.log("passed");
-  // }
+
 
 }
 

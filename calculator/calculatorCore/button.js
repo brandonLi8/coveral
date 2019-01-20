@@ -68,7 +68,7 @@ export default class Button {
       };
     }
     if ( this.text === "=" ){
-      try {
+      // try {
         str = replaceSymbol( str );
         str = fillParenthesis.fill( str );
         str = new Solver(str);
@@ -76,12 +76,12 @@ export default class Button {
           newString: str.str,
           newCarrot: 0
         };
-      }catch(err){
-        return { 
-          newString: err,
-          newCarrot: 0
-        };
-      }
+      // }catch(err){
+      //   return { 
+      //     newString: err,
+      //     newCarrot: 0
+      //   };
+      // }
 
     }
     else {

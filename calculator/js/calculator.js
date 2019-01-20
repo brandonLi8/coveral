@@ -22,7 +22,9 @@ import ButtonList from "../calculatorCore/buttonList.js";
 var screen = new Screen();
 var buttonList = new ButtonList();
 
-
+import SolverTest from "../calculatorCore/solverTest.js"
+var solverTest = new SolverTest();
+solverTest.test()
 // set up initial wrapper
 screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
 
@@ -158,6 +160,6 @@ input.addEventListener( "keydown", event => {
     else {
       handlePressed( getButtonNode( event.key ) );
     }
-    event.preventDefault();
+    // event.preventDefault();
 } );
 

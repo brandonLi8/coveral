@@ -29,9 +29,14 @@ export default class Solver {
     this.precedence = new Precedence();
     this.str = str;
     this.str = this.solve( this.transformToList( this.str ) );
+
+
   }
 
   solve( list ){
+    if ( list[0] === "-" || list[0] === "+"){
+      list = [ "0" ].concat(list);
+    }
     var values = new Stack();
     var operators = new Stack();
     var index = 0;
@@ -39,6 +44,29 @@ export default class Solver {
       if ( this.precedence.numbers.has( list[ index ].charAt(0) ) ){//is a number
         values.push( list[ index ] );
       }
+      else if ( list[index] === "(" ){
+        if ( index != 0 && (list[index - 1] === ")" || this.precedence.numbers.has( list[ index - 1 ].charAt(0) )) ){
+          operators.push( "×")
+        }
+        let after = false;
+        let corresodingIndex = this.getCorrespondingCloseParenthesisIndex( list, index );
+        if ( corresodingIndex != list.length - 1 && (list[corresodingIndex + 1] === "(" || this.precedence.numbers.has( list[ corresodingIndex + 1 ].charAt(0) )) ){
+          after = true;
+
+        }
+        if ( corresodingIndex - 1 === index ){
+          throw new Error("parenthesis")
+        }
+        let newlist = list.removeFrom( index, corresodingIndex + 1);
+        newlist = newlist.removeFrom( 1, newlist.length - 1);
+        let newValue = this.solve( newlist );
+        values.push( newValue );
+        if (after ){
+          operators.push( "×")
+        }
+        index --;
+
+      } 
       else if ( this.precedence.singleCharOperators.has( list[ index ] ) ){ // single char operator
         if ( operators.length() === 0 ){
           operators.push( list[ index ] );
@@ -54,6 +82,7 @@ export default class Solver {
           operators.push( list[index] );
         }
       }
+     
       index ++;
 
     }
@@ -184,5 +213,31 @@ export default class Solver {
     throw new Error( "something went wrong" );
   }
 
-}
+  getCorrespondingCloseParenthesisIndex( list, start ) {
+    var count = 0;
+    for ( var i = start + 1; i < list.length ; i++){
+      if ( list[ i ] === "(" ){
+          count --;
+      }
+      if ( list[ i ] === ")" ){
+          count ++;
+      }
+      if ( count === 1 ){
+          return i;
+      }
+        
+    }
+    throw new Error( "parenthesis" )
+  }
 
+}
+Array.prototype.removeFrom = function( start, end ){
+  let result = [];
+  for (var i = start; i < end; i ++){
+    let removed = this.splice( start, 1 );
+    result = result.concat( removed );
+    
+  }
+  return result;
+
+}
