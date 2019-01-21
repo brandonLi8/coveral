@@ -9,9 +9,7 @@
  * module that takes in a string and solves it
  *
  * ## Functionality:
- *  step 1: turn the string into a list
- *  step 2: loop trough each thing in the list, 
- *          pushing it to stacks in order to solve
+ *  solves a string
  */
 
 'use strict';
@@ -26,12 +24,15 @@ export default class Solver {
    * @public
    * enscapulate the precedence module
    */
-  constructor( str ){
+  constructor( str, round, mode ){
     this.precedence = new Precedence();
     this.str = str;
- 
+    this.mode = mode;
     this.str = this.solve( this.transformToList( this.str ) );
-    
+    if ( round ){
+      this.str = Math.round( parseFloat(this.str) * Math.pow( 10, round )) / Math.pow( 10, round )
+      this.str = "" + this.str // turn back to string
+    }
   }
   /**
    * the function that solves the string
@@ -40,11 +41,10 @@ export default class Solver {
    * @param {array} list - the list representation of the string
    */
   solve( list ){
-    console.log(list)
     // unary operators, prepend a '0'
-    if ( list[ 0 ] === "-" || 
-         list[ 0 ] === "+") list = [ "0" ].concat(list);
-  
+    if ( list[ 0 ] === "-" || list[ 0 ] === "+" ){ 
+      list = [ "0" ].concat(list);
+    }
     var values = new Stack(); // stack for the values
     var operators = new Stack(); // stack for the operators
     var index = 0; // index to keep track of where we are
@@ -58,18 +58,17 @@ export default class Solver {
      * Once you reach the end, unwind both stacks and return the answer
      */
     while ( index < list.length ){
-      console.log("new loop" , list[ index ], list)
       if ( this.precedence.isNumber( list[ index ] ) ) { 
         // always push numbers
         values.push( list[ index ] );
       }
-      else if ( this.precedence.isTrig( list[index] ) ||
+      else if ( this.precedence.isFunction( list[index] ) ||
                 list[ index ] === "√" ){
         /**
          * step 1: add a times if there is something in front 
          * step 2: remove the part of the list with the stuff 
-         * inside the parenthesis, and solve that and push it 
-         * to the value stack
+         * inside the parenthesis and the function, and solve 
+         * that and push it to the value stack
          */
         var before = false;
         if ( index != 0 && ( list[ index - 1 ] === ")" || 
@@ -77,25 +76,27 @@ export default class Solver {
           before = true;
         }
         if ( this.precedence.isNumber( list[ index + 1 ] ) ){
+          // no parenthesis after the function.
           let newValue = this.evalFunction( list[ index + 1 ], list[ index ] )
           list.removeFrom( index, index + 2 );
           list.splice( index, 0, newValue)
           if (before){
             list.splice( index, 0, "×")
           }
-          index --;
+          continue;
         }
+
         if ( list[ index + 1 ] === "(" ){
           if ( index != 0 && ( list[ index - 1 ] === ")" || 
             this.precedence.isNumber( list[ index - 1 ] ) ) ){
-            operators.push( "×")
+            operators.push( "×" )
           }
           let after = false;
           let corresodingIndex = this.getCloseIndex( list, index + 1 );
           if ( corresodingIndex != list.length - 1 && 
               ( list[ corresodingIndex + 1 ] === "(" || 
                 this.precedence.isNumber( list[ corresodingIndex + 1 ] ) ) ||
-                this.precedence.isTrig( list[ corresodingIndex + 1 ] ) ){
+                this.precedence.isFunction( list[ corresodingIndex + 1 ] ) ){
             after = true;
           }
           if ( corresodingIndex - 1 === index + 1 ){
@@ -109,9 +110,7 @@ export default class Solver {
           if ( after ){
             operators.push( "×" )
           }
-          console.log(values.toString())
-          console.log(operators.toString())
-          index --;
+          continue;
 
         }
         else{
@@ -132,10 +131,11 @@ export default class Solver {
         // keep a flag, since the list is going to change
         let after = false;
         let corresodingIndex = this.getCloseIndex( list, index );
+
         if ( corresodingIndex != list.length - 1 && 
               ( list[ corresodingIndex + 1 ] === "(" || 
                 this.precedence.isNumber( list[ corresodingIndex + 1 ] ) ||
-                this.precedence.isTrig( list[ corresodingIndex + 1 ] ) ) ){
+                this.precedence.isFunction( list[ corresodingIndex + 1 ] ) ) ){
           after = true;
         }
         if ( corresodingIndex - 1 === index ){
@@ -148,7 +148,7 @@ export default class Solver {
         if ( after ){
           operators.push( "×" )
         }
-        index--;
+        continue;
       }
       else if ( this.precedence.isOperator( list[ index ] ) ){
         if ( operators.length() === 0 ) operators.push( list[ index ] );
@@ -161,17 +161,13 @@ export default class Solver {
           let value1 = values.pop();
           let operator = operators.pop();
           values.push( this.operate( value1, value2, operator ) );
-          index --;
+          continue;
         }
         else {
           operators.push( list[ index ] );
         }
       }
       index ++;
-
-      console.log(values.toString());
-      console.log(operators.toString())
-
     }
     return this.solveStack( values, operators )
   }
@@ -193,9 +189,14 @@ export default class Solver {
     if ( values.length() != 1 ){
       throw new Error( "syntax" ) 
     }
-    console.log("done", values.arr[ 0 ])
     return values.arr[ 0 ];
   }
+  /**
+   * returns if two values are almost equal
+   * @private
+   * @param {number} d1 - first number
+   * @param {number} d2 - second number
+   */
   almostEqual( d1, d2 ){
     var epsilon = Math.pow( 10, -2 )
     return Math.abs( d2 - d1 ) < epsilon
@@ -210,28 +211,38 @@ export default class Solver {
     if ( isNaN( value ) ){
         throw new Error("syntax");
     }
-    value = parseFloat(value);
-    if ( operator === "sin" ) return "" + Math.sin( value );
-    if ( operator === "cos" ) return "" + Math.cos( value );
+    value = parseFloat( value) ;
+    if ( operator === "sin" ) {
+      if ( this.mode == "deg" ) value *= Math.PI / 180      
+      return "" + Math.sin( value );
+    }
+    if ( operator === "cos" ) {
+      if ( this.mode == "deg" ) value *= Math.PI / 180
+      return "" + Math.cos( value );
+    }
     if ( operator === "tan" ) {
+      if ( this.mode == "deg" ) value *= Math.PI / 180
       if ( this.almostEqual( Math.cos(value), 0 ) ){
         throw new Error("Domain on tan");
       }
       return "" + Math.tan( value );
     }
     if ( operator === "csc" ) {
+      if ( this.mode == "deg" ) value *= Math.PI / 180
       if ( this.almostEqual( Math.sin(value), 0 ) ){
         throw new Error("Domain on tan");
       }
       return "" + 1/Math.sin( value );
     }
     if ( operator === "sec" ) {
+      if ( this.mode == "deg" ) value *= Math.PI / 180
       if ( this.almostEqual( Math.cos(value), 0 ) ){
         throw new Error("Domain on tan");
       }
       return "" + 1/Math.cos( value );
     }
     if ( operator === "cot" ) {
+      if ( this.mode == "deg" ) value *= Math.PI / 180
       if ( this.almostEqual( Math.sin(value), 0 ) ){
         throw new Error("Domain on cot");
       }
@@ -242,15 +253,24 @@ export default class Solver {
       if ( value < -1 || value > 1 ){
         throw new Error( "domain on arcsin")
       }
+      if ( this.mode == "deg" ) {
+        return "" + Math.asin( value )*180/Math.PI;
+      }
       return "" + Math.asin( value );
     }
     if ( operator === "arccos" ) {
       if ( value < -1 || value > 1 ){
         throw new Error( "domain on arccos")
       }
+      if ( this.mode == "deg" ) {
+        return "" + Math.acos( value )*180/Math.PI;
+      }
       return "" + Math.acos( value );
     }
     if ( operator === "arctan" ) {
+      if ( this.mode == "deg" ) {
+        return "" + Math.atan( value )*180/Math.PI;
+      }
       return "" + Math.atan( value );
     }
     if ( operator === "√" ){
@@ -341,8 +361,7 @@ export default class Solver {
     }
   }
   /**
-   * Get the next number from a given index
-   * For example getNextNumber( "12cos5", 2 ) -> result:cos, index: 5
+   * Get the next operator from a given index
    * @param {str} - the string that goes in.
    * @param {index} - starting index place
    * @private

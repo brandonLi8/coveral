@@ -36,81 +36,36 @@ export default class Button {
     this.type = type; 
   }
   /**
-   * Get the corresponding close parenthesis index 
-   * @private
-   */
-  getCloseIndex( str, start ) {
-    var count = 0;
-    for ( var i = start + 1; i < str.length ; i++ ){
-      if ( str.charAt( i ) === "(" ) count --;
-      if ( str.charAt( i ) === ")" ) count ++;
-      if ( count === 1 ) return i;
-    }
-    throw new Error( "parenthesis" );
-  }
-  /**
    * Handle the functionality of each button when pressed
    * @param {str} - the string that goes in.
    * @public
    * @return {String} the new string that it should display 
    * after the button is pressed
    */
-  handlePressed( str, carrotPosition ){
+  handlePressed( str, carrotPosition , round, mode ){
     // handle each case
-    if ( precedence.isTrig( this.text ) ){
+    if ( precedence.isFunction( this.text ) || this.text === "^" ){
+      // put the curser inside the parenthesis
       return { 
         newString: str.insert( this.text + "()" , carrotPosition ),
         newCarrot: carrotPosition + this.text.length + 1,
         error: false
       };
     }
-    if ( this.text === "√" || this.text === "^"){
-      return { 
-        newString: str.insert( this.text + "()" , carrotPosition ),
-        newCarrot: carrotPosition + this.text.length + 1,
-        error: false
-      };
-    }
-    if ( this.text === "⌫" ) {
-      if ( precedence.isTrig( 
-           str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
-        try {
-        return {
-          newString: str.substring( 0 , carrotPosition - 7 )
-                   + str.substring( this.getCloseIndex( str, 
-                                                      carrotPosition - 1 ) + 1, 
-                                      str.length ),
-          newCarrot: carrotPosition - 7,
-          error: false,
-        }
-        } catch( err ) {
-          return { 
-            newString: str.replace( "", carrotPosition - 1 ),
-            newCarrot: carrotPosition - 1,
-            error: false
-          };
-        }
+    if ( this.text === "⌫" ) { // delete when inside a function
+      // check for inverse trig first
+      if ( precedence.isFunction( str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
+        if ( str.substring( carrotPosition - 7, carrotPosition - 1 ).length ){  
+        return removeFunction( str, carrotPosition, 3 ) 
       }
-      else if ( precedence.isTrig( 
-           str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){
-        try {
-        return {
-          newString: str.substring( 0 , carrotPosition - 4 )
-                   + str.substring( this.getCloseIndex( str, 
-                                                      carrotPosition - 1 ) + 1, 
-                                      str.length ),
-          newCarrot: carrotPosition - 4,
-          error: false,
-        }
-        } catch( err ) {
-          return { 
-            newString: str.replace( "", carrotPosition - 1 ),
-            newCarrot: carrotPosition - 1,
-            error: false
-          };
-        }
+        return removeFunction( str, carrotPosition, 6 ) 
       }
-      
+      else if ( precedence.isFunction( str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){  
+        return removeFunction( str, carrotPosition, 3 ) 
+      }
+      else if ( precedence.isFunction( str.substring( carrotPosition - 2, carrotPosition - 1 ) ) ){  
+        return removeFunction( str, carrotPosition, 1 ) 
+      }
       return { 
         newString: str.replace( "", carrotPosition - 1 ),
         newCarrot: carrotPosition - 1,
@@ -140,9 +95,17 @@ export default class Button {
     }
     if ( this.text === "=" ){
       try {
+        if ( str.includes( "rnd:" ) ){
+          console.log( str.substring( 4, str.length - 1 ))
+          var newRnd = parseInt( str.substring( 4, str.length ) );
+          if ( Number.isInteger( newRnd) ){
+            return newRnd;
+          }
+          else throw new Error( "Syntax on RND")
+        }
         str = replaceSymbols( str );
         str = fillParenthesis.fill( str );
-        str = new Solver(str);
+        str = new Solver( str, round, mode );
         return { 
           newString: str.str,
           newCarrot: str.str.length,
@@ -166,14 +129,7 @@ export default class Button {
       }
     }
   }
-  /**
-   * Simple way of identifying a button when debugging.
-   * @public
-   * @returns {String} - Return the text on the button
-   */
-  toString(){
-    return this.text;
-  }
+
 }
 /**
  * replace P and E symbol with numerical value wrapped around in parenthesis
@@ -235,3 +191,45 @@ String.prototype.insert = function( newString, index ){
   }
   return result;
 }
+/**
+ * Get the corresponding close parenthesis index 
+ * @private
+ */
+function getCloseIndex( str, start ) {
+    var count = 0;
+    for ( var i = start + 1; i < str.length ; i++ ){
+      if ( str.charAt( i ) === "(" ) count --;
+      if ( str.charAt( i ) === ")" ) count ++;
+      if ( count === 1 ) return i;
+    }
+    throw new Error( "parenthesis" );
+  }
+
+/**
+ * removes a function for the user when the backspace is pressed on a function
+ * @helper
+ * @private
+ */
+function removeFunction( str, carrotPosition, lengthOfFunction ){
+  try {
+    return {
+      newString: 
+        str.substring( 0 , carrotPosition - lengthOfFunction - 1 )
+        + str.substring( 
+            getCloseIndex( str, carrotPosition - 1 ) + 1, 
+            str.length 
+          ),
+      newCarrot: carrotPosition - lengthOfFunction - 1,
+      error: false,
+    }
+  } catch( err ) {
+    return { 
+      newString: str.replace( "", carrotPosition - 1 ),
+      newCarrot: carrotPosition - 1,
+      error: false
+    };
+  }
+}
+
+
+

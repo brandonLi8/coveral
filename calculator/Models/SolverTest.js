@@ -13,9 +13,10 @@
  */
  
 'use strict';
+
  //modules
 import Button from "./button.js";
-var solver = new Button( "=" );
+var solver = new Button( "=", null, "rad");
 
 export default class SolverTest {
   test(){
@@ -31,13 +32,11 @@ export default class SolverTest {
 
     var test3 = "5×662÷536102456752";
     console.log( "testing... this: " + test3 )
-
     assert(solver.handlePressed(test3,0).newString === "6.174192933294465e-9")
     console.log( "done!" + " " + test3 +" does equal " + "6.174192933294465e-9")
 
     var test4 = "^(^(^(^(^3";
     console.log( "testing... this: " + test4 )
-
     assert(solver.handlePressed(test4,0).newString === "Error: syntax")
     console.log( "done!" + " " + test3 +" does equal " + "Error: syntax")
 

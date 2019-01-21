@@ -71,9 +71,10 @@ export default class Precedence {
   }
   /**
    * @public
-   * @return {bool} - return if the string is a trig function
+   * @return {bool} - return if the string is a 
+   * trig function or the sqrt funtion
    */
-  isTrig( str ){
+  isFunction( str ){
     return this.trig.has( str ) || this.inverse.has( str ) || str === "√";
   }
 
