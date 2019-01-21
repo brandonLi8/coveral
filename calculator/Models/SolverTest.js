@@ -41,6 +41,17 @@ export default class SolverTest {
     assert(solver.handlePressed(test4,0).newString === "Error: syntax")
     console.log( "done!" + " " + test3 +" does equal " + "Error: syntax")
 
+    var test5 = "cos(ℯ^1)^(2)+2sin(ℯπ";
+    console.log( "testing... this: " + test5 )
+    assert(solver.handlePressed(test5,0).newString === "2.3791441019061828")
+    console.log( "done!" + " " + test5 +" does equal " + "2.3791441019061828")
+
+
+    var test6 = "sin(5)csc(tan(√(3)))";
+    console.log( "testing... this: " + test6 )
+    assert(solver.handlePressed(test6,0).newString === "-7.090721115797492")
+    console.log( "done!" + " " + test6 +" does equal " + "-7.090721115797492")
+
     console.log("all tests passed!")
   }
 }

@@ -40,6 +40,7 @@ export default class Solver {
    * @param {array} list - the list representation of the string
    */
   solve( list ){
+    console.log(list)
     // unary operators, prepend a '0'
     if ( list[ 0 ] === "-" || 
          list[ 0 ] === "+") list = [ "0" ].concat(list);
@@ -57,9 +58,65 @@ export default class Solver {
      * Once you reach the end, unwind both stacks and return the answer
      */
     while ( index < list.length ){
+      console.log("new loop" , list[ index ], list)
       if ( this.precedence.isNumber( list[ index ] ) ) { 
         // always push numbers
         values.push( list[ index ] );
+      }
+      else if ( this.precedence.isTrig( list[index] ) ||
+                list[ index ] === "√" ){
+        /**
+         * step 1: add a times if there is something in front 
+         * step 2: remove the part of the list with the stuff 
+         * inside the parenthesis, and solve that and push it 
+         * to the value stack
+         */
+        var before = false;
+        if ( index != 0 && ( list[ index - 1 ] === ")" || 
+             this.precedence.isNumber( list[ index - 1 ] ) ) ){
+          before = true;
+        }
+        if ( this.precedence.isNumber( list[ index + 1 ] ) ){
+          let newValue = this.evalFunction( list[ index + 1 ], list[ index ] )
+          list.removeFrom( index, index + 2 );
+          list.splice( index, 0, newValue)
+          if (before){
+            list.splice( index, 0, "×")
+          }
+          index --;
+        }
+        if ( list[ index + 1 ] === "(" ){
+          if ( index != 0 && ( list[ index - 1 ] === ")" || 
+            this.precedence.isNumber( list[ index - 1 ] ) ) ){
+            operators.push( "×")
+          }
+          let after = false;
+          let corresodingIndex = this.getCloseIndex( list, index + 1 );
+          if ( corresodingIndex != list.length - 1 && 
+              ( list[ corresodingIndex + 1 ] === "(" || 
+                this.precedence.isNumber( list[ corresodingIndex + 1 ] ) ) ||
+                this.precedence.isTrig( list[ corresodingIndex + 1 ] ) ){
+            after = true;
+          }
+          if ( corresodingIndex - 1 === index + 1 ){
+            throw new Error( "() with nothing inside" )
+          }
+          let trig = list[ index ];
+          let newlist = list.removeFrom( index , corresodingIndex + 1 );
+          newlist = newlist.removeFrom( 2, newlist.length - 1 );
+          let newValue = this.evalFunction( this.solve( newlist ), trig )
+          values.push( newValue );
+          if ( after ){
+            operators.push( "×" )
+          }
+          console.log(values.toString())
+          console.log(operators.toString())
+          index --;
+
+        }
+        else{
+          throw new Error( "" + list[ index + 1 ] + " is unrecognized")
+        }
       }
       else if ( list[index] === "(" ){ 
         /**
@@ -77,7 +134,8 @@ export default class Solver {
         let corresodingIndex = this.getCloseIndex( list, index );
         if ( corresodingIndex != list.length - 1 && 
               ( list[ corresodingIndex + 1 ] === "(" || 
-                this.precedence.isNumber( list[ corresodingIndex + 1 ] ) ) ){
+                this.precedence.isNumber( list[ corresodingIndex + 1 ] ) ||
+                this.precedence.isTrig( list[ corresodingIndex + 1 ] ) ) ){
           after = true;
         }
         if ( corresodingIndex - 1 === index ){
@@ -90,8 +148,8 @@ export default class Solver {
         if ( after ){
           operators.push( "×" )
         }
-        index --;
-      } 
+        index--;
+      }
       else if ( this.precedence.isOperator( list[ index ] ) ){
         if ( operators.length() === 0 ) operators.push( list[ index ] );
         
@@ -111,8 +169,10 @@ export default class Solver {
       }
       index ++;
 
-    }
+      console.log(values.toString());
+      console.log(operators.toString())
 
+    }
     return this.solveStack( values, operators )
   }
   /**
@@ -133,7 +193,72 @@ export default class Solver {
     if ( values.length() != 1 ){
       throw new Error( "syntax" ) 
     }
+    console.log("done", values.arr[ 0 ])
     return values.arr[ 0 ];
+  }
+  almostEqual( d1, d2 ){
+    var epsilon = Math.pow( 10, -2 )
+    return Math.abs( d2 - d1 ) < epsilon
+  }
+  /**
+   * solves based on the trig function
+   * @private
+   * @param {string} value - the string value of the arguement
+   * @param {string} operator - the operator
+   */
+  evalFunction( value, operator ){
+    if ( isNaN( value ) ){
+        throw new Error("syntax");
+    }
+    value = parseFloat(value);
+    if ( operator === "sin" ) return "" + Math.sin( value );
+    if ( operator === "cos" ) return "" + Math.cos( value );
+    if ( operator === "tan" ) {
+      if ( this.almostEqual( Math.cos(value), 0 ) ){
+        throw new Error("Domain on tan");
+      }
+      return "" + Math.tan( value );
+    }
+    if ( operator === "csc" ) {
+      if ( this.almostEqual( Math.sin(value), 0 ) ){
+        throw new Error("Domain on tan");
+      }
+      return "" + 1/Math.sin( value );
+    }
+    if ( operator === "sec" ) {
+      if ( this.almostEqual( Math.cos(value), 0 ) ){
+        throw new Error("Domain on tan");
+      }
+      return "" + 1/Math.cos( value );
+    }
+    if ( operator === "cot" ) {
+      if ( this.almostEqual( Math.sin(value), 0 ) ){
+        throw new Error("Domain on cot");
+      }
+      return "" + 1/Math.tan( value );
+    }
+    
+    if ( operator === "arcsin" ) {
+      if ( value < -1 || value > 1 ){
+        throw new Error( "domain on arcsin")
+      }
+      return "" + Math.asin( value );
+    }
+    if ( operator === "arccos" ) {
+      if ( value < -1 || value > 1 ){
+        throw new Error( "domain on arccos")
+      }
+      return "" + Math.acos( value );
+    }
+    if ( operator === "arctan" ) {
+      return "" + Math.atan( value );
+    }
+    if ( operator === "√" ){
+      if ( value < 0 ){
+        throw new Error("sqrt of a negative")
+      }
+      return "" + Math.sqrt( value )
+    }
   }
    /**
    * solves based on the operator of two arguements

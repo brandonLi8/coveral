@@ -57,6 +57,9 @@ export default class Precedence {
    * @return {bool} - return if the string is a number
    */
   isNumber( str ){
+    if ( str.charAt(0) === "-" ){
+      return this.numbers.has( str.charAt(1) );
+    } 
     return this.numbers.has( str.charAt(0) );
   }
   /**
@@ -71,7 +74,7 @@ export default class Precedence {
    * @return {bool} - return if the string is a trig function
    */
   isTrig( str ){
-    return this.trig.has( str ) || this.inverse.has( str );
+    return this.trig.has( str ) || this.inverse.has( str ) || str === "√";
   }
 
 
