@@ -32,11 +32,18 @@ screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
  */
 addReturnButton( "./assets/reset.png", 
                  "../dashboard.html", 
-                 "./assets/resetHover.png" )
-function addReturnButton( src, url , hoverSrc ){
+                 "./assets/resetHover.png",
+                 "backToDashboardButton" )
+// add the help button
+addReturnButton( "./assets/helpButton.png", 
+                 "../dashboard.html", 
+                 "./assets/helpHoverButton.png", 
+                 "helpButton"
+                )
+function addReturnButton( src, url , hoverSrc, id ){
   // add the div to the wrapper
   let button = screen.addChildToParentId( 
-                "div", "backToDashboardButton", 
+                "div", id, 
                 null, "", "calculator_wrapper" 
               );
   // add the image to the button node
@@ -100,6 +107,7 @@ function addCalculatorButton( row, buttonNode ){
                buttonNode.text, button );
   button.onclick = function() { handleButtonPress( buttonNode, text ) };
 }
+
 /**
  * add listener's for user interaction
  */

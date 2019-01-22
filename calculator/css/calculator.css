@@ -46,6 +46,12 @@ body {
   margin: auto auto 2% 0%;
 }
 
+#helpButton{
+  width: 55px;
+  height: 55px;
+  margin: auto auto 0% 80%;
+}
+
 #calculator{
   background: #515151;
   border: 20px solid #515151;  
