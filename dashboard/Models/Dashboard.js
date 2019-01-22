@@ -32,7 +32,7 @@ var Planner = {
   title: "Planner",
   src: "assets/plannerIcon.png",
   hover: "assets/plannerHoverIcon.png",
-  url: "google.com"
+  url: "../planner.html"
 };
 var Simulations = {
   title: "Simulations",
