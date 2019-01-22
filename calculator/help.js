@@ -50,4 +50,11 @@ function addReturnButton( src, url , hoverSrc, id ){
   };
 }
 
-
+// load the footer items
+var footer = [ "2019© By Brandon Li", 
+               "brandon.li820@icloud.com", 
+               "303-717-1568" 
+             ];
+for ( var i = 0; i < footer.length; i++ ){
+  screen.addChildToParentId( "p",  null, null, footer[ i ], "content" );
+}
