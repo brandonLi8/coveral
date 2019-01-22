@@ -35,11 +35,6 @@ addReturnButton( "./assets/reset.png",
                  "./assets/resetHover.png",
                  "backToDashboardButton" )
 // add the help button
-addReturnButton( "./assets/helpButton.png", 
-                 "../dashboard.html", 
-                 "./assets/helpHoverButton.png", 
-                 "helpButton"
-                )
 function addReturnButton( src, url , hoverSrc, id ){
   // add the div to the wrapper
   let button = screen.addChildToParentId( 
@@ -107,6 +102,11 @@ function addCalculatorButton( row, buttonNode ){
                buttonNode.text, button );
   button.onclick = function() { handleButtonPress( buttonNode, text ) };
 }
+addReturnButton( "./assets/helpButton.png", 
+                 "./help.html", 
+                 "./assets/helpHoverButton.png", 
+                 "helpButton"
+                )
 
 /**
  * add listener's for user interaction

@@ -22,13 +22,26 @@ body {
   line-height: 1.5;
 }
 
-#calculator_wrapper{
+#calculator_wrapper, #help_wrapper{
   width: 80%;
   margin: 2% auto;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
+#help_wrapper{
+  display: inline !important;
+  text-align: left;
+  margin-left: 46.5%;
+}
+
+#title{
+  font-size: 150%;
+}
+#subtitle{
+  margin-right: 15px;
+}
 .backToDashboard{
   border-radius: 50%;
   height: 100%;
