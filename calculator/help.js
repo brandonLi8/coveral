@@ -48,6 +48,7 @@ function addReturnButton( src, url , hoverSrc, id ){
   image.onclick = function() { 
     window.open(url, '_self');
   };
+  button.style.marginBottom = "-5%"
 }
 
 // load the footer items
