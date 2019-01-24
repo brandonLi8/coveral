@@ -1,8 +1,7 @@
-/*    
-planner.css
-learning app
-Created by Brandon Li on 1/22/19.
-Copyright © 2019 Brandon Li. All rights reserved. 
+/*  planner.css
+    learning app
+    Created by Brandon Li on 1/22/19.
+    Copyright © 2019 Brandon Li. All rights reserved. 
 */
 
 html, body{
@@ -12,8 +11,9 @@ html, body{
 }
 
 html {
-  background: #FFFFFF;
-  min-height: 110%;
+  background: rgb( 238 , 239 , 241 );
+  background-color: hsl(220, 1.24, 94.51);
+  min-height: 210%;
 }
 body {
   background: none;
@@ -30,23 +30,36 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: -10%;
 }
 
-#planner_wrapper{
-  width: 80%;
-  margin:  -10% auto 15%;
-
+/*#planner_wrapper{
+  width: 60%;
+  margin: -15% auto 15%;
 }
 
-.plan{
-  border: 2px solid #401722;
+.plan, .highlighted-plan{
+  border: 2px solid #2E4372;
+  border-top-width: 3px;
+  border-right-width: 4px;
+  border-left-width: 1px;
+  box-shadow: -1px 2px 0px 3px #7788AA,
+               1px 1px 6px 4px #666666;
   margin-bottom: 45px;
-  min-height: 120px;
+  min-height: 125px;
   border-radius: 15px 40px;
+  background-image: linear-gradient(to right, rgba(13, 77, 75,0.2), rgba(13, 77, 75,0.6));
+
 }
-
-
+.highlighted-plan {
+  border: 1px solid #0470E5;
+  border-top-width: 2px;
+  border-right-width: 3px;
+  border-left-width: 1px;
+  box-shadow: -1px 1px 5px 2px #555555;
+  min-height: 100px;
+  border-radius: 10px 30px;
+}
+*/
 .backToDashboard{
   border-radius: 50%;
   height: 100%;
@@ -64,7 +77,7 @@ body {
   margin: auto auto 2% 0%;
 }
 
-#helpButton{
+/*#helpButton{
   width: 55px;
   height: 55px;
   margin: auto auto 0% 80%;
@@ -79,8 +92,13 @@ body {
 }
 
 #title img{
-  float:left;
-  margin-left: 5%;
+  margin-bottom: -5%;
   width: 90px;
   height: 60px;
 }
+
+
+*/
+
+
+

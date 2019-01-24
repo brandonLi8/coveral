@@ -1,0 +1,44 @@
+/*  header.css
+    learning app
+    Created by Brandon Li on 1/23/19.
+    Copyright © 2019 Brandon Li. All rights reserved. 
+*/
+#header{
+  position: fixed;
+  width: 100%;
+  height: 13%;
+  margin: 0;
+  background-color: #3B4851;
+  top: 0;
+  left: 0;
+  box-shadow: inset 0 40px 200px -10px rgba(100, 100, 100, 0.6);
+  text-align: center;
+  font-family: "Comic Sans MS";
+}
+
+
+#header #left{
+  border: 2px solid black;
+  width: 35%;
+  height: 100%;
+  margin-left:10%; 
+}
+
+
+#backToDashboard{
+  width: 70px;
+}
+
+#header_content{
+  border-right: 2px solid #6E7881;
+  color: #B6C0C9;
+  font-size: 20px;
+  margin-top: 4%;
+  display: inline-block;
+  padding-right: 8%;
+}
+
+#header_content:hover{
+  cursor: pointer;
+  color: #FFFFFF;
+}
