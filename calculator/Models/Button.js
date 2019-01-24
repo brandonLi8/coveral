@@ -13,11 +13,11 @@
  *  - enscapulate the properties of a button
  */
 "use strict";
-// modules
+// import modules
 import Solver from "./Solver.js";
 import Precedence from "./Precedence.js";
 import FillParenthesis from "./FillParenthesis.js";
-
+// modules
 var precedence = new Precedence();
 var fillParenthesis = new FillParenthesis();
 

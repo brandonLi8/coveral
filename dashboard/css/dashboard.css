@@ -1,9 +1,13 @@
-/*    
-    dashboard.css
-    learning app
-    Created by Brandon Li on 1/11/19.
-    Copyright © 2019 Brandon Li. All rights reserved. 
-*/
+/**
+ * Learning App
+ * Dashboard.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/11/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the main elements of the page
+ */
 html, body{
     max-width: 100%;
     overflow-x: hidden;

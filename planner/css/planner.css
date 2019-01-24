@@ -1,8 +1,13 @@
-/*  planner.css
-    learning app
-    Created by Brandon Li on 1/22/19.
-    Copyright © 2019 Brandon Li. All rights reserved. 
-*/
+/**
+ * Learning App
+ * calculator.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/22/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the main elements of the page
+ */
 
 html, body{
   max-width: 100%;
@@ -23,82 +28,10 @@ body {
   color: #333;
 }
 
-
 #main_wrapper{
   width: 80%;
-  margin: 2% auto;
+  margin: auto auto;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-
-/*#planner_wrapper{
-  width: 60%;
-  margin: -15% auto 15%;
-}
-
-.plan, .highlighted-plan{
-  border: 2px solid #2E4372;
-  border-top-width: 3px;
-  border-right-width: 4px;
-  border-left-width: 1px;
-  box-shadow: -1px 2px 0px 3px #7788AA,
-               1px 1px 6px 4px #666666;
-  margin-bottom: 45px;
-  min-height: 125px;
-  border-radius: 15px 40px;
-  background-image: linear-gradient(to right, rgba(13, 77, 75,0.2), rgba(13, 77, 75,0.6));
-
-}
-.highlighted-plan {
-  border: 1px solid #0470E5;
-  border-top-width: 2px;
-  border-right-width: 3px;
-  border-left-width: 1px;
-  box-shadow: -1px 1px 5px 2px #555555;
-  min-height: 100px;
-  border-radius: 10px 30px;
-}
-*/
-.backToDashboard{
-  border-radius: 50%;
-  height: 100%;
-  width: 100%;
-  box-shadow: 1px 2px 5px 2px #4D4E4E;
-}
-
-.backToDashboard:hover{
-  cursor: pointer;
-}
-
-#backToDashboardButton{
-  width: 90px;
-  height: 90px;
-  margin: auto auto 2% 0%;
-}
-
-/*#helpButton{
-  width: 55px;
-  height: 55px;
-  margin: auto auto 0% 80%;
-}
-
-#title{
-  font-family: "Verdana" , Geneva, sans-serif;
-  font-size: 60px;
-  color: #1480E5;
-  display: flex;
-  flex-direction: column;
-}
-
-#title img{
-  margin-bottom: -5%;
-  width: 90px;
-  height: 60px;
-}
-
-
-*/
-
-
-

@@ -1,24 +1,28 @@
-/*  styling for the app icons 
-    appIcons.css
-    learning app
-    Created by Brandon Li on 1/11/19.
-    Copyright © 2019 Brandon Li. All rights reserved. 
-*/
+/**
+ * Learning App
+ * AppIcons.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/11/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the app icons
+ */
 .app {
-    display: flex;
-    /* app icons are 140px + the border of the app*/
-    flex-direction: column;
-    flex-basis: calc( 140px + 2*3px );
-    margin: 15% 3%;
+  display: flex;
+  /* app icons are 140px + the border of the app*/
+  flex-direction: column;
+  flex-basis: calc( 140px + 2*3px );
+  margin: 15% 3%;
 }
 
 .app input{
-    border : 3px solid rgb( 60, 60, 60 );
-    border-radius: 40px;
-    box-shadow: 1px 1px 7px 2px #4D4E4E;
+  border : 3px solid rgb( 60, 60, 60 );
+  border-radius: 40px;
+  box-shadow: 1px 1px 7px 2px #4D4E4E;
 }
 .app input:focus{
-    outline:0;
+  outline:0;
 }
 
 .app p{

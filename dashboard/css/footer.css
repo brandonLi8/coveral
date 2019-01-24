@@ -1,37 +1,36 @@
-/*    
-    footer.css
-    learning app
-    Created by Brandon Li on 1/11/19.
-    Copyright © 2019 Brandon Li. All rights reserved. 
-*/
-#footer-container {
-    width: 80%;
-    height: 71px;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding-top: 23px;
-    transition: color 0.25s, background 0.25s;
-}
+/**
+ * Learning App
+ * calculator.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/11/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the footer
+ */
 #footer a {
-    color: #4D96FF;
+  color: #4D96FF;
 }
+
 #footer {
-    position: fixed;
-    width: 100%;
-    height: 12%;
-    margin: 0;
-    color: #4D96FF;
-    bottom: 0;
-    left: 0;
-    box-shadow: inset 0 40px 200px -10px rgba(100, 100, 100, 0.6);
-    border-top: 2px solid rgb(100, 100, 100);
-    text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 12%;
+  margin: 0;
+  color: #4D96FF;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0 40px 200px -10px rgba(100, 100, 100, 0.6);
+  border-top: 2px solid rgb(100, 100, 100);
+  text-align: center;
 }
+
 #footer #content{
-    margin-top: 2%;
+  margin-top: 2%;
 }
+
 #footer p{
-    display: inline;
-    margin: 1%;
-    margin-top: 5%;
+  display: inline;
+  margin: 1%;
+  margin-top: 5%;
 }

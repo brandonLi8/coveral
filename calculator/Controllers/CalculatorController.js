@@ -6,7 +6,6 @@
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- *
  * ## Functionality:
  *  - handle buttons pressed and calculator functionality
  */
@@ -39,9 +38,7 @@ function getButtonNode( text ){
   for ( var i = 0; i < buttons.length; i++ ){
     var row = buttons[ i ];
     for ( var j = 0; j < row.length; j++ ){
-      if ( row[ j ].text === text ){
-        return row[ j ];
-      }
+      if ( row[ j ].text === text ) return row[ j ];
     }
   }
 }
@@ -52,7 +49,8 @@ export default class CalculatorController{
    * @public
    */
   handlePressed( buttonNode , text ){
-    if ( buttonNode && ( buttonNode.text === "rad" || buttonNode.text === "deg" ) ){
+    if ( buttonNode && 
+       ( buttonNode.text === "rad" || buttonNode.text === "deg" ) ){
       if ( mode === "rad" ) mode = "deg"
       else if ( mode === "deg" ) mode = "rad"
       text.innerHTML = mode;
@@ -76,10 +74,10 @@ export default class CalculatorController{
     }
     /**
      * if we previously just entered in something that led to an error,
-     * we need to clear it
+     * clear it
      */
     if ( error ){ // clear no matter what
-      let values = getButtonNode( "C" ).handlePressed( "", 0, 0, ""); 
+      let values = getButtonNode( "C" ).handlePressed( "", 0, 0, "" ); 
       //simulate clear
       input.value = values.newString
       input.setSelectionRange( values.newCarrot, values.newCarrot );
@@ -156,6 +154,5 @@ export default class CalculatorController{
     else handlePressed( getButtonNode( event.key ) );
     event.preventDefault( );
   } 
-  
 }
 
