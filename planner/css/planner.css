@@ -28,10 +28,102 @@ body {
   color: #333;
 }
 
-#main_wrapper{
+#planner_wrapper{
   width: 80%;
-  margin: auto auto;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-family: Courier;
+
 }
+
+.card{
+  width: 50%;
+  margin: 30px auto;
+  background: #FFFFFF;
+  min-height: 160px;
+  border-radius: 10px 10px 8px 8px;
+    text-align: center;
+ display: block;
+
+  box-shadow: 0px 2px 0px 0px #777777,
+              2px 3px 6px 0px #999999;
+
+
+}
+.card #heading{
+  background: #3053A4;
+  border-radius: 10px 10px 0 0;
+  min-height: 55px;
+  color: #F1F1F1; 
+  font-size: 22px;
+  display: flex;
+  flex-direction: row;
+}
+
+#heading #text{
+  width: 90%;
+  margin-left: 10%;
+  text-align: center;
+  padding-top: 1%;
+}
+
+#heading input{
+  width: 10%;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background: none;
+  font-family: Courier;
+  font-size: 15px;
+  color: #F1F1F1;
+  border: 1px solid #AAAAAA;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#description{
+  margin: 2% 10%;
+  color: #888888;
+}
+#tags{
+  color: #888888;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+}
+#tags div{
+  margin: 0 0 20px 5px;
+  border: 2px solid #DDD;
+  border-radius: 10px;
+  padding: 1px 8px;
+  color: #3053A4;
+}
+#tags div:hover{
+  cursor: default;
+}
+
+
+
+
+#highlighted {
+  width: 52%;
+  background: #FFF5F5;
+  border: 1px solid #DDD;
+    min-height: 190px;
+
+  
+}
+#highlighted #heading{
+  background: #4F3A88;
+  border-radius: 7px 7px 0 0;
+  font-size: 24px;
+}
+
+#highlighted #description{
+  color: #777777;
+  font-size: 20px;
+}
+

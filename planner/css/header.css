@@ -9,23 +9,23 @@
  * style the header
  */
 #header{
+  position: fixed;
   width: 100%;
-  height: 4%;
+  height: 9%;
   margin: 0;
   background-color: #3B4851;
   top: 0;
   left: 0;
-  box-shadow: inset 0 40px 200px -10px rgba(100, 100, 100, 0.6);
   text-align: center;
-  font-family: "Comic Sans MS";
 }
 
 #header #left, #header #right{
   width: 90%;
   height: 100%;
-  margin-left:7%; 
+  margin-left:6%; 
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
 }
 
 #header #right{
@@ -40,18 +40,21 @@
 #header_content, #header_content_right{
   border-right: 2px solid #6E7881;
   color: #C6D0D9;
-  font-size: 21px;
-  padding-right: 2%;
-  padding-left: 2%;
+  font-size: 18px;
+  height: 26px;
+  padding-right: 2.2%;
+  padding-left: 2.2%;
   margin: auto 0; /*center vertically*/
 }
 
 #header_content_right{
   border: none; 
-  margin-left: 50%;
+  margin-left: 49%;
 }
 
 #header_content:hover, #header_content_right:hover{
   cursor: pointer;
   color: #FFFFFF;
 }
+
+
