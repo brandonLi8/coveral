@@ -12,7 +12,7 @@
  * ## User Instructions:
  *  - The user must provide the value for the node. This means that that the 
  *    value for the Node.js is anything the user wants. However, the value must
- *    have a LessThanOrEqualTo method that defines if a value is greater than 
+ *    have a LessThanOrEqualTo method that defines if a value is <= than 
  *    another. It also should provide a toString method if you want the root
  *    order traversal. Demo on PlannerNode.js
  */
@@ -31,8 +31,6 @@ export default class Heap{
   constructor( ...args ){
     // @public
     this.root; 
-    // @private
-    this.lastAdded;
     for ( var i = 0; i < args.length; i++ ){
       this.add( args[ i ] );
     }
@@ -91,16 +89,18 @@ export default class Heap{
       }
       else break;
     }
-    this.lastAdded = node;
-
   }
   /**
-   * return the root order traversal
-   * @public
+   * return the root order traversal in a list format
+   * @private
    * @recursive
-   * @return {string} -a string representation of the heap
+   * @return {object } {
+   *   rootOrder: arr - the array representation of the NODE.
+   *   isNotNull: - the array that tells if a given index is null for arr.
+   *   size: size: - the size of the array
+   * };
    */
-  rootOrder() {
+  rootOrderList(){
     let size = Math.pow(2, this.getDepth( this.root ) ) - 1;
     /**
      * The size of the array is going to be the 2 to the depth minus one
@@ -117,20 +117,9 @@ export default class Heap{
      */
     let isNotNull = new Array( size );
     // an array that tells if the current index isn't null. Lines up with arr.
-    arr[ 0 ] = this.root.value; 
+    arr[ 0 ] = this.root; 
     rootHelper( this.root, 0 );
     isNotNull[ 0 ] = true;
-    // concatanate the arr into a string and return it
-    let res = "|"; 
-    for ( var i = 0; i < size; i++ ) {
-      if ( isNotNull[ i ] ) {
-        res += arr[ i ].toString() + ", ";
-      }
-      else {
-        res += "N, ";
-      }
-    }
-    return res.substring( 0, res.length - 2 ) + "|";
     /**
      * @recursive
      * @param {node} parent - the current TODO explain this
@@ -138,16 +127,45 @@ export default class Heap{
     function rootHelper( parent, index ) {
       if ( !parent ) return; 
       if ( parent.leftChild ) {
-        arr[ 2*index + 1 ] = parent.leftChild.value;
+        console.log(parent.leftChild.value)
+        arr[ 2*index + 1 ] = parent.leftChild;
         isNotNull[ 2*index + 1 ] = true;
         rootHelper(  parent.leftChild, 2*index + 1 );
       }
       if ( parent.rightChild ) {
-        arr[ 2*index + 2 ] = parent.rightChild.value;
+                console.log(parent.rightChild.value)
+
+        arr[ 2*index + 2 ] = parent.rightChild;
         isNotNull[ 2*index + 2 ] = true; 
         rootHelper(  parent.rightChild, 2*index + 2 ) ;
       }
     } 
+    return {
+      rootOrder: arr,
+      isNotNull: isNotNull,
+      size: size
+    };
+  }
+  /**
+   * return the root order traversal
+   * @public
+   * @return {string} -a string representation of the heap
+   */
+  rootOrder() {
+    let rootOrder = this.rootOrderList()
+    let arr = rootOrder.rootOrder;
+    let isNotNull = rootOrder.isNotNull;
+    // concatanate the arr into a string and return it
+    let res = "|"; 
+    for ( var i = 0; i < rootOrder.size; i++ ) {
+      if ( isNotNull[ i ] ) {
+        res += arr[ i ].value.toString() + ", ";
+      }
+      else {
+        res += "N, ";
+      }
+    }
+    return res.substring( 0, res.length - 2 ) + "|";
   }
   /**
    * return the Depth of the of heap
@@ -177,39 +195,55 @@ export default class Heap{
    * @return {node.value} - the removed node Value
    */
   pop( ){
-    // step 1: swap root with last added, remove last added
-    let max = this.root.value;
-    this.root.value = this.lastAdded.value;
-    if ( this.lastAdded.parent.leftChild == this.lastAdded ){
-      this.lastAdded.parent.leftChild = null
+    if ( !this.root ) return;
+    if ( !this.root.leftChild && !this.root.rightChild ) {
+      let popped = this.root.value;
+      this.root = null;
+      return popped;
     }
-    if ( this.lastAdded.parent.right == this.lastAdded ){
-      this.lastAdded.parent.right = null
+    let popped = this.root.value; // save it to return it
+    // step 1: get the last added from root order.
+    let rootOrder = this.rootOrderList();
+    let arr = rootOrder.rootOrder;
+    let isNotNull = rootOrder.isNotNull;
+    let lastAdded;
+    for ( var i = rootOrder.size - 1; i >= 0 ; i--){
+      if ( isNotNull[ i ] ) {
+        lastAdded = arr[ i ];
+        break;
+      }
     }
-    // step 2: swap down until legal heap
+    // step 2: swap root with last added, remove last added
+    this.root.value = lastAdded.value;
+    if ( lastAdded.parent.leftChild == lastAdded ){
+      lastAdded.parent.leftChild = null
+    }
+    if ( lastAdded.parent.rightChild == lastAdded ){
+      lastAdded.parent.rightChild = null
+    }
+    // step 3: swap with the max of the children down until it's legal heap
     let current = this.root;
     while ( current ){
-      if ( current.leftChild &&
-           current.value.lessThanOrEqualTo( current.leftChild.value ) ) {
-        let copyOfCurrent = current.value;
-        current.value = current.leftChild.value;
-        current.leftChild.value = copyOfCurrent;
-        current = current.leftChild;
+      let max;
+      if ( current.leftChild && current.rightChild ){
+        if ( !current.leftChild.value.lessThanOrEqualTo( current.rightChild.value ) ){
+          max = current.leftChild;
+        }
+        else{
+          max = current.rightChild;
+        }
       }
-      else if ( current.rightChild &&
-                current.value.lessThanOrEqualTo( current.rightChild.value ) ) {
+      if ( max && current.value.lessThanOrEqualTo( max.value ) ) { // swap
         let copyOfCurrent = current.value;
-        current.value = current.rightChild.value;
-        current.rightChild.value = copyOfCurrent;
-        current = current.rightChild;
+        current.value = max.value;
+        max.value = copyOfCurrent;
+        current = max;
       }
       else break;
     }
-    return max; 
+    return popped;
   }
-
 }
-
 
 
 function assert(condition, message) {

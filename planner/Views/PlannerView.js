@@ -99,33 +99,25 @@ let child10 = new Node( new PlannerNode( 31 ), null, null)
 var heap = new Heap( child1, child2, child3, child4, child5, child6, child7, child8, child9, child10 );
 console.log(heap.rootOrder())
 
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
+console.log(heap.pop())
+console.log(heap.pop())
+console.log(heap.pop())
+console.log(heap.pop())
 
-console.log(heap.rootOrder())
-console.log(heap.pop().toString())
 
-console.log(heap.rootOrder())

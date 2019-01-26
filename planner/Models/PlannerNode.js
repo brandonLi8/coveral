@@ -27,7 +27,6 @@ export default class Node{
   lessThanOrEqualTo( other ){
     return this.value <= other.value
   }
-
   /**
    * @public
    * @retrun {string} - return a string representation of the node
