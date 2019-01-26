@@ -7,8 +7,9 @@
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * ## Functionality:
- *  - enscapulate the attributes of a node
+ *  - enscapulate the attributes of a node for a heap
  */
+'use strict';
 
 export default class Node{
   /**
@@ -16,12 +17,12 @@ export default class Node{
    * @param {any} - the actual value of the node
    * @public
    */
-  constructor( value, leftChild, rightChild, parent ){
+  constructor( value, leftChild, rightChild ){
     // all @public
     this.value = value;
     this.leftChild = leftChild;
     this.rightChild = rightChild;
-    this.parent = parent;
+    this.parent = null; // handle externally
   }
   /**
    * @public
@@ -29,15 +30,31 @@ export default class Node{
    * @retrun {bool} - if they are equal VALUES
    */
   equals( other ){
-    return other.value = 
+    return other.value = this.value;
   }
   /**
    * @public
    * @retrun {string} - return a string representation of the node
    */
   toString(){
+    try{
+      var left = this.leftChild.value.toString();
+    }catch( err ) {
+      var left = null;
+    }
+    try{
+      var right = this.rightChild.value.toString();
+    }catch( err ) {
+      var right = null;
+    }
+    try{
+      var parent = this.parent.value.toString();
+    }catch( err ) {
+      var parent = null;
+    }
     return "value: " + this.value.toString() 
-           + ", leftChild: " + leftChild.value.toString()
-           + ", rightChild: " + rightChild.value.toString();
+           + ", leftChild: " + left
+           + ", rightChild: " + right
+           + ", parent: " + parent;
   }
 }
