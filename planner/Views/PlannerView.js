@@ -1,36 +1,70 @@
 /**
  * Learning App
- * Planner.js
+ * PlannerView.js
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
- * Created on 1/22/19
+ * Created on 1/25/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * Script for /calculator.html
  *
  * ## Functionality:
  *  - display the view for the planner
- *  - create the instance for the controller
- *  - create input listeners to the controller
- *
  */
 'use strict';
-
 // import modules
 import ScreenView from "./../../ScreenView/ScreenView.js";
 // modules
 var screen = new ScreenView();
 
-// add the planner wrapper
-screen.addChildToParentType( "div", "planner_wrapper", null, "", "body" );
 
-/**
- * add the header and all of its children
- */
-addHeader() 
+export default class PlannerView{
+  /**
+   * Display the basics of the view
+   * @constructor
+   * @public
+   * @return {none}
+   * create a basic planner wrapper and put the header inside of it
+   */
+  constructor(){
+    // add the planner wrapper
+    screen.addChildToParentType( "div", "planner_wrapper", null, "", "body" );
+    /**
+     * add the header and all of its children
+     */
+    addHeader(); 
+    // this.addCard( "ur mom", 6, "is bad", ["g", "2"])
+  }
+  /**
+   * add a card to the view
+   * @public
+   * @param {String} title - the title of the card in the heading
+   * @param {number} importance - the value of if 0-10;
+   * @param {String} description - the description of the plan
+   * @param {Array[ string ]} tags - all the tags associated
+   */
+  addCard( title, importance, description, tags ){
+    let type;
+    if ( importance > 8 ) type = "highlighted";
+    // highlight important ones
+    let card = screen.addChildToParentId( 
+                  "div", type, "card", 
+                  "", "planner_wrapper" );
+    let heading = screen.addChildToParentNode( 
+                    "div", "heading", null, 
+                    "", card );
+    screen.addChildToParentNode( "div", "text", null, title, heading);
+    screen.addChildToParentNode( "div", "value", null, importance, heading);
+    screen.addChildToParentNode( "div", "description", null, description, card);
+    let tagWrapper = screen.addChildToParentNode( "div", "tags", null, "", card)
+    for ( var i = 0 ; i < tags.length; i++ ){
+      screen.addChildToParentNode( "div", null, null, tags[ i ], tagWrapper);
+    }
+  }
+}
+
 function addHeader(){
   screen.addChildToParentId( "div", "header", null, "", "planner_wrapper" );
-  screen.addChildToParentId( "div", "left", null, "", "header");
+  screen.addChildToParentId( "div", "left", null, "", "header" );
   addPlannerIcon();
   function addPlannerIcon() {
     // add the div to the wrapper
@@ -83,29 +117,4 @@ function addHeader(){
   );
 }
 
-// import modules
-// import Heap from "../../Heap/Heap.js";
-// import Node from "../../Heap/Node.js";
-// import PlannerNode from "../Models/PlannerNode.js"
-// // modules
-// let child1 = new Node( new PlannerNode( 35 ), null, null) 
-// let child2 = new Node( new PlannerNode( 33 ), null, null)
-// let child3 = new Node( new PlannerNode( 42 ), null, null) 
-// let child4 = new Node( new PlannerNode( 10 ), null, null)
-// let child5 = new Node( new PlannerNode( 14 ), null, null) 
-// let child6 = new Node( new PlannerNode( 19 ), null, null)
-// let child7 = new Node( new PlannerNode(27 ), null, null) 
-// let child8 = new Node( new PlannerNode( 44 ), null, null)
-// let child9 = new Node( new PlannerNode( 26 ), null, null) 
-// let child10 = new Node( new PlannerNode( 31 ), null, null)
-// var heap = new Heap( child1, child2, child3, child4, child5, child6, child7, child8, child9, child10 );
-
-let test = document.getElementById("test")
-test.oninput = function() {
-      console.log(test.style.height)
-  test.style.height = 45 + "px";;
-  test.style.height = test.scrollHeight + "px";;
-
-}
-console.log(test)
 

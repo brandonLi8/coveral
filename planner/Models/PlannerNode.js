@@ -11,7 +11,7 @@
  */
 'use strict';
 
-export default class Node{
+export default class PlannerNode{
   /**
    * @constructor
    * @param {any} - the actual value of the node
@@ -21,6 +21,7 @@ export default class Node{
     // all @public
     this.value = value;
     this.title = title;
+    this.id = id;
     this.description = description;
     this.tags = tags;
   }
@@ -34,4 +35,5 @@ export default class Node{
   toString(){
     return "" + this.value;
   }
+  handleInputChange()
 }
