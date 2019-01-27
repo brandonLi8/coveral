@@ -123,18 +123,16 @@ export default class Heap{
     /**
      * @recursive
      * @param {node} parent - the current TODO explain this
+     * o(n) recursive, looks at each element in the tree.
      */   
     function rootHelper( parent, index ) {
       if ( !parent ) return; 
       if ( parent.leftChild ) {
-        console.log(parent.leftChild.value)
         arr[ 2*index + 1 ] = parent.leftChild;
         isNotNull[ 2*index + 1 ] = true;
         rootHelper(  parent.leftChild, 2*index + 1 );
       }
       if ( parent.rightChild ) {
-                console.log(parent.rightChild.value)
-
         arr[ 2*index + 2 ] = parent.rightChild;
         isNotNull[ 2*index + 2 ] = true; 
         rootHelper(  parent.rightChild, 2*index + 2 ) ;
@@ -243,6 +241,8 @@ export default class Heap{
     }
     return popped;
   }
+  
+  remove( node )
 }
 
 
