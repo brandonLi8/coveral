@@ -17,15 +17,16 @@ export default class PlannerNode{
    * @param {any} - the actual value of the node
    * @public
    */
-  constructor( value, title, description, tags, id ){
+  constructor( value, title, description, tags ){
     // all @public
     this.value = value;
     this.title = title;
-    this.id = id;
     this.description = description;
     this.tags = tags;
   }
   lessThanOrEqualTo( other ){
+    console.log( typeof this.value, other.value)
+    console.log(this.value <= other.value)
     return this.value <= other.value
   }
   /**
@@ -35,5 +36,4 @@ export default class PlannerNode{
   toString(){
     return "" + this.value;
   }
-  handleInputChange()
 }

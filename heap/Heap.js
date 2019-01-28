@@ -242,7 +242,6 @@ export default class Heap{
     return popped;
   }
   
-  remove( node )
 }
 
 

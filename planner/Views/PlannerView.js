@@ -31,8 +31,7 @@ export default class PlannerView{
     /**
      * add the header and all of its children
      */
-    addHeader(); 
-    // this.addCard( "ur mom", 6, "is bad", ["g", "2"])
+    addHeader()
   }
   /**
    * add a card to the view
@@ -44,7 +43,7 @@ export default class PlannerView{
    */
   addCard( title, importance, description, tags ){
     let type;
-    if ( importance > 8 ) type = "highlighted";
+    if ( importance >= 8 ) type = "highlighted";
     // highlight important ones
     let card = screen.addChildToParentId( 
                   "div", type, "card", 
@@ -62,6 +61,8 @@ export default class PlannerView{
   }
 }
 
+
+// function that adds the header
 function addHeader(){
   screen.addChildToParentId( "div", "header", null, "", "planner_wrapper" );
   screen.addChildToParentId( "div", "left", null, "", "header" );
