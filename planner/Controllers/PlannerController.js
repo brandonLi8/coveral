@@ -35,11 +35,16 @@ export default class PlannerController{
    */
   renderInOrder(){
     var heap = new Heap( );
-    let data = JSON.parse( localStorage.getItem("data") )[ "data" ];
-    Object.keys(data).forEach( function( key ) {
-      let current = data[ key ];
+    let data;
+    try{ data = JSON.parse( localStorage.getItem("data") )[ "data" ]; }
+    catch( err ){ 
+      return; 
+    }
+    if ( !data ) return;
+    Object.keys( data ).forEach( function( key ) {
+    let current = data[ key ];
 
-      heap.add( new Node( new PlannerNode( 
+    heap.add( new Node( new PlannerNode( 
                             parseInt( current.value ), 
                             current.title, 
                             current.description,
@@ -58,6 +63,33 @@ export default class PlannerController{
   }
 
 }
+
+let data = JSON.parse( localStorage.getItem("data") );
+// if the data doesn't exist create it
+coif ( !data ){
+  localStorage.setItem("data", JSON.stringify({}));
+  data = JSON.parse( localStorage.getItem("data") );
+}
+data[ "1" ] = {
+  title: "lmao",
+  description: "daldkfnaldsknfa",
+  value: "9",
+  tags: ["2", "#342"]
+};
+data[ "2" ] = {
+  title: "lmao",
+  description: "daldkfnaldsknfa",
+  value: "10",
+  tags: ["2", "#342"]
+};
+localStorage.setItem("data", JSON.stringify({ data }));
+
+
 // render in order
 let controller = new PlannerController();
 controller.renderInOrder();
+
+
+// localStorage.removeItem("data");
+
+localStorage.removeItem("data");
