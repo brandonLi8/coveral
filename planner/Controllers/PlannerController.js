@@ -17,9 +17,6 @@
 'use strict';
 // import modules
 import PlannerView from "../Views/PlannerView.js";
-import Heap from "../../Heap/Heap.js";
-import Node from "../../Heap/Node.js";
-import PlannerNode from "../Models/PlannerNode.js"
 import PlannerModel from "../Models/PlannerModel.js"
 // modules
 // create the instances for the view and the model
@@ -56,7 +53,7 @@ help.style.border = "none";
 // add the new plan button
 let newPlan = view.addLinkToHeader( "New" );
 newPlan.onclick = function(){
-  window.open( "../new.html", "_self" ) 
+  window.open( "/planner/new.html", "_self" ) 
 }
 newPlan.style.border = "none";
 // add the remove all
@@ -78,10 +75,11 @@ export default class PlannerController{
   renderInOrder(){
     let heap = model.getHeap( );
     let current = heap.pop();
+    console.log( current )
     while ( current ){
       view.addCard( 
-        current.title, parseInt(current.value), 
-        current.description, current.tags );
+      current.title, parseInt( current.value ), 
+      current.description, current.tags );
       current = heap.pop();
     }
   }
