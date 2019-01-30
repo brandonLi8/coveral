@@ -48,14 +48,7 @@ export default class PlannerModel{
       value: plannerNode.value,
       tags: plannerNode.tags
     };
-    // re add back to local storage.
-    // let number = "pl";
-    // if (length > 0){
-    //   number = "al"
-    // }
-    // localStorage.setItem( number , JSON.stringify( obj ) );
-    localStorage[ length ] = JSON.stringify( obj );
-    console.log( localStorage )
+    localStorage[ Date.now() + " number: " + length ] = JSON.stringify( obj );
   }
   /**
    * @public
@@ -64,22 +57,15 @@ export default class PlannerModel{
    */
   getHeap( ){
     var heap = new Heap( );
-    let data;
-    try { 
-      data = JSON.parse( localStorage.getItem( "planner" ) );
-    }
-    catch( err ) { 
-      return; 
-    }
-    if ( !data ) return; 
-    Object.keys( data ).forEach( function( key ) {
-    let current = data[ key ];
-    heap.add( new Node( new PlannerNode( 
-                            parseInt( current.value ), 
-                            current.title, 
-                            current.description,
-                            current.tags ), 
-                null, 
+    Object.keys( localStorage ).forEach( function( key ) {
+      let current = JSON.parse( localStorage[ key ] );
+      heap.add( new Node( 
+                  new PlannerNode( 
+                        parseInt( current.value ), 
+                        current.title, 
+                        current.description,
+                        current.tags ), 
+                  null, 
                 null) )
     } );
     return heap;

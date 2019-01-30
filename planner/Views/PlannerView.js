@@ -17,22 +17,11 @@ import ScreenView from "./../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
 
 
-export default class PlannerView{
+export default class PlannerView {
   /**
-   * Display the basics of the view
-   * @constructor
-   * @public
-   * @return {none}
-   * create a basic planner wrapper and put the header inside of it
+   * No Constructor because pasic view is rendered in add Header
    */
-  constructor(){
-    // add the planner wrapper
-    screen.addChildToParentType( "div", "planner_wrapper", null, "", "body" );
-    /**
-     * add the header and all of its children
-     */
-    addHeader()
-  }
+  constructor( ){ return; }
   /**
    * add a card to the view
    * @public
@@ -60,23 +49,53 @@ export default class PlannerView{
     }
   }
 
-
-
-  addRemoveAllButton(){
-    let removeAllButton = screen.addChildToParentId( 
-                          "div", "header_content", 
-                          null, "removeAllButton", "left" 
+  /**
+   * add the header no children yet
+   * @return {DOM} the header element
+   */
+  addHeader( ){
+    // set up wrappers
+    screen.addChildToParentType( "div", "planner_wrapper", null, "", "body" );
+    
+    let header = screen.addChildToParentId( "div", "header", null, 
+                                            "", "planner_wrapper" );
+    screen.addChildToParentId( "div", "left", null, "", "header" );
+    this.container = screen.addChildToParentId( 
+                        "div", "header_content", 
+                        null, "", "left" 
+                     );
+    return header;
+  }
+  /**
+   * add a image to the header
+   * @return {DOM} the image
+   */
+  addImageToHeader( ){
+    // add the image to the container
+    let image = screen.addChildToParentNode( 
+                  "img", "backToDashboard", 
+                  null, "", this.container
+                );
+    // controller sets up event listener
+    return image;
+  }
+  /**
+   * add text to the header
+   * @return {DOM} the text
+   */
+  addLinkToHeader( text ){
+    return screen.addChildToParentId( 
+            "div", "header_content", 
+            null, text, "left" 
     );
-    removeAllButton.style.border = "none";
-    return removeAllButton;
-  } 
+  }
+
 }
 
 
 // function that adds the header
 function addHeader(){
-  screen.addChildToParentId( "div", "header", null, "", "planner_wrapper" );
-  screen.addChildToParentId( "div", "left", null, "", "header" );
+  
   addPlannerIcon();
   function addPlannerIcon() {
     // add the div to the wrapper

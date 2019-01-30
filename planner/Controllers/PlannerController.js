@@ -22,88 +22,74 @@ import Node from "../../Heap/Node.js";
 import PlannerNode from "../Models/PlannerNode.js"
 import PlannerModel from "../Models/PlannerModel.js"
 // modules
-var view = new PlannerView(); // this will render the header
-var model = new PlannerModel();
-// instance data
+// create the instances for the view and the model
+var view = new PlannerView( ); 
+var model = new PlannerModel( );
 /**
- * @public 
- * the button that removes all plans from the heap;
+ * Intance Data
+ * Set up the header and its children.
  */
-//  
+let header = view.addHeader( );
 
-// let reset =   JSON.stringify({ data: new Heap( new Node(5) )  } );
-//   localStorage.setItem( "data", reset );
-//   let h = JSON.parse(localStorage.getItem("data"))["data"];
-//   console.log( h )
+let plannerIcon = view.addImageToHeader( );
+// add events
+plannerIcon.setAttribute( "src", "./assets/plannerTBackground.png" );
+// handle user input
+plannerIcon.onmouseover = function() { 
+  plannerIcon.setAttribute( "src", "./assets/plannerTBackgroundHover.png" );
+};
+plannerIcon.onmouseout = function() { 
+  plannerIcon.setAttribute( "src", "./assets/plannerTBackground.png" );
+};
+// back to dashboard button
+let backToDashboard = view.addLinkToHeader( "Back To Dashboard" );
+backToDashboard.onclick = function(){
+  window.open( "../dashboard.html", "_self" ) 
+}
+backToDashboard.style.border = "none";
+// add the help button
+let help = view.addLinkToHeader( "Help" )
+help.onclick = function(){
+  window.open( "./help.html", "_self" ) 
+}
+help.style.border = "none";
+// add the new plan button
+let newPlan = view.addLinkToHeader( "New" );
+newPlan.onclick = function(){
+  window.open( "../new.html", "_self" ) 
+}
+newPlan.style.border = "none";
+// add the remove all
+let removeAll = view.addLinkToHeader( "Remove All" )
+removeAll.style.border = "none"
+removeAll.onclick = function( ){
+  model.clear();
+};
 
-// removeAll.addEventListener( "click", function() {
-//   let data = localStorage.getItem("data");
-//   if ( !data ) return;
-//   let reset =   { data: new Heap( new Node(5) )  } ;
-//   localStorage.setItem( "data", reset );
-//   console.log( JSON.parse( localStorage.getItem("data") ) )
-// } );
 /**
  * @public 
  * provide a class for outside modules
  */
+export default class PlannerController{
+  /**
+   * @public 
+   * render everything from the model in order by popping elements from a heap.
+   */
+  renderInOrder(){
+    let heap = model.getHeap( );
+    let current = heap.pop();
+    while ( current ){
+      view.addCard( 
+        current.title, parseInt(current.value), 
+        current.description, current.tags );
+      current = heap.pop();
+    }
+  }
+}
 
-// console.log(localStorage, typeof localStorage);
-model.clear()
-model.add( new PlannerNode( 7, "title", "description", ["adfa", "ERf"]))
+let controller = new PlannerController();
+controller.renderInOrder();
 
-model.add( new PlannerNode( 9, "title", "description", ["er", "ER"]))
-// console.log( model.getHeap().toString())
-
-// export default class PlannerController{
-//   /**
-//    * @public 
-//    * render everything from the model in order by popping elements from a heap.
-//    */
-//   renderInOrder(){
-    
-
-//     let current = heap.pop();
-//     console.log(current)
-//     while ( current ){
-//       view.addCard( 
-//         current.title, parseInt(current.value), 
-//         current.description, current.tags );
-//       current = heap.pop();
-//     }
-//   }
-
-// }
-
-// let data = JSON.parse( localStorage.getItem("data") );
-// // // if the data doesn't exist create it
-// if ( !data ){
-//   localStorage.setItem("data", JSON.stringify({}));
-//   data = JSON.parse( localStorage.getItem("data") );
-// }
-
-// data[ "1" ] = {
-//   title: "lmao",
-//   description: "daldkfnaldsknfa",
-//   value: "9",
-//   tags: ["2", "#342"]
-// };
-// data[ "2" ] = {
-//   title: "lmao",
-//   description: "daldkfnaldsknfa",
-//   value: "10",
-//   tags: ["2", "#342"]
-// };
-// localStorage.setItem("data", JSON.stringify({ data }));
-
-// console.log(JSON.parse(localStorage.getItem("data")))
-
-// // render in order
-// let controller = new PlannerController();
-// controller.renderInOrder();
-
-
-// localStorage.removeItem("data");
 
 
 

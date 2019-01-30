@@ -25,8 +25,6 @@ export default class PlannerNode{
     this.tags = tags;
   }
   lessThanOrEqualTo( other ){
-    console.log( typeof this.value, other.value)
-    console.log(this.value <= other.value)
     return this.value <= other.value
   }
   /**
