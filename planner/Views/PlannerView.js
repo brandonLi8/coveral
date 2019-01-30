@@ -59,6 +59,17 @@ export default class PlannerView{
       screen.addChildToParentNode( "div", null, null, tags[ i ], tagWrapper);
     }
   }
+
+
+
+  addRemoveAllButton(){
+    let removeAllButton = screen.addChildToParentId( 
+                          "div", "header_content", 
+                          null, "removeAllButton", "left" 
+    );
+    removeAllButton.style.border = "none";
+    return removeAllButton;
+  } 
 }
 
 
@@ -112,10 +123,7 @@ function addHeader(){
     window.open( "../new.html", "_self" ) 
   }
   New.style.border = "none";
-  screen.addChildToParentId( 
-          "div", "header_content_right", 
-          null, "Planner", "left"
-  );
+  
 }
 
 
