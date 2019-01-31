@@ -111,11 +111,6 @@ title.addEventListener( "keydown", event => {
 } );
 
 
-let slider = new Slider(0, 100, 69, "color", "50%", "5%", "500px", "0");
-screen.addChildToParentId( "style", "", "", slider.style, "planner_wrapper").type = "text/css"
-document.getElementById( "planner_wrapper" ).appendChild( slider.input )
-
-
-slider.oninput = function(){
-  console.log(slider.value)
-}
+let slider = new Slider( {
+});
+document.getElementById( "planner_wrapper" ).appendChild( slider )
