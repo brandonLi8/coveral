@@ -15,6 +15,7 @@ import PlannerNode from "../Models/PlannerNode.js";
 import PlannerModel from "../Models/PlannerModel.js"
 import PlannerView from "../Views/PlannerView.js";
 import ScreenView from "./../../ScreenView/ScreenView.js";
+import Slider from "./../../Slider/Slider.js";
 // modules
 var screen = new ScreenView();
 var model = new PlannerModel( );
@@ -89,4 +90,32 @@ addReturnButton( "./assets/reset.png",
                  "backToDashboardButton" )
 
 
-screen.addChildToParentId( "div", "title", "title", "adfadsfa", "backToDashboardButton")
+screen.addChildToParentId( "div", "NewTitle", null, "New Plan", "backToDashboardButton")
+
+
+
+let titleLabel = screen.addChildToParentId( "div", "titleLabel", null, "Title", "planner_wrapper")
+
+let title = screen.addChildToParentId( "textarea", "title", null, "", "planner_wrapper")
+title.focus();
+
+title.oninput = function() {
+  title.style.height = 50 + "px";;
+  title.style.height = title.scrollHeight + "px";;
+}
+
+title.addEventListener( "keydown", event => { 
+  if ( event.key == "Tab" ){
+    console.log( "here" )
+  } 
+} );
+
+
+let slider = new Slider(0, 100, 69, "color", "50%", "5%", "500px", "0");
+screen.addChildToParentId( "style", "", "", slider.style, "planner_wrapper").type = "text/css"
+document.getElementById( "planner_wrapper" ).appendChild( slider.input )
+
+
+slider.oninput = function(){
+  console.log(slider.value)
+}
