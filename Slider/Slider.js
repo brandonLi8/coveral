@@ -171,9 +171,8 @@ export default class Slider{
     thumb.style.width = thumbWidth;
     let thumbHeight = ( options.thumbHeight ) ? options.thumbHeight: "22px";
     thumb.style.height = thumbHeight
-    // thumb.style.background = ( options.thumbWidth ) ?
-    //                            options.thumbBackground: "#4E2";
-    thumb.style.background = "none"
+    thumb.style.background = ( options.thumbWidth ) ?
+                               options.thumbBackground: "#4E2";
     // halfway up
     thumb.style.marginTop = ( options.thumbOffset ) ? options.thumbOffset: 
                             "calc( -" + thumbHeight + " * 0.5"  + ")";
@@ -195,7 +194,6 @@ export default class Slider{
     // event listeners
     slider.addEventListener("mousedown", function ( event ) { 
       let coord = ( event.pageX - slider.offsetLeft )
-      // coord -= parseInt( thumbWidth.substring( 0, thumbWidth.length - 2 ) ) / 2
       let length = slider.clientWidth;
       if ( coord > length ) return;
       if ( coord < 0 ) return;
@@ -208,6 +206,39 @@ export default class Slider{
       thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
                            percentage + "% )";
     } );
+    /**
+     * shift the thumb on drag's
+     */ 
+    thumb.onmousedown = dragThumbStart;
+    function dragThumbStart( event ) {
+      event.preventDefault();
+      document.onmouseup = dragThumbEnd;
+      document.onmousemove = dragThumb;
+    }
+
+    function dragThumb( event ) {
+      event.preventDefault();
+      let coord = ( event.pageX - slider.offsetLeft )
+      let length = slider.clientWidth;
+      let percentage = coord / length * 100;
+
+      if ( coord > length ) percentage = 100;
+      if ( coord < 0 ) percentage = 0;
+      let newNumber = ( sliderTop - sliderLow ) * percentage / 100 + sliderLow;
+      //round the new Number 
+      newNumber = Math.round( newNumber * Math.pow( 10, round ) ) / 
+                            Math.pow( 10, round )
+      value.innerHTML = newNumber;
+      thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
+                           percentage + "% )";
+      document.body.style.cursor = "pointer"
+    }
+
+    function dragThumbEnd() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      document.body.style.cursor = "default"
+    }
 
     // change the hover mouse
     slider.onmouseover = function() {
