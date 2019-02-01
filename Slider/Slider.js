@@ -8,8 +8,67 @@
  *
  * ## Functionality:
  *  - create the slider ui and link the css file
- *  - Full List of All Parameters the user can modify (override) will be at the
- *    bottom.
+ *  
+ * This is the full list of all the variables that can be overridden
+ * The user doesn't have to provide every single property, only the property 
+ * that is changing
+ *
+ *Everything in this object contains the defualt
+ *
+ *  options = {
+ *
+ *    sliderLow: 0,
+ *    sliderTop: 1, 
+ *    startingValue: 0.5,
+ *   round: 2, // decimal places to round the result of the value
+ *    background: "#FFF", // the background of the slider background
+ *    borderRadius: "10px", // slider background
+ *    border: "1px solid black", // slider background
+ *    boxShadow: "1px 1px 3px 1px #999",
+ *    height: "auto",
+ *    width: "600px",
+ *    margin:  "5% auto", // of the entire container
+ *   
+ *    // the container holding the value and the title
+ *    unit: "m/s", // can be empty
+ *    valueBackground: #EEE", // the background behind the box showing the value
+ *    valueBorder: "1px solid grey",
+ *    valueFontSize: "20px",
+ *    valuePaddingLeft : "30px",
+ *    valuePaddingRight : "30px",
+ *    valueHeight 30px",
+ *    valueBorderRadius: "5px",
+ *
+ *    // title of the entire div
+ *    title: "Slider",
+ *    titleColor : "#000",
+ *    gapBetweenTitleAndValue : "10%",
+ *    titleFontSize : "30px",
+ *    // sides before and after the slider showing the values
+ *
+ *    leftWidth : options.leftWidth: "10%", // the width of the left box
+ *    rightWidth: "10%",
+ *    leftMargin : "5%", // to the slider
+ *    rightMargin: "5%", // to the slider
+ *    leftFontSize: "20px",
+ *    rigthFontSize: "20px",
+ * 
+ *    // the actual slider
+ *    sliderWidth : "70%",
+ *    sliderBorder : "1px solid black",
+ *    sliderBorderRadius : "10px", 
+ *    sliderHeight : "2px",
+ *    sliderBackground : "#555",
+ *    
+ *    // the thumb of the slider   
+ *    thumbWidth : "10px",
+ *    thumbHeight : "22px",
+ *    thumbBackground: "#4E2",
+ *    // halfway up
+ *    options.thumbOffset: "calc( -" + thumbHeight + " * 0.5"  + ")",
+ *    thumbBorderRadius : "4px",
+ *    thumbBorder: "1px solid #00E",
+ * }
  */
 import ScreenView from "./../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
@@ -73,7 +132,7 @@ export default class Slider{
     container.style.margin = "1% auto";
     container.style.alignItems = "center";
     // create the value 
-    var unit = ( options.unit ) ? options.unit: "";
+    var unit = ( options.unit ) ? options.unit: "m/s";
   
     var value = screen.createChild( "div", null, null, 
                                       startingValue + " " + " " + unit );
@@ -171,7 +230,7 @@ export default class Slider{
     thumb.style.width = thumbWidth;
     let thumbHeight = ( options.thumbHeight ) ? options.thumbHeight: "22px";
     thumb.style.height = thumbHeight
-    thumb.style.background = ( options.thumbWidth ) ?
+    thumb.style.background = ( options.thumbBackground ) ?
                                options.thumbBackground: "#4E2";
     // halfway up
     thumb.style.marginTop = ( options.thumbOffset ) ? options.thumbOffset: 
@@ -188,7 +247,6 @@ export default class Slider{
                       / ( sliderTop - sliderLow ) * 100;
     thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
                            percentage + "% )";
-
     slider.appendChild( thumb )
 
     // event listeners
@@ -202,7 +260,7 @@ export default class Slider{
       //round the new Number 
       newNumber = Math.round( newNumber * Math.pow( 10, round ) ) / 
                             Math.pow( 10, round )
-      value.innerHTML = newNumber;
+      value.innerHTML = newNumber + " " + unit;
       thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
                            percentage + "% )";
     } );
@@ -228,7 +286,7 @@ export default class Slider{
       //round the new Number 
       newNumber = Math.round( newNumber * Math.pow( 10, round ) ) / 
                             Math.pow( 10, round )
-      value.innerHTML = newNumber;
+      value.innerHTML = newNumber + " " + unit;
       thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
                            percentage + "% )";
       document.body.style.cursor = "pointer"
@@ -244,7 +302,8 @@ export default class Slider{
     slider.onmouseover = function() {
       slider.style.cursor = "pointer"
     }
-    return sliderBackground
 
+    return sliderBackground
   }
 }
+
