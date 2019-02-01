@@ -1,6 +1,6 @@
 /**
  * Learning App
- * PlannerController.js
+ * Slider.js
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
  * Created on 1/30/19
@@ -17,10 +17,10 @@
  *
  *  options = {
  *
- *    sliderLow: 0,
- *    sliderTop: 1, 
+ *    low: 0,
+ *    top: 1, 
  *    startingValue: 0.5,
- *   round: 2, // decimal places to round the result of the value
+ *    round: 2, // decimal places to round the result of the value
  *    background: "#FFF", // the background of the slider background
  *    borderRadius: "10px", // slider background
  *    border: "1px solid black", // slider background
@@ -76,8 +76,8 @@ var screen = new ScreenView();
 export default class Slider{
   /**
    * @constructor
-   * @retrun {Dom} - the actual dom element
    * @param optional {object} options - overide the defaults
+   * use the getDom method to get the actual element
    */  
   constructor( options ){
     options = ( !options ) ? {} : options;
@@ -86,10 +86,10 @@ export default class Slider{
      * with the value and the title.
      */
     var sliderLow =  ( options.low ) ? options.low : 0; 
-    var sliderTop =  ( options.Top ) ? options.Top : 1; 
+    var sliderTop =  ( options.top ) ? options.top : 1; 
     var startingValue = ( options.startingValue ) ? 
-                          options.startingValue: "" + 0.5;
-    var round = ( options.round ) ? options.round: 2;
+                          options.startingValue: "" + sliderLow;
+    var round = ( options.round || options.round === 0 ) ? options.round: 2;
     var sliderBackground = document.createElement( "div" );
     // after : is the default, the option object can overide
     // the background of the container of the slider itself
@@ -132,8 +132,7 @@ export default class Slider{
     container.style.margin = "1% auto";
     container.style.alignItems = "center";
     // create the value 
-    var unit = ( options.unit ) ? options.unit: "m/s";
-  
+    var unit = ( options.unit || options.unit === "" ) ? options.unit: "m/s";
     var value = screen.createChild( "div", null, null, 
                                       startingValue + " " + " " + unit );
     var valueBackground = ( options.valueBackground ) 
@@ -249,6 +248,8 @@ export default class Slider{
                            percentage + "% )";
     slider.appendChild( thumb )
 
+
+    let listener = ( options.listener ) ? options.listener: function() {} ;
     // event listeners
     slider.addEventListener("mousedown", function ( event ) { 
       let coord = ( event.pageX - slider.offsetLeft )
@@ -263,6 +264,7 @@ export default class Slider{
       value.innerHTML = newNumber + " " + unit;
       thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
                            percentage + "% )";
+      listener();
     } );
     /**
      * shift the thumb on drag's
@@ -289,7 +291,8 @@ export default class Slider{
       value.innerHTML = newNumber + " " + unit;
       thumb.style.marginLeft = "calc( -" + thumbWidth + " * 0.5 + " +
                            percentage + "% )";
-      document.body.style.cursor = "pointer"
+      document.body.style.cursor = "pointer";
+      listener();
     }
 
     function dragThumbEnd() {
@@ -302,8 +305,22 @@ export default class Slider{
     slider.onmouseover = function() {
       slider.style.cursor = "pointer"
     }
-
-    return sliderBackground
+    this.value = value;
+    this.slider = sliderBackground;
+  }
+  /**
+   * @get
+   * @retrun {dom} - the actual element
+   */ 
+  getDom(){
+    return this.slider;
+  }
+  /**
+   * @get
+   * @retrun {string} - the value of where the slider is at
+   */ 
+  getValue(){
+    return this.value.innerHTML;
   }
 }
 
