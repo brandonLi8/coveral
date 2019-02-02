@@ -31,7 +31,6 @@
 
 #heading #text{
   width: 90%;
-  margin-left: 10%;
   text-align: center;
   padding-top: 1%;
   color: #F1F1F1; 
@@ -39,6 +38,9 @@
   background: none;
   border: none;
   outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #value{
@@ -94,5 +96,15 @@
   font-size: 20px;
 }
 
+
+.trash{
+  width: 17px;
+  height: 20px;
+  margin: auto 15px;
+}
+
+.trash:hover{
+  cursor: pointer;
+}
 
 

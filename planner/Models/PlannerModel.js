@@ -67,11 +67,17 @@ export default class PlannerModel{
                         parseInt( current.value ), 
                         current.title, 
                         current.description,
-                        current.tags ), 
+                        current.tags,
+                        current.identifier ), 
                   null, 
                 null) )
     } );
     return heap;
+  }
+
+
+  removeNode( id ){
+    localStorage.removeItem( id );
   }
 }
 

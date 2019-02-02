@@ -100,9 +100,11 @@ export default class PlannerController{
       view.displayNone();
     }
     while ( current ){
+
       view.addCard( 
-      current.title, parseInt( current.value ), 
-      current.description, current.tags );
+          current.title, parseInt( current.value ), 
+          current.description, current.tags, current.identifier,
+          this.removeNode );
       current = heap.pop();
     }
   }
@@ -112,6 +114,15 @@ export default class PlannerController{
    */
   submit( title, description, value, tags ){
     model.add( new PlannerNode( value, title, description, tags ) );
+  }
+
+
+
+  removeNode( ){
+    let id = this.id;
+    model.removeNode( id ); // remove it from the model
+    // update display
+    view.removeCard( id );
   }
 
 }

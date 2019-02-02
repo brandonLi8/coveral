@@ -30,7 +30,7 @@ export default class PlannerView {
    * @param {String} description - the description of the plan
    * @param {Array[ string ]} tags - all the tags associated
    */
-  addCard( title, importance, description, tags ){
+  addCard( title, importance, description, tags, identifier, remove ){
     let type;
     if ( importance >= 8 ) type = "highlighted";
     // highlight important ones
@@ -40,6 +40,21 @@ export default class PlannerView {
     let heading = screen.addChildToParentNode( 
                     "div", "heading", null, 
                     "", card );
+
+    // now add the delete button
+    let trash = screen.addChildToParentNode( 
+                  "img", identifier, 
+                  "trash", "", heading
+                );
+    trash.setAttribute( "src", "./assets/trashcan.png" );
+    trash.onmouseover = function() { 
+      trash.setAttribute( "src", "./assets/trashcanHover.png" );
+    };
+    trash.onmouseout = function() { 
+      trash.setAttribute( "src", "./assets/trashcan.png" );
+    };
+    trash.onclick = remove;
+
     screen.addChildToParentNode( "div", "text", null, title, heading);
     screen.addChildToParentNode( "div", "value", null, importance, heading);
     screen.addChildToParentNode( "div", "description", null, description, card);
@@ -47,6 +62,9 @@ export default class PlannerView {
     for ( var i = 0 ; i < tags.length; i++ ){
       screen.addChildToParentNode( "div", null, null, tags[ i ], tagWrapper);
     }
+
+    
+
   }
 
   /**
@@ -105,59 +123,16 @@ export default class PlannerView {
     url.setAttribute( "target", "_self" );
   }
 
+
+  removeCard( id ){
+    let current = document.getElementById( id )
+    current.parentNode.parentNode.remove();
+    if ( document.getElementsByClassName( "card" ).length === 0 ){
+      this.displayNone()
+    }
+  }
+
 }
 
-
-// function that adds the header
-function addHeader(){
-  
-  addPlannerIcon();
-  function addPlannerIcon() {
-    // add the div to the wrapper
-    let conatiner = screen.addChildToParentId( 
-                      "div", "header_content", 
-                      null, "", "left" 
-                    )
-    // add the image to the container
-    let image = screen.addChildToParentNode( 
-                  "img", "backToDashboard", 
-                  null, "", conatiner
-                );
-    image.setAttribute( "src", "./assets/plannerTBackground.png" );
-    // handle user input
-    image.onmouseover = function() { 
-      image.setAttribute( "src", "./assets/plannerTBackgroundHover.png" );
-    };
-    image.onmouseout = function() { 
-      image.setAttribute( "src", "./assets/plannerTBackground.png" );
-    };
-  }
-  let backToDashboard = screen.addChildToParentId( 
-                          "div", "header_content", 
-                          null, "Back To Dashboard", "left" 
-  );
-  backToDashboard.onclick = function(){
-    window.open( "../dashboard.html", "_self" ) 
-  }
-  backToDashboard.style.border = "none";
-
-  let help = screen.addChildToParentId( 
-              "div", "header_content", 
-              null, "Help", "left"
-  );
-  help.onclick = function(){
-    window.open( "./help.html", "_self" ) 
-  }
-  help.style.border = "none";
-  let New = screen.addChildToParentId( 
-                          "div", "header_content", 
-                          null, "New", "left" 
-  );
-  New.onclick = function(){
-    window.open( "../new.html", "_self" ) 
-  }
-  New.style.border = "none";
-  
-}
 
 

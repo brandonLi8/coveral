@@ -17,12 +17,13 @@ export default class PlannerNode{
    * @param {any} - the actual value of the node
    * @public
    */
-  constructor( value, title, description, tags ){
+  constructor( value, title, description, tags, identifier ){
     // all @public
     this.value = value;
     this.title = title;
     this.description = description;
     this.tags = tags;
+    this.identifier = identifier;
   }
   lessThanOrEqualTo( other ){
     return this.value <= other.value
