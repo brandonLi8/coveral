@@ -1,3 +1,13 @@
+/**
+ * Learning App
+ * NEw.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 1/30/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * style the new page
+ */
 #backToDashboardButton{
   display: flex;
   height: 90px;
@@ -6,7 +16,7 @@
 #NewTitle{
   width: 100%;
   margin-right: 90px;
-  font-size: 70px;
+  font-size: 60px;
 }
 
 html{
@@ -19,9 +29,7 @@ html{
   text-align: left;
   width: 50%;
   margin: auto;
-
 }
-
 
 textarea{
   height: 100%;
@@ -47,35 +55,36 @@ textarea{
   min-height: 40px;
 }
 
-
-
-
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px; /*specified*/
-  border-radius: 5px;  /*specified*/  
-  background: #000000; /*specified*/
-  outline: none;
-  opacity: /*specified*/;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+#description{
+  width: 50%;
+  min-height: 160px;
 }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px; /*specified*/
-  height: 25px; /*specified*/
-  border-radius: 50%;  
-  background: #4CAF50; /*specified*/
-  cursor: pointer;
+#tags{
+  width: 50%;
+  min-height: 80px;
 }
 
-.slider::-moz-range-thumb {
-  width: 25px; /*specified*/
-  height: 25px;
-  border-radius: 50%;
-  background: #000000;
+#enter{
+  width: 17%;
+  margin: 40px 30% 0px auto;
+  padding: 15px 32px; 
+  border-radius: 15px;
+  outline: 0;
+  font-size: 18px;
+  font-family: Courier;
+  background-color: #FFF;
+  color: #000;
+  border: none;
+  box-shadow: 0px 0px 0px 2px #777777,
+              2px 3px 6px 0px #999999;
+}
+
+#enter:focus{
+  box-shadow: 0 0 3pt 2pt #569;
+}
+
+#enter:hover{
   cursor: pointer;
+  box-shadow: 0 0 3pt 2pt #569;
 }
