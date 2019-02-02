@@ -7,11 +7,9 @@
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * ## Functionality:
- *  - create instance of view ( the model is the local storage )
+ *  - create instance of view and the view.
  *  - tell the view to create a header with basic structure
  *  - look at local storage and render it.
- *  - provide a class that can be imported that allows outside modules to
- *    render the model.
  */
 
 'use strict';
@@ -20,7 +18,6 @@ import PlannerView from "../Views/PlannerView.js";
 import PlannerModel from "../Models/PlannerModel.js";
 import PlannerNode from "../Models/PlannerNode.js";
 
-// modules
 // create the instances for the view and the model
 var view = new PlannerView( ); 
 var model = new PlannerModel( );
@@ -44,7 +41,6 @@ export default class PlannerController{
    */
   renderBasics( ){
     /**
-     * Intance Data
      * Set up the header and its children.
      */
     let header = view.addHeader( );
@@ -83,6 +79,7 @@ export default class PlannerController{
     removeAll.onclick = function( ){
       model.clear();
     };
+    // create instance data
     this.header = header;
     this.plannerIcon = plannerIcon;
     this.help = help;
@@ -100,11 +97,14 @@ export default class PlannerController{
       view.displayNone();
     }
     while ( current ){
-
       view.addCard( 
-          current.title, parseInt( current.value ), 
-          current.description, current.tags, current.identifier,
-          this.removeNode );
+        current.title, 
+        parseInt( current.value ), 
+        current.description, 
+        current.tags, 
+        current.identifier,
+        this.removeNode 
+      );
       current = heap.pop();
     }
   }
@@ -115,10 +115,13 @@ export default class PlannerController{
   submit( title, description, value, tags ){
     model.add( new PlannerNode( value, title, description, tags ) );
   }
-
-
-
+  /**
+   * @private
+   * called when trash can is pressed
+   * remove the node from the model and the view.
+   */
   removeNode( ){
+    // this is the image dom node
     let id = this.id;
     model.removeNode( id ); // remove it from the model
     // update display

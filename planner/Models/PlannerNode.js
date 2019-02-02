@@ -14,7 +14,11 @@
 export default class PlannerNode{
   /**
    * @constructor
-   * @param {any} - the actual value of the node
+   * @param { number } value - the value of the plan
+   * @param { string } title - the title of the plan
+   * @param { string } description - the description of the plan
+   * @param { array[string] } tags - list of the tags
+   * @param { string } identifer - the identifier stored in the model
    * @public
    */
   constructor( value, title, description, tags, identifier ){

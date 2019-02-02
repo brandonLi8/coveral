@@ -16,22 +16,23 @@ import ScreenView from "./../../ScreenView/ScreenView.js";
 // modules
 var screen = new ScreenView();
 
-
 export default class PlannerView {
   /**
-   * No Constructor because pasic view is rendered in add Header
+   * No Constructor. Basic view is rendered in addHeader().
    */
   constructor( ){ return; }
   /**
    * add a card to the view
    * @public
-   * @param {String} title - the title of the card in the heading
-   * @param {number} importance - the value of if 0-10;
-   * @param {String} description - the description of the plan
-   * @param {Array[ string ]} tags - all the tags associated
+   * @param { String } title - the title of the card in the heading
+   * @param { number } importance - the value of if 0-10;
+   * @param { String } description - the description of the plan
+   * @param { Array[ string ] } tags - all the tags associated
+   * @param { String } identifier - the identifier stored in the db.
+   * @param { function } remove - method called when trash can is clicked
    */
   addCard( title, importance, description, tags, identifier, remove ){
-    let type;
+    let type; // higlighted || null
     if ( importance >= 8 ) type = "highlighted";
     // highlight important ones
     let card = screen.addChildToParentId( 
@@ -40,7 +41,6 @@ export default class PlannerView {
     let heading = screen.addChildToParentNode( 
                     "div", "heading", null, 
                     "", card );
-
     // now add the delete button
     let trash = screen.addChildToParentNode( 
                   "img", identifier, 
@@ -54,21 +54,25 @@ export default class PlannerView {
       trash.setAttribute( "src", "./assets/trashcan.png" );
     };
     trash.onclick = remove;
-
+    // the title
     screen.addChildToParentNode( "div", "text", null, title, heading);
+    // the value 1 - 10
     screen.addChildToParentNode( "div", "value", null, importance, heading);
+    // the description of the event
     screen.addChildToParentNode( "div", "description", null, description, card);
-    let tagWrapper = screen.addChildToParentNode( "div", "tags", null, "", card)
+    // create the tags 
+    let tagWrapper = screen.addChildToParentNode( 
+                        "div", "tags", null, "", card
+                    );
     for ( var i = 0 ; i < tags.length; i++ ){
       screen.addChildToParentNode( "div", null, null, tags[ i ], tagWrapper);
     }
-
-    
-
   }
 
   /**
-   * add the header no children yet
+   * add the header. ( without children )
+   * ONLY called once.
+   * @public
    * @return {DOM} the header element
    */
   addHeader( ){
@@ -94,7 +98,7 @@ export default class PlannerView {
                   "img", "backToDashboard", 
                   null, "", this.container
                 );
-    // controller sets up event listener
+    // controller sets up event listeners
     return image;
   }
   /**
@@ -109,6 +113,7 @@ export default class PlannerView {
   }
   /**
    * display none text
+   * @public
    */
   displayNone(  ){
     let msg = screen.addChildToParentId( "div", "none", 
@@ -117,21 +122,23 @@ export default class PlannerView {
     msg.appendChild( document.createElement( "br" ) );
     msg.appendChild( document.createElement( "br" ) );
 
-    let url = screen.addChildToParentNode( "a", null, null, "New Plan", msg ) 
+    let url = screen.addChildToParentNode( "a", null, null, "New Plan", msg ); 
     
     url.setAttribute( "href", "./new.html" );
     url.setAttribute( "target", "_self" );
   }
-
-
+  /**
+   * remove a card 
+   * @param { string } id - the identifier that the model stores
+   * @public
+   */
   removeCard( id ){
-    let current = document.getElementById( id )
-    current.parentNode.parentNode.remove();
+    let card = document.getElementById( id );
+    card.parentNode.parentNode.remove();
     if ( document.getElementsByClassName( "card" ).length === 0 ){
       this.displayNone()
     }
   }
-
 }
 
 

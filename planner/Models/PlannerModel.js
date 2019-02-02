@@ -7,13 +7,12 @@
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * ## Functionality:
- *  - For the purpose of the Planner, this model should:
- *      1. Store all the data in local storage and allow a interface for the 
- *         controller to access it. The 'plans' will be stored in a object with
- *         the order that they go in as the key and a object with the 
- *         properties of a planner node as the value.
- *      2. Provide method that gets all of the 'plans' by putting it in a heap
- *         (that I implemented) and returning it.
+ *  1. Store all the data in local storage and allow a interface for the 
+ *     controller to access it. The 'plans' will be stored in a object with
+ *     the order that they go in as the key and a object with the 
+ *      properties of a planner node as the value.
+ *  2. Provide method that gets all of the 'plans' by putting it in a heap
+ *     (that I implemented) and returning it.
  */
 'use strict';
 // import modules
@@ -74,8 +73,10 @@ export default class PlannerModel{
     } );
     return heap;
   }
-
-
+  /**
+   * @public
+   * remove a node based on the identifier
+   */
   removeNode( id ){
     localStorage.removeItem( id );
   }
