@@ -38,5 +38,17 @@ body {
   font-family: Courier;
 }
 
+#none{
+  padding: 45px 35px;
+  width: 25%;
+  border: none;
+  font-size: 25px;
+  margin: 10% auto;
+}
+#none a{
+  color: #55E;
+  font-size: 20px;
+  text-decoration: underline;
+}
 
 

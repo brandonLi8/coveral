@@ -89,6 +89,21 @@ export default class PlannerView {
             null, text, "left" 
     );
   }
+  /**
+   * display none text
+   */
+  displayNone(  ){
+    let msg = screen.addChildToParentId( "div", "none", 
+       null, "You have no plans.", "planner_wrapper" 
+    );
+    msg.appendChild( document.createElement( "br" ) );
+    msg.appendChild( document.createElement( "br" ) );
+
+    let url = screen.addChildToParentNode( "a", null, null, "New Plan", msg ) 
+    
+    url.setAttribute( "href", "./new.html" );
+    url.setAttribute( "target", "_self" );
+  }
 
 }
 

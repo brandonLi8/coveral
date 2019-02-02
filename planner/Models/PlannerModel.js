@@ -34,6 +34,7 @@ export default class PlannerModel{
    */
   clear( ){ 
     localStorage.clear();
+    window.open( "/planner.html", "_self" );
   }
   /**
    * @public
@@ -42,13 +43,15 @@ export default class PlannerModel{
    */
   add( plannerNode ){
     let length = "" + localStorage[ "length" ];
+    let identifier =  Date.now() + " number: " + length;
     let obj = {
       title: plannerNode.title,
       description: plannerNode.description,
       value: plannerNode.value,
-      tags: plannerNode.tags
+      tags: plannerNode.tags,
+      identifier: identifier
     };
-    localStorage[ Date.now() + " number: " + length ] = JSON.stringify( obj );
+    localStorage[ identifier ] = JSON.stringify( obj );
   }
   /**
    * @public
