@@ -53,7 +53,19 @@ export default class PlannerView {
     trash.onmouseout = function() { 
       trash.setAttribute( "src", "./assets/trashcan.png" );
     };
+
     trash.onclick = remove;
+    let edit = screen.addChildToParentNode( 
+                  "img", identifier, 
+                  "edit", "", heading
+                );
+    edit.setAttribute( "src", "./assets/edit.png" );
+    edit.onmouseover = function() { 
+      edit.setAttribute( "src", "./assets/editHover.png" );
+    };
+    edit.onmouseout = function() { 
+      edit.setAttribute( "src", "./assets/edit.png" );
+    };
     // the title
     screen.addChildToParentNode( "div", "text", null, title, heading);
     // the value 1 - 10

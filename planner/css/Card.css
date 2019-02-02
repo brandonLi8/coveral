@@ -40,6 +40,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 #value{
@@ -95,14 +96,45 @@
   font-size: 20px;
 }
 
-.trash{
-  width: 17px;
-  height: 20px;
-  margin: auto 15px;
+.trash {
+  width: 2.8%;
+  height: 2.8%;
+  margin: auto 0px auto 15px;
+  animation-fill-mode: forwards;
 }
 
-.trash:hover{
+.edit{
+  width: 4%;
+  height: 4%;
+  margin: auto 0px auto 15px;
+  animation-fill-mode: forwards;
+}
+
+.edit:hover{
   cursor: pointer;
+  animation-name: editHoverAnimation;
+  animation-duration: .3s;
+}
+
+.trash:hover {
+  cursor: pointer;
+  animation-name: trashHoverAnimation;
+  animation-duration: .3s;
 }
 
 
+@keyframes editHoverAnimation {
+  to{
+    width: 5%;
+    height: 5%;
+    margin-right: -1%;
+  }
+}
+
+@keyframes trashHoverAnimation {
+  to{
+    width: 3.5%;
+    height: 3.5%;
+    margin-right: -0.7%;
+  }
+}
