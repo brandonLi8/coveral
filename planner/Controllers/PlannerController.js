@@ -98,12 +98,9 @@ export default class PlannerController{
     }
     while ( current ){
       view.addCard( 
-        current.title, 
-        parseInt( current.value ), 
-        current.description, 
-        current.tags, 
-        current.identifier,
-        this.removeNode 
+        current,
+        this.removeNode,
+        this.editNode,
       );
       current = heap.pop();
     }
@@ -127,7 +124,18 @@ export default class PlannerController{
     // update display
     view.removeCard( id );
   }
+  /**
+   * @private
+   * called when edit is pressed
+   */
+  editNode( node ){
+    localStorage.setItem( "edit", JSON.stringify( node ) );
+    window.open( "edit.html", "_self" )
+  }
+
+  changeNode( node ){
+    model.changeNode( node.identifier, node )
+  }
 
 }
-
 

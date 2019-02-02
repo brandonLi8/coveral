@@ -111,7 +111,7 @@ export default class Form{
     let enter = screen.addChildToParentId( "button", "enter", null, 
                                        "Enter", "planner_wrapper" );
     enter.onclick = function(){
-      options.submit( title, description, slider );
+      options.submit( title, description, slider, tags );
     }
 
   }

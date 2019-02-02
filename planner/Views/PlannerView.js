@@ -24,16 +24,13 @@ export default class PlannerView {
   /**
    * add a card to the view
    * @public
-   * @param { String } title - the title of the card in the heading
-   * @param { number } importance - the value of if 0-10;
-   * @param { String } description - the description of the plan
-   * @param { Array[ string ] } tags - all the tags associated
-   * @param { String } identifier - the identifier stored in the db.
+   * @param { PlannerNode } - the node being added
    * @param { function } remove - method called when trash can is clicked
+   * @param { function } edit - method called to edit
    */
-  addCard( title, importance, description, tags, identifier, remove ){
+  addCard( node, remove, editNode ){
     let type; // higlighted || null
-    if ( importance >= 8 ) type = "highlighted";
+    if ( parseInt( node.value ) >= 8 ) type = "highlighted";
     // highlight important ones
     let card = screen.addChildToParentId( 
                   "div", type, "card", 
@@ -43,7 +40,7 @@ export default class PlannerView {
                     "", card );
     // now add the delete button
     let trash = screen.addChildToParentNode( 
-                  "img", identifier, 
+                  "img", node.identifier, 
                   "trash", "", heading
                 );
     trash.setAttribute( "src", "./assets/trashcan.png" );
@@ -56,7 +53,7 @@ export default class PlannerView {
 
     trash.onclick = remove;
     let edit = screen.addChildToParentNode( 
-                  "img", identifier, 
+                  "img", node.identifier, 
                   "edit", "", heading
                 );
     edit.setAttribute( "src", "./assets/edit.png" );
@@ -66,18 +63,25 @@ export default class PlannerView {
     edit.onmouseout = function() { 
       edit.setAttribute( "src", "./assets/edit.png" );
     };
+    edit.onclick = function(){
+      editNode( node )
+    }
     // the title
-    screen.addChildToParentNode( "div", "text", null, title, heading);
+    screen.addChildToParentNode( "div", "text", null, node.title, heading);
     // the value 1 - 10
-    screen.addChildToParentNode( "div", "value", null, importance, heading);
+    screen.addChildToParentNode( "div", "value", null, node.value, heading );
     // the description of the event
-    screen.addChildToParentNode( "div", "description", null, description, card);
+    screen.addChildToParentNode( 
+        "div", "description", 
+        null, node.description, card );
     // create the tags 
     let tagWrapper = screen.addChildToParentNode( 
                         "div", "tags", null, "", card
                     );
-    for ( var i = 0 ; i < tags.length; i++ ){
-      screen.addChildToParentNode( "div", null, null, tags[ i ], tagWrapper);
+    for ( var i = 0 ; i < node.tags.length; i++ ){
+      screen.addChildToParentNode( 
+                        "div", null, null, 
+                        node.tags[ i ], tagWrapper );
     }
   }
 

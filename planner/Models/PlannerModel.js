@@ -80,6 +80,23 @@ export default class PlannerModel{
   removeNode( id ){
     localStorage.removeItem( id );
   }
+  /**
+   * @public
+   * change a node based on the identifier
+   */
+  changeNode( id, newNode ){
+    this.removeNode( id )
+    this.removeNode( "edit" )
+    let obj = {
+      title: newNode.title,
+      description: newNode.description,
+      value: newNode.value,
+      tags: newNode.tags,
+      identifier: id
+    };
+    localStorage[ id ] = JSON.stringify( obj );
+  }
+
 }
 
 

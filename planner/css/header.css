@@ -16,6 +16,7 @@
   background-color: #3B4851;
   top: 0; left: 0;
   text-align: center;
+  z-index: 1;
 }
 
 #header #left, #header #right{
@@ -62,11 +63,11 @@
 
 @keyframes hover {
   from {
-    border-radius: 50%;
+    border-radius: 30%;
   }
   to {
     border-radius: 5px;
-     box-shadow: -1px -1px 0px 4px #3B4851, 
+    box-shadow: -1px -1px 0px 4px #3B4851, 
                 -1px -1px 0px 5px #777777;
   }
 }
