@@ -18,6 +18,8 @@
   color: #364049;
   font-size: 18px;
   font-weight: 600;
+  position: relative;
+
 }
 
 .app input{
@@ -53,7 +55,10 @@
 
 .app p{
   text-align: center;
-  margin-top: 6%;
+  margin-top: 190px;
+  position: fixed;
+  width: 140px;
+
 }
 
 #app_wrapper{
@@ -72,6 +77,8 @@
     -ms-transform: scale( 1 );
     transform: scale( 1 );
     -webkit-transform: rotate( 0deg );
+      position:fixed;
+
   }
   5%{
     -webkit-transform: translateX( 10px );
@@ -89,21 +96,26 @@
   20%{
     -webkit-transform: translateX( 1px );
     transform: translateX( 1px );
-    -webkit-transform: rotate( 18deg );
+    
   }
   45%{
     -webkit-transform: translateX( 1px );
     transform: translateX( 1px );
     padding: 30px;
-    margin-top: calc( 18% - 70px );
+    margin: -30px;
   }
+
   60%{
     -webkit-transform: translateX( -1px );
     transform: translateX( -1px );
     -webkit-transform: scale( 1.13 );
     -ms-transform: scale( 1.13 );
     transform: scale( 1.13 );
-    border: 3px solid #333;    
+    border: 3px solid #333; 
+
+  }
+  70%{
+    -webkit-transform: rotate( 180deg );  
   }
   100%{
     -webkit-transform: translateX( 0 );
@@ -112,10 +124,12 @@
     -ms-transform: scale( 1.2 );
     transform: scale( 1.2 );
     padding: 5px;
-    margin-top: calc( 18% - 30px );
+    margin: -5px;
     border: 3px solid #333;
     border-style: solid;
     -moz-transform: rotate( 180deg );
     -webkit-transform: rotate( 360deg );
+    position:fixed;
+
   }
 }
