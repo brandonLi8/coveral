@@ -29,12 +29,16 @@ export default class PlannerNode{
     this.tags = tags;
     this.identifier = identifier;
   }
+  /**
+   * @public
+   * @retrun { boolean } - if one node is less than of equal to another node.
+   */
   lessThanOrEqualTo( other ){
     return this.value <= other.value
   }
   /**
    * @public
-   * @retrun {string} - return a string representation of the node
+   * @retrun { string } - return a string representation of the node
    */
   toString(){
     return "" + this.value;

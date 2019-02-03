@@ -6,7 +6,7 @@
  * Created on 1/31/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * top level file that creates the controller
+ * Top-level file that creates the planner
  *
  */
 

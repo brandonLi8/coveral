@@ -50,8 +50,8 @@ export default class PlannerView {
     trash.onmouseout = function() { 
       trash.setAttribute( "src", "./assets/trashcan.png" );
     };
-
     trash.onclick = remove;
+
     let edit = screen.addChildToParentNode( 
                   "img", node.identifier, 
                   "edit", "", heading
@@ -128,7 +128,7 @@ export default class PlannerView {
     );
   }
   /**
-   * display none text
+   * display message when there are 0 plans
    * @public
    */
   displayNone(  ){

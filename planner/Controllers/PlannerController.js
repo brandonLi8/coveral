@@ -132,7 +132,10 @@ export default class PlannerController{
     localStorage.setItem( "edit", JSON.stringify( node ) );
     window.open( "edit.html", "_self" )
   }
-
+  /**
+   * @private
+   * called when finished editing the node
+   */
   changeNode( node ){
     model.changeNode( node.identifier, node )
   }
