@@ -60,7 +60,7 @@ for ( var i = 0 ; i < appsList.length; i ++ ){
 
 function addApp( title, src, url ){
     // add the app container
-    let app = screen.addChildToParentId( "div", null, "app", 
+    let app = screen.addChildToParentId( "div", title, "app", 
                                          "", "app_wrapper" );
     let link = screen.addChildToParentNode( "a", null, null, "", app );
     link.setAttribute( "target", "_self" );

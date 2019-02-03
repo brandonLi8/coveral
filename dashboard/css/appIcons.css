@@ -13,28 +13,109 @@
   /* app icons are 140px + the border of the app*/
   flex-direction: column;
   flex-basis: calc( 140px + 2*3px );
-  margin: 15% 3%;
+  margin: 18% 3.5%;
+  font-family: Courier;
+  color: #364049;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .app input{
-  border : 3px solid rgb( 60, 60, 60 );
-  border-radius: 40px;
-  box-shadow: 1px 1px 7px 2px #4D4E4E;
+  border-radius: 30px;
+  width: 140px;
+  height: 140px;
+  animation-fill-mode: forwards;
 }
+
+#Simulations input{
+  box-shadow: 0px 0px 0px 0.5px #44386E,
+              1px 1px 3px 3px #6D7E8E;
+}
+
+#Calculator input{
+  box-shadow: 0px 0px 0px 1px #444,
+              1px 1px 7px 3px #6D6E6E;
+}
+
+#Planner input{
+  box-shadow: 0px 0px 0px 1.5px #800080,
+              1px 1px 6px 3px #606181;
+}
+
 .app input:focus{
   outline:0;
 }
 
+.app input:hover{
+  animation-name: hover;
+  animation-duration: 0.35s;
+}
+
 .app p{
-    text-align: center;
-    font-size: 95%;
-    margin-top: 1%;
+  text-align: center;
+  margin-top: 6%;
 }
 
 #app_wrapper{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+@keyframes hover {
+
+  0%{
+    -webkit-transform: scale( 1 );
+    -ms-transform: scale( 1 );
+    transform: scale( 1 );
+    -webkit-transform: rotate( 0deg );
+  }
+  5%{
+    -webkit-transform: translateX( 10px );
+    transform: translateX( 10px );
+    -moz-transform: rotate( 0deg ); 
+  }
+  10%{
+    -webkit-transform: translateX( -10px );
+    transform: translateX( -10px );
+  }
+  15%{
+    -webkit-transform: translateX( -1px );
+    transform: translateX( -1px );
+  }
+  20%{
+    -webkit-transform: translateX( 1px );
+    transform: translateX( 1px );
+    -webkit-transform: rotate( 18deg );
+  }
+  45%{
+    -webkit-transform: translateX( 1px );
+    transform: translateX( 1px );
+    padding: 30px;
+    margin-top: calc( 18% - 70px );
+  }
+  60%{
+    -webkit-transform: translateX( -1px );
+    transform: translateX( -1px );
+    -webkit-transform: scale( 1.13 );
+    -ms-transform: scale( 1.13 );
+    transform: scale( 1.13 );
+    border: 3px solid #333;    
+  }
+  100%{
+    -webkit-transform: translateX( 0 );
+    transform: translateX( 0 );
+    -webkit-transform: scale( 1.2 );
+    -ms-transform: scale( 1.2 );
+    transform: scale( 1.2 );
+    padding: 5px;
+    margin-top: calc( 18% - 30px );
+    border: 3px solid #333;
+    border-style: solid;
+    -moz-transform: rotate( 180deg );
+    -webkit-transform: rotate( 360deg );
+  }
 }
