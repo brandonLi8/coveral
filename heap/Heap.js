@@ -213,15 +213,22 @@ export default class Heap{
     }
     // step 2: swap root with last added, remove last added
     this.root.value = lastAdded.value;
+
+
     if ( lastAdded.parent.leftChild == lastAdded ){
-      lastAdded.parent.leftChild = null
+      lastAdded.parent.leftChild = null;
     }
     if ( lastAdded.parent.rightChild == lastAdded ){
-      lastAdded.parent.rightChild = null
+      lastAdded.parent.rightChild = null;
     }
+    lastAdded.dispose();
+
     // step 3: swap with the max of the children down until it's legal heap
     let current = this.root;
-    while ( current ){
+
+    while ( current ){      
+      let currentValue = current.value;
+
       let max;
       if ( current.leftChild && current.rightChild ){
         if ( !current.leftChild.value.lessThanOrEqualTo( current.rightChild.value ) ){
@@ -231,6 +238,13 @@ export default class Heap{
           max = current.rightChild;
         }
       }
+      if ( current.leftChild && !current.rightChild ){
+        max = current.leftChild;
+      }
+      else if ( current.rightChild && !current.leftChild ){
+        max = current.rightChild;
+      }
+
       if ( max && current.value.lessThanOrEqualTo( max.value ) ) { // swap
         let copyOfCurrent = current.value;
         current.value = max.value;

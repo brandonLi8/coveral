@@ -28,6 +28,7 @@ export default class PlannerNode{
     this.description = description;
     this.tags = tags;
     this.identifier = identifier;
+    return;
   }
   /**
    * @public

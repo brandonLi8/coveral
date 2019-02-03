@@ -15,6 +15,7 @@
 'use strict';
 // import modules
 import PlannerView from "../Views/PlannerView.js";
+import Heap from "../../Heap/Heap.js";
 import PlannerModel from "../Models/PlannerModel.js";
 import PlannerNode from "../Models/PlannerNode.js";
 

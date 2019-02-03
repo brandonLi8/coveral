@@ -41,6 +41,7 @@ export default class PlannerModel{
    * @param {PlannerNode} plannerNode - node that is being added.
    */
   add( plannerNode ){
+    console.log("arhwaeh")
     let length = "" + localStorage[ "length" ];
     let identifier =  Date.now() + " number: " + length;
     let obj = {
@@ -59,18 +60,19 @@ export default class PlannerModel{
    */
   getHeap( ){
     var heap = new Heap( );
-    Object.keys( localStorage ).forEach( function( key ) {
+    let keys = Object.keys( localStorage )
+    for ( var i = 0; i < keys.length; i++ ){
+      let key = keys[ i ];
       let current = JSON.parse( localStorage[ key ] );
-      heap.add( new Node( 
-                  new PlannerNode( 
-                        parseInt( current.value ), 
-                        current.title, 
-                        current.description,
-                        current.tags,
-                        current.identifier ), 
-                  null, 
-                null) )
-    } );
+      let newPlannerNode = new PlannerNode( 
+                                parseInt( current.value ), 
+                                current.title, 
+                                current.description,
+                                current.tags,
+                                current.identifier );
+      let newNode = new Node( newPlannerNode, null, null );
+      heap.add(  newNode ) ;
+    }
     return heap;
   }
   /**

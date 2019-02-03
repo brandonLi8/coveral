@@ -50,12 +50,12 @@
 
 .app input:hover{
   animation-name: hover;
-  animation-duration: 0.35s;
+  animation-duration: 0.5s;
 }
 
 .app p{
   text-align: center;
-  margin-top: 190px;
+  margin-top: 165px;
   position: fixed;
   width: 140px;
 
@@ -76,26 +76,24 @@
     -webkit-transform: scale( 1 );
     -ms-transform: scale( 1 );
     transform: scale( 1 );
-    -webkit-transform: rotate( 0deg );
-      position:fixed;
+     position:fixed;
 
   }
   5%{
     -webkit-transform: translateX( 10px );
     transform: translateX( 10px );
-    -moz-transform: rotate( 0deg ); 
   }
-  10%{
+  15%{
     -webkit-transform: translateX( -10px );
     transform: translateX( -10px );
   }
-  15%{
-    -webkit-transform: translateX( -1px );
-    transform: translateX( -1px );
-  }
   20%{
-    -webkit-transform: translateX( 1px );
-    transform: translateX( 1px );
+    -webkit-transform: translateX( -5px );
+    transform: translateX( -5px );
+  }
+  30%{
+    -webkit-transform: translateX( 5px );
+    transform: translateX( 5px );
     
   }
   45%{
@@ -111,11 +109,8 @@
     -webkit-transform: scale( 1.13 );
     -ms-transform: scale( 1.13 );
     transform: scale( 1.13 );
-    border: 3px solid #333; 
-
-  }
-  70%{
-    -webkit-transform: rotate( 180deg );  
+    border: 3px solid #333;  
+    -webkit-transform: rotate( 30deg ); 
   }
   100%{
     -webkit-transform: translateX( 0 );
@@ -128,7 +123,7 @@
     border: 3px solid #333;
     border-style: solid;
     -moz-transform: rotate( 180deg );
-    -webkit-transform: rotate( 360deg );
+    -webkit-transform: rotate( 3deg );
     position:fixed;
 
   }

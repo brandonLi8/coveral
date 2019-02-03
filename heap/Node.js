@@ -23,6 +23,7 @@ export default class Node{
     this.leftChild = leftChild;
     this.rightChild = rightChild;
     this.parent = null; // handle externally
+    return;
   }
   /**
    * @public
@@ -56,5 +57,14 @@ export default class Node{
            + ", leftChild: " + left
            + ", rightChild: " + right
            + ", parent: " + parent;
+  }
+  /**
+   * @public
+   * dispose the node
+   */
+  dispose(){
+    this.value = null;
+    this.parent = null;
+    this.this = null;
   }
 }
