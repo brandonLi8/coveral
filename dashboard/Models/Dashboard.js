@@ -38,7 +38,7 @@ var Simulations = {
   title: "Simulations",
   src: "assets/simulationIcon.png",
   hover: "assets/simulationHoverIcon.png",
-  url: "google.com"
+  url: "../sims.html"
 };
 var Calculator = {
   title: "Calculator",

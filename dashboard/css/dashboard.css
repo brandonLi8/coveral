@@ -13,7 +13,7 @@ html, body{
     overflow-x: hidden;
     height: 100%;
     background: rgb( 210 , 211 , 214 );
-    font-family: "Verdana" , Geneva, sans-serif;
+    font-family: Courier;
 }
 
 body {
@@ -26,7 +26,8 @@ body {
     box-sizing: border-box;
     padding: 0 0 71px;
     position: relative;
-    height: 88%; /*the footer is 12%*/
+    height: 88%; 
     display: flex;
+    border: 2px solid red;
 }
 
