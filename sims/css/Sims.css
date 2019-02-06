@@ -8,28 +8,121 @@
  *
  * style the main elements of the page
  */
+
 html, body{
   max-width: 100%;
   overflow-x: hidden;
   height: 100%;
   background: rgb( 238 , 239 , 241 );
-  font-family: "Verdana" , Geneva, sans-serif;
+  font-family: Courier;
 }
 
 body {
   padding: 0;
   margin: 0;
   line-height: 1.5;
+  min-height: 210%;
 }
 
-#main_wrapper {
-  box-sizing: border-box;
-  margin: 5% auto;
-  position: relative;
-  width: 80%;
+#title{
+  text-align: center;
+  color: #263039;
+  font-size: 35px;
+  margin: 5% 5% 0px 5%;
+}
+
+#main_wrapper{
+  margin: 2% 5% 0px 5%;
   display: flex;
-  border: 2px solid red;
+  flex-direction: row;
+}
+
+#links {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+#descriptions {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  width: 55%;
+}
+
+.link{
+  margin: 50px 15% 0 15%;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 
+.goToDescription{
+  font-size: 20px;
+  padding-left: 40px;
+}
 
+.icon{
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid black;
+  animation-fill-mode: forwards;
+}
+
+.icon:hover{
+  animation-name: hoverIcon;
+  animation-duration: 0.5s;
+}
+.link:hover{
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#collisionIcon{
+  border: 1px solid rgb( 150, 150, 150 );
+  box-shadow: 1px 1px 0px 0px #84788E,
+              1px 1px 3px 3px rgb( 90, 90, 90 );
+}
+
+
+@keyframes hoverIcon{
+
+  0%{
+    -webkit-transform: scale( 1 );
+    -ms-transform: scale( 1 );
+    transform: scale( 1 );
+    -webkit-transform: rotate( 0deg ); 
+  }
+  35%{
+     -webkit-transform: rotate( 360deg );
+  }
+  100%{
+    -webkit-transform: translateX( -1px );
+    transform: translateX( -1px );
+    -webkit-transform: scale( 1.1 );
+    -ms-transform: scale( 1.1 );
+    transform: scale( 1.1 );
+    border: 3px solid #333;  
+    padding: 10px;
+    margin-right: -24px;
+  }
+  100%{
+    -webkit-transform: scale( 1.05 );
+    -ms-transform: scale( 1.05 );
+    transform: scale( 1.05 );
+    padding: 5px;
+    margin-left: -6px;
+    margin-right: -8px;
+    border: 3px solid #333;
+    border-style: solid;
+    -moz-transform: rotate( 180deg );
+  }
+}

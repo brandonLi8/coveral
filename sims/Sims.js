@@ -15,11 +15,50 @@
 import ScreenView from "../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
 
-// set up initial structure
+// create a title
+screen.addChildToParentType( "div", "title", null, "Simulations", "body" );
+// add the wrapper to the links
 screen.addChildToParentType( "div", "main_wrapper", null, "", "body" );
 
-// set up the structure of the systems to chose a sim, with a description
+// add a wrapper that contains the links
+screen.addChildToParentId( "div", "links", null, "", "main_wrapper" );
+// add a wrapper for the descriptions when the link is clicked
+screen.addChildToParentId( 
+        "div", "descriptions", 
+        null, "asfdasf", "main_wrapper" 
+);
+/**
+ * function that adds a link to the page
+ * @param options{
+ *       title: <String> - the title
+ *       description: <String> - the description
+ *       url: <String> - the url to the sim
+ *       image: <String> - the src to the icon
+ *       imageId: <String> the id for the image
+ * }
+ */
+function addLink( options ){
+  const wrapper = screen.addChildToParentId( 
+                    "div", options.title, 
+                    "link", "", "links" );
 
-// TODO - create a function that takes in arguments to create a description and 
-// inroduction to the simulation
+  const image = screen.addChildToParentNode( 
+                  "img", options.imageId, "icon",
+                  null, wrapper
+                );
+  image.setAttribute( "src", options.image );
+  // user responsible for changing the border, the id is the options.imageId
+  const goToDescription = screen.addChildToParentNode( 
+                            "div", null, 
+                            "goToDescription", options.title, wrapper );
+}
+
+addLink( {
+  title: "Collision Theory",
+  image: "./assets/momentumIcon.png",
+  imageId: "collisionIcon"
+});
+
+
+
 
