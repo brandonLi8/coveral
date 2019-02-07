@@ -1,0 +1,39 @@
+/**
+ * Learning App
+ * Animations.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 2/7/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * Provide the animations to the sim page
+ */
+
+@keyframes hover_icon {
+  0% {
+    /* starting positions */    
+    -webkit-transform: scale( 1 );
+    -ms-transform: scale( 1 );
+    transform: scale( 1 );
+    -webkit-transform: rotate( 0deg ); 
+  }
+  35% {
+    /* first spin around */    
+    -webkit-transform: rotate( 360deg );
+  }
+  100%{
+    /* final positions */
+    /* inlarge */
+    -webkit-transform: scale( 1.05 );
+    -ms-transform: scale( 1.05 );
+    transform: scale( 1.05 );
+    /* create a padding for the effect */
+    padding: 5px;
+    /* center the icon */
+    margin-left: -6px;
+    /* make sure the label doesn't move */
+    margin-right: -8px;
+    border: 3px solid #333;
+    border-style: solid;
+  }
+}

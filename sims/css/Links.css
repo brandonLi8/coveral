@@ -1,0 +1,49 @@
+/**
+ * Learning App
+ * Links.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on 2/7/19
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * Style the links on the left side
+ */
+        
+#links { /* the wrapper containing all the links */ 
+  display: flex;
+  width: 40%; /* parent is main_wrapper */ 
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px; /* margin for the bottom link */ 
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 3px solid #90CC4E;
+  border-radius: 13px;
+  background-color: #FFFDE4;
+  box-shadow: inset 100px 150px 600px -40px rgba( 100, 100, 100, 0.1);
+  margin-right: 2.5%;
+}
+
+#title { /* the title for the links wrapper */
+  text-align: center;
+  color: #3A6280;
+  font-size: 40px;
+  margin: 5% 5% 0px 5%;
+}
+
+.link { /* the actual link itself */
+  /* this is the container for the icon and the label */
+  margin: 50px 15% 0 15% ; 
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.link :hover {
+  /* hover effect for the link */
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}

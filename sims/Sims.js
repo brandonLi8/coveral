@@ -28,8 +28,17 @@ screen.addChildToParentId( "div", "title", null, "Simulations", "links" );
 // add a wrapper for the descriptions when the link is clicked
 screen.addChildToParentId( 
         "div", "descriptions", 
-        null, "asfdasf", "main_wrapper" 
+        null, "", "main_wrapper" 
 );
+screen.addChildToParentId( 
+                        "div", "title", null, 
+                        "Description", "descriptions" );                            
+
+const description = screen.addChildToParentId( 
+        "div", "description", 
+        null, "", "descriptions" 
+);
+
 /**
  * function that adds a link to the page
  * @param options{
@@ -55,22 +64,53 @@ function addLink( options ){
                             "div", null, 
                             "goToDescription", options.title, wrapper );
   wrapper.onclick = function(){
-    console.log( "clic")
+    description.innerHTML = "";
+    const screenshot = screen.addChildToParentNode( 
+                "img", null, "screenshot",
+                null, description
+              );
+    // maintain 16:9 aspect ratio
+    const width = "650px";
+    const height = "365px";
+    screenshot.style.width = width;
+    screenshot.style.height = height;
+    screenshot.style.margin = "auto";
+    screenshot.setAttribute( "src", options.screenshot );
+
+    const content = screen.addChildToParentNode( 
+                      "div", null, "descriptionContent", 
+                      "", description );
+    content.innerHTML = options.description;
+
   }
 }
 
 addLink( {
   title: "Collision Theory",
   image: "./assets/momentumIcon.png",
-  imageId: "collisionIcon"
+  imageId: "collisionIcon",
+  screenshot: "./assets/screenshot.png",
+  description: "<strong>Topics</strong> <ul> <li>Momentum</li> <li>Conservation of Energy</li> <li>Energy Transfer</li> </ul>"
+
 });
 
 addLink( {
   title: "Circular Motion",
   image: "./assets/circularMotionIcon.png",
-  imageId: "circularMotion"
+  imageId: "circularMotion",
+  screenshot: "./assets/screenshot.png",
+  description: "Adfasdf this is the descriptions cm"
 });
 
 
+// // Description
+// Explore how heating and cooling iron, brick, water, and olive oil adds or removes energy. See how energy is transferred between objects. Build your own system, with energy sources, changers, and users. Track and visualize how energy flows and changes through your system.
 
+// Sample Learning Goals
+// Predict how energy will flow when objects are heated or cooled, or for objects in contact that have different temperatures.
+// Describe the different types of energy and give examples from everyday life.
+// Describe how energy can change from one form of energy into another.
+// Explain conservation of energy in real-life systems.
+// Design a system with energy sources, changers, and users and describe how energy flows and changes one form of energy into another.
+// Tell the energy story for real-life systems."
 
