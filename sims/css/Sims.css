@@ -13,7 +13,7 @@ html, body{
   max-width: 100%;
   overflow-x: hidden;
   height: 100%;
-  background: rgb( 238 , 239 , 241 );
+  background: #E6E7Eb;
   font-family: Courier;
 }
 
@@ -21,40 +21,46 @@ body {
   padding: 0;
   margin: 0;
   line-height: 1.5;
-  min-height: 210%;
 }
 
 #title{
   text-align: center;
-  color: #263039;
+  color: #3A6280;
   font-size: 35px;
   margin: 5% 5% 0px 5%;
 }
 
 #main_wrapper{
-  margin: 2% 5% 0px 5%;
+  margin: 4% 5% 4px 5%;
   display: flex;
   flex-direction: row;
+  height: 80%;
 }
 
 #links {
-  box-sizing: border-box;
-  position: relative;
   display: flex;
-  width: 45%;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  padding-bottom: 50px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid grey;
+
+  border-radius: 13px 0 0 13px;
+  box-shadow: inset 100px 150px 600px -40px rgba( 100, 100, 100, 0.2);
 }
 
 #descriptions {
   box-sizing: border-box;
   position: relative;
   display: flex;
-  width: 55%;
+  width: 50%;
 }
 
 .link{
-  margin: 50px 15% 0 15%;
+  margin: 50px 15% 0 15% ; 
   height: 50px;
   width: 100%;
   display: flex;
@@ -65,7 +71,7 @@ body {
 
 .goToDescription{
   font-size: 20px;
-  padding-left: 40px;
+  padding-left: 30px;
 }
 
 .icon{
@@ -80,6 +86,7 @@ body {
   animation-name: hoverIcon;
   animation-duration: 0.5s;
 }
+
 .link:hover{
   color: blue;
   cursor: pointer;
@@ -92,6 +99,11 @@ body {
               1px 1px 3px 3px rgb( 90, 90, 90 );
 }
 
+#circularMotion{
+  border: 1px solid rgb( 50, 50, 50 );
+  box-shadow: 1px 1px 0px 0px #24720E,
+              1px 1px 3px 3px rgb( 90, 90, 90 );
+}
 
 @keyframes hoverIcon{
 

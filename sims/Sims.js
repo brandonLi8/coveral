@@ -15,13 +15,16 @@
 import ScreenView from "../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
 
-// create a title
-screen.addChildToParentType( "div", "title", null, "Simulations", "body" );
+
 // add the wrapper to the links
 screen.addChildToParentType( "div", "main_wrapper", null, "", "body" );
 
 // add a wrapper that contains the links
 screen.addChildToParentId( "div", "links", null, "", "main_wrapper" );
+
+// create a title
+screen.addChildToParentId( "div", "title", null, "Simulations", "links" );
+
 // add a wrapper for the descriptions when the link is clicked
 screen.addChildToParentId( 
         "div", "descriptions", 
@@ -51,12 +54,21 @@ function addLink( options ){
   const goToDescription = screen.addChildToParentNode( 
                             "div", null, 
                             "goToDescription", options.title, wrapper );
+  wrapper.onclick = function(){
+    console.log( "clic")
+  }
 }
 
 addLink( {
   title: "Collision Theory",
   image: "./assets/momentumIcon.png",
   imageId: "collisionIcon"
+});
+
+addLink( {
+  title: "Circular Motion",
+  image: "./assets/circularMotionIcon.png",
+  imageId: "circularMotion"
 });
 
 
