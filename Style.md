@@ -196,8 +196,8 @@ if ( keyIsPressed ){
 }
 
 // use singular for a item, use plural for a collection
-book is a single book
-book is a list of books
+'book' is a single book
+'books' is a list of books
 
 ```
 
