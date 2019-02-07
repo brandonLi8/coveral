@@ -55,7 +55,7 @@ randomFunction({
  * a multiline comment
  */
 ```
-- start every documenet with a docstring
+- start every document with a docstring
 ```javascript
 /**
  * Learning App
