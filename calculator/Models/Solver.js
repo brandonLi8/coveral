@@ -9,7 +9,7 @@
  * module that takes in a string and solves it
  *
  * ## Functionality:
- *  solves a string
+ *  Solves a string
  */
 
 'use strict';
@@ -30,7 +30,8 @@ export default class Solver {
     this.mode = mode;
     this.str = this.solve( this.transformToList( this.str ) );
     if ( round ){
-      this.str = Math.round( parseFloat(this.str) * Math.pow( 10, round )) / Math.pow( 10, round )
+      this.str = Math.round( parseFloat( this.str ) * Math.pow( 10, round ) ) 
+                 / Math.pow( 10, round )
       this.str = "" + this.str // turn back to string
     }
   }
@@ -43,7 +44,7 @@ export default class Solver {
   solve( list ){
     // unary operators, prepend a '0'
     if ( list[ 0 ] === "-" || list[ 0 ] === "+" ){ 
-      list = [ "0" ].concat(list);
+      list = [ "0" ].concat( list );
     }
     var values = new Stack(); // stack for the values
     var operators = new Stack(); // stack for the operators
@@ -62,7 +63,7 @@ export default class Solver {
         // always push numbers
         values.push( list[ index ] );
       }
-      else if ( this.precedence.isFunction( list[index] ) ||
+      else if ( this.precedence.isFunction( list[ index ] ) ||
                 list[ index ] === "√" ){
         /**
          * step 1: add a times if there is something in front 
@@ -153,10 +154,9 @@ export default class Solver {
       else if ( this.precedence.isOperator( list[ index ] ) ){
         if ( operators.length() === 0 ) operators.push( list[ index ] );
         
-        else if ( 
-          this.precedence.getPrecedence( list[ index ] ) <= 
-          this.precedence.getPrecedence( operators.arr[ operators.length() - 1 ]
-          ) ){
+        else if ( this.precedence.getPrecedence( list[ index ] ) 
+                  <= this.precedence.getPrecedence( 
+                            operators.arr[ operators.length() - 1 ] ) ){
           let value2 = values.pop();
           let value1 = values.pop();
           let operator = operators.pop();
@@ -232,21 +232,21 @@ export default class Solver {
       if ( this.almostEqual( Math.sin(value), 0 ) ){
         throw new Error("Domain on tan");
       }
-      return "" + 1/Math.sin( value );
+      return "" + 1 / Math.sin( value );
     }
     if ( operator === "sec" ) {
       if ( this.mode == "deg" ) value *= Math.PI / 180
       if ( this.almostEqual( Math.cos(value), 0 ) ){
         throw new Error("Domain on tan");
       }
-      return "" + 1/Math.cos( value );
+      return "" + 1 / Math.cos( value );
     }
     if ( operator === "cot" ) {
       if ( this.mode == "deg" ) value *= Math.PI / 180
       if ( this.almostEqual( Math.sin(value), 0 ) ){
         throw new Error("Domain on cot");
       }
-      return "" + 1/Math.tan( value );
+      return "" + 1 / Math.tan( value );
     }
     
     if ( operator === "arcsin" ) {
@@ -293,16 +293,16 @@ export default class Solver {
     }
     value1 = parseFloat(value1);
     value2 = parseFloat(value2);
-    if ( operator === "+" ) return "" + (value1 + value2);
-    if ( operator === "-" ) return "" + (value1 - value2);
-    if (operator === "×") return "" + (value1 * value2);
-    if (operator === "÷") return "" + (value1 / value2);
-    if (operator === "^") return "" + Math.pow( value1, value2 );
-    if (operator === "%"){// modulus
-      if (!Number.isInteger(value1) || !Number.isInteger(value2)) {
+    if ( operator === "+" ) return "" + ( value1 + value2 );
+    if ( operator === "-" ) return "" + ( value1 - value2 );
+    if ( operator === "×") return "" + ( value1 * value2 );
+    if ( operator === "÷") return "" + ( value1 / value2 );
+    if ( operator === "^") return "" + Math.pow( value1, value2 );
+    if ( operator === "%"){ // modulus
+      if ( !Number.isInteger( value1 ) || !Number.isInteger( value2 ) ) {
         throw new Error("modulus with non integer value");
       } 
-      return "" + (value1 % value2);
+      return "" + ( value1 % value2 );
     }
     throw new Error( "Unrecognized operator: " + operator )
   }

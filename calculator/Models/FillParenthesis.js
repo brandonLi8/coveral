@@ -34,13 +34,13 @@ export default class FillParenthesis {
     var count = 0;
     for ( var i = 0; i < str.length; i ++ ) {
       let current = str.charAt(i)
-      if (current === "(") {
+      if ( current === "(" ){
           count ++;
       }
-      else if ( current === ")"){
+      else if ( current === ")" ){
           count --;
       }
-      if (count < 0) {
+      if ( count < 0 ) {
           return false;
       } 
     }
@@ -52,7 +52,7 @@ export default class FillParenthesis {
    * @public
    * @return {string} - updated string 
    */
-   fill( str ) { 
+  fill( str ) { 
     while ( !this.hasBalancedParentheses( str ) ){   
       var openCount = str.split( "(" ).length - 1;
       var closeCount = str.split( ")" ).length - 1;

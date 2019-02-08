@@ -7,11 +7,11 @@
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * ## Functionality:
- *  - handle buttons pressed and calculator functionality
+ *  - handle seperate buttons pressed and calculator functionality
  */
 'use strict';
-
-/* // UNCOMMENT to TEST. Results in the console
+// UNCOMMENT to TEST. Results in the console
+/* 
 import SolverTest from "../Models/SolverTest.js"
 var solverTest = new SolverTest();
 solverTest.test()
@@ -50,7 +50,7 @@ export default class CalculatorController{
    */
   handlePressed( buttonNode , text ){
     if ( buttonNode && 
-       ( buttonNode.text === "rad" || buttonNode.text === "deg" ) ){
+         ( buttonNode.text === "rad" || buttonNode.text === "deg" ) ){
       if ( mode === "rad" ) mode = "deg"
       else if ( mode === "deg" ) mode = "rad"
       text.innerHTML = mode;

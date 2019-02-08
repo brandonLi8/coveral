@@ -85,8 +85,7 @@ var buttons = buttonList.buttons;
 for ( var i = 0; i < buttons.length; i++ ){
   var row = screen.addChildToParentId( 
               "div", null, "c_row", 
-              "", "calculator" 
-            );
+              "", "calculator" );
   for (var j = 0; j < buttons[ i ].length; j++){
     addCalculatorButton( row, buttons[ i ][ j ] );
   }
@@ -105,8 +104,7 @@ function addCalculatorButton( row, buttonNode ){
 addReturnButton( "./assets/helpButton.png", 
                  "./help.html", 
                  "./assets/helpHoverButton.png", 
-                 "help_button"
-                )
+                 "help_button" )
 
 /**
  * add listener's for user interaction
@@ -114,6 +112,7 @@ addReturnButton( "./assets/helpButton.png",
 input.addEventListener( "keydown", event => { 
   controller.handleInput( event, input ) 
 } ); 
+
 function handleButtonPress( buttonNode , text){
   controller.handlePressed( buttonNode , text ) 
 }

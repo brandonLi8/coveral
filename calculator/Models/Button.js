@@ -54,16 +54,20 @@ export default class Button {
     }
     if ( this.text === "⌫" ) { // delete when inside a function
       // check for inverse trig first
-      if ( precedence.isFunction( str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
+      if ( precedence.isFunction( 
+              str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
+        
         if ( str.substring( carrotPosition - 7, carrotPosition - 1 ).length ){  
-        return removeFunction( str, carrotPosition, 3 ) 
-      }
+          return removeFunction( str, carrotPosition, 3 ) 
+        }
         return removeFunction( str, carrotPosition, 6 ) 
       }
-      else if ( precedence.isFunction( str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){  
+      else if ( precedence.isFunction( 
+                  str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){  
         return removeFunction( str, carrotPosition, 3 ) 
       }
-      else if ( precedence.isFunction( str.substring( carrotPosition - 2, carrotPosition - 1 ) ) ){  
+      else if ( precedence.isFunction( 
+                  str.substring( carrotPosition - 2, carrotPosition - 1 ) ) ){  
         return removeFunction( str, carrotPosition, 1 ) 
       }
       return { 
@@ -96,12 +100,11 @@ export default class Button {
     if ( this.text === "=" ){
       try {
         if ( str.includes( "rnd:" ) ){
-          console.log( str.substring( 4, str.length - 1 ))
           var newRnd = parseInt( str.substring( 4, str.length ) );
-          if ( Number.isInteger( newRnd) ){
+          if ( Number.isInteger( newRnd ) ){
             return newRnd;
           }
-          else throw new Error( "Syntax on RND")
+          else throw new Error( "Syntax on RND" );
         }
         str = replaceSymbols( str );
         str = fillParenthesis.fill( str );
@@ -129,7 +132,6 @@ export default class Button {
       }
     }
   }
-
 }
 /**
  * replace P and E symbol with numerical value wrapped around in parenthesis

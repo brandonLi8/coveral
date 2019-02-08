@@ -6,7 +6,7 @@
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * contains a list representation of the calculator
+ * Enscapulate a list representation of the calculator
  */
 "use strict";
 // modules

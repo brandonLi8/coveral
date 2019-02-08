@@ -24,7 +24,7 @@ screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
 addReturnButton( "./assets/reset.png", 
                  "../calculator.html", 
                  "./assets/resetHover.png",
-                 "back_to_dashboard_button" )
+                 "back_to_dashboard_button" );
 // add the help button
 function addReturnButton( src, url , hoverSrc, id ){
   // add the div to the wrapper
