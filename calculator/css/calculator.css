@@ -40,24 +40,24 @@ body {
   font-size: 110%;
   font-weight: 700;
 }
-.backToDashboard{
+.back_to_dashboard{
   border-radius: 50%;
   height: 100%;
   width: 100%;
   box-shadow: 1px 2px 5px 2px #4D4E4E;
 }
 
-.backToDashboard:hover{
+.back_to_dashboard:hover{
   cursor: pointer;
 }
 
-#backToDashboardButton{
+#back_to_dashboard_button{
   width: 90px;
   height: 90px;
   margin: auto auto 2% 0%;
 }
 
-#helpButton{
+#help_button{
   width: 55px;
   height: 55px;
   margin: auto auto 0% 80%;

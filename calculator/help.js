@@ -24,7 +24,7 @@ screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
 addReturnButton( "./assets/reset.png", 
                  "../calculator.html", 
                  "./assets/resetHover.png",
-                 "backToDashboardButton" )
+                 "back_to_dashboard_button" )
 // add the help button
 function addReturnButton( src, url , hoverSrc, id ){
   // add the div to the wrapper
@@ -35,7 +35,7 @@ function addReturnButton( src, url , hoverSrc, id ){
   // add the image to the button node
   let image = screen.addChildToParentNode( 
                 "img", null, 
-                "backToDashboard", "", button 
+                "back_to_dashboard", "", button 
               );
   image.setAttribute( "src", src );
   // handle user input
