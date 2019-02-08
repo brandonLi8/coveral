@@ -7,7 +7,6 @@ Styling Guidline for Learning App
 =======
 By Brandon Li [@brandonLi8](https://github.com/brandonLi8)
 
-### Principles of Writing Consistent Code
 ## Table of Contents
  * [General](#general)
  * [Javacript](#JS)
@@ -17,57 +16,85 @@ By Brandon Li [@brandonLi8](https://github.com/brandonLi8)
 -----------------------------------------------
 
 1. <a name="general"><strong>General</strong></a>
+  - This is the style guidline for the Learning app - required for this
+      - The most important thing is to keep everything consistent
   - Tab sizes will always be 2 spaces. Don't mix tabs and spaces.
-  - No end of line whitespace
-  - No blank line whitespace
+  - No end of line whitespace or blank line whitespace
   - ***Never*** go over 80 characters a line 
   - Use spaces in between parenthesis ( readability )
-```javascript
-if ( condition ) {
+  ```javascript
+  if ( condition ) {
 
-}
-else if ( condition ) {
+  }
+  else if ( condition ) {
 
-}
-while ( condition ) {
+  }
+  while ( condition ) {
 
-}
-for ( var i = 0; i < 100; i++ ) {
+  }
+  for ( var i = 0; i < 100; i++ ) {
 
-}
+  }
 
-// EXCEPTIONS
-// Function accepting an array = no space
-randomFunction([ "item1", "item1" ]);
-// function accepting an object = no space
-randomFunction({
-      a: "item1",
-      b: "item2"
-});
-```
+  // EXCEPTIONS
+  // Function accepting an array = no space
+  randomFunction([ "item1", "item1" ]);
+  // function accepting an object = no space
+  randomFunction({
+        a: "item1",
+        b: "item2"
+  });
+  ```
   - never use single quotes ''
   -  `// single line comments should look like this`
-  -  Use built in multiline comment
-```javascript
-/**
- * This 
- * is 
- * a multiline comment
- */
-```
-- start every document with a docstring
-```javascript
-/**
- * Learning App
- * document name (fils.js)
- *
- * @author Brandon Li <brandon.li820@icloud.com> 
- * Created on date
- * Copyright © 2019 Brandon Li. All rights reserved.
- *
- * Briefly explain functionality
- */
-```
+  -  Use built in multiline comments
+  ```javascript
+  /**
+   - This 
+   - is 
+   - a multiline comment
+   */
+  ```
+  - start every document with a docstring
+  ```javascript
+  /**
+   - Learning App
+   - document name (fils.js)
+   *
+   - @author Brandon Li <brandon.li820@icloud.com> 
+   - Created on date
+   - Copyright © 2019 Brandon Li. All rights reserved.
+   *
+   - Briefly explain functionality
+   */
+  ```
+  - since the limit for a line is 80 spaces, runnning out or room is common
+  ```javascript
+  // long functions names should start at the same space and split as evenly as possible
+  function longFunctionName(
+           varOne, varTwo,
+           varThree, varFour ){
+    ...
+  }
+
+  // same for if statments or anything of the sort
+  if ( condition1 &&
+       condition2 ||
+       condition3 &&
+       condition4 ){ // notice how the operator goes after for && and ||
+    // do something
+  }
+  // the operator should go before for anything else
+  var str = "long string here"
+            * "5"
+            * "something else here";
+  // another example
+  var income = ( grossWages
+                 * taxableInterest
+                 * ( dividends - qualifiedDividends )
+                 + iradeduction
+                 + studentLoanInterest )
+  ```
 2. <a name="JS"><strong>JavaScript</strong></a>
   - use type coercion
 ```javascript
@@ -155,18 +182,18 @@ methodNamesLikeThis;
 }
 ```
   - Space after the ':'
-  ```css
-  /* bad */
-  div { 
-    width:9px;
-    height:8px; /* cramped */
-  }
-  /* use a space */
-  div { 
-    width: 9px;
-    height: 8px; /* lesscramped */
-  }
-  ```
+```css
+/* bad */
+div { 
+  width:9px;
+  height:8px; /* cramped */
+}
+/* use a space */
+div { 
+  width: 9px;
+  height: 8px; /* lesscramped */
+}
+```
   - Use newlines/indents when styling:
 ```css
 /* Bad */

@@ -15,7 +15,7 @@
 import ScreenView from "../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
 
-//set up initial structre
+//set up initial structure
 screen.addChildToParentType( "div", "main_wrapper", null, "", "body" );
 screen.addChildToParentId( "div", "app_wrapper", null, "", "main_wrapper" );
 
@@ -27,69 +27,77 @@ var footer = [ "2019© By Brandon Li",
 for ( var i = 0; i < footer.length; i++ ){
   screen.addChildToParentId( "p",  null, null, footer[ i ], "content" );
 }
-// define apps
-var Planner = {
+/**
+ * Function that adds a app to the view
+ * @param {object} appNode { 
+ *   title: <string> the title of the app @required
+ *   src: <string> the src for the icon @required
+ *   hoverSrc: <string> the src for the hover icon @required
+ *   url: <string> the url redirect on the click @required
+ *   id: <string> te id of the app for custom styling @optional
+ * }
+ */
+function addApp( appNode ){
+  // add the app container
+  let app = screen.addChildToParentId( "div", appNode.id, "app", 
+                                       "", "app_wrapper" );
+  let link = screen.addChildToParentNode( "a", null, null, "", app );
+  link.setAttribute( "target", "_self" );
+  link.setAttribute( "href", appNode.url );
+  // add a button and set attributes
+  let button = screen.addChildToParentNode( 
+                  "input", appNode.id, 
+                  null, "", link );
+  let label = screen.addChildToParentNode( 
+                "p", null, null, 
+                appNode.title, app );
+  button.type = "image";
+  button.src = appNode.src;
+  // handle hovering effect
+  button.onmouseover = hoverApp;
+  button.onmouseout = unHoverApp;
+
+  // change image on hover
+  function hoverApp( ){
+    button.setAttribute( "src", appNode.hoverSrc );
+  }
+  function unHoverApp( ){
+    button.setAttribute( "src", appNode.src );
+  }
+}
+
+/**
+ * Add the apps
+ */
+
+// add the planner app
+addApp({
   title: "Planner",
   src: "assets/plannerIcon.png",
-  hover: "assets/plannerHoverIcon.png",
+  hoverSrc: "assets/plannerHoverIcon.png",
   url: "../planner.html",
   id: "planner"
-};
-var Simulations = {
+});
+
+// add the simulations app
+addApp({
   title: "Simulations",
   src: "assets/simulationIcon.png",
-  hover: "assets/simulationHoverIcon.png",
+  hoverSrc: "assets/simulationHoverIcon.png",
   url: "../sims.html",
   id: "simulations"
-};
-var Calculator = {
+});
+
+// add the calculator app
+addApp({
   title: "Calculator",
   src: "assets/calculatorIcon.png",
-  hover: "assets/calculatorHoverIcon.png",
+  hoverSrc: "assets/calculatorHoverIcon.png",
   url: "../calculator.html",
   id: "calculator"
-};
-var apps = {
-  "Planner": Planner,
-  "Simulations": Simulations,
-  "Calculator": Calculator
-} ;
-// add each app to the screen
-var appsList = Object.keys( apps );
-for ( var i = 0 ; i < appsList.length; i ++ ){
-  let app = apps[ appsList[ i ] ];
-  addApp( app.title, app.src, app.url, app.id )
-}
+});
 
-function addApp( title, src, url, id ){
-    // add the app container
-    let app = screen.addChildToParentId( "div", id, "app", 
-                                         "", "app_wrapper" );
-    let link = screen.addChildToParentNode( "a", null, null, "", app );
-    link.setAttribute( "target", "_self" );
-    link.setAttribute( "href", url );
-    // add a button and set attributes
-    let button = screen.addChildToParentNode( "input", id, null, "", link );
-    let label = screen.addChildToParentNode( "p", null, null, title, app );
-    button.type = "image";
-    button.src = src;
-    // handle hovering effect
-    button.onmouseover = function() { hoverApp( this ) };
-    button.onmouseout = function() { unHoverApp( this ) };
-}
 
-// change image on hover
-var hoverApp = function( element ){
-  let obj = apps[ element.id ];
-  if ( obj ){
-  element.setAttribute( "src", obj.hover );
-  }
-}
-// change back when unhovering
-var unHoverApp = function( element ){
-  let obj = apps[ element.id ];
-  if ( obj ) {
-    element.setAttribute( "src", obj.src );
-  }
-}
+
+
 
