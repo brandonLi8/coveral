@@ -12,6 +12,7 @@ By [Brandon Li](https://github.com/brandonLi8)
  * [Javacript](#JS)
  * [Html](#HTML)
  * [Css](#CSS)
+ * [Naming](#Naming)
 
 -----------------------------------------------
 <a name="general"></a>
@@ -50,9 +51,9 @@ By [Brandon Li](https://github.com/brandonLi8)
   var string = "stringname";
   ```
   -  `// single line comments should look like this`
-  -  Use appropriate multiline comments for [Javacript](#JSMultiline), [Html](#HTMLMultiline), and[Css](#CSSMultiline)
-  - start every document with a docstring for [Javacript](#JSDS), [Html](#HTMLDS), and[Css](#CSSDS)
-  - since the limit for a line is 80 spaces, runnning out or room is common
+  - Use appropriate multiline comments for [Javacript](#JSMultiline), [Html](#HTMLMultiline), and [Css](#CSSMultiline)
+  - Start every document with a docstring for [Javacript](#JSDS), [Html](#HTMLDS), and [Css](#CSSDS)
+  - Since the limit for a line is 80 spaces, runnning out or room is common
   ```javascript
   // long functions names should start at the same space and split as evenly as possible
   function longFunctionName(
@@ -79,49 +80,51 @@ By [Brandon Li](https://github.com/brandonLi8)
                  + iradeduction
                  + studentLoanInterest )
   ```
-2. <a name="JS"><strong>JavaScript</strong></a>
-  - use type coercion
-```javascript
-// wrong
-if ( foo === true ) 
-// better
-if ( foo ) 
 
+<a name="JS"></a>
+## 2. JavaScript
+  - Use type coercion to your benefit
+  ```javascript
+  // unnecessary
+  if ( foo === true ) 
+  // concise
+  if ( foo ) 
 
-// wrong
-if ( array.length > 0 )
-// correct
-if ( array.length )
-// wrong
-if ( array.length === 0 )
-// better
-if ( !array.length )
+  // unnecessary
+  if ( array.length > 0 )
+  // concise
+  if ( array.length )
 
-// wrong
-if ( string !== "" )
-// better
-if ( string )
+  // unnecessary
+  if ( array.length === 0 )
+  // concise
+  if ( !array.length )
 
-// wrong
-if ( string === "" )
-// better
-if ( !string )
+  // unnecessary
+  if ( string !== "" )
+  // concise
+  if ( string )
 
-// wrong UNLESS you are actually testing for false and not null, "", 0, or undefined
-if ( variable === false )
-// usually better
-if ( !variable )
-```
-  - **Do not** use snake case ever
-```javascript
-// use this naming convention
-functionNamesLikeThis;
-variableNamesLikeThis;
-ConstructorNamesLikeThis;
-methodNamesLikeThis;
-```
-<a name="JSMultiline"></a>
- - Multiline comments for js should look like:
+  // unnecessary
+  if ( string === "" )
+  // concise
+  if ( !string )
+
+  // bad UNLESS you are actually testing for false and not null, "", 0, or undefined
+  if ( variable === false )
+  // usually better
+  if ( !variable )
+  ```
+  - **Do not** use snake case ever for JS
+  ```javascript
+  // use this naming convention
+  functionNamesLikeThis;
+  variableNamesLikeThis;
+  ConstructorNamesLikeThis;
+  methodNamesLikeThis;
+  ```
+ <a name="JSMultiline"></a>
+  - Multiline comments for JS should look like:
   ```javascript
   /**
    * This 
@@ -130,9 +133,8 @@ methodNamesLikeThis;
    */
   ...
   ```
-<a name="JSDS"></a>
-
- - Docstrings for js look like:
+ <a name="JSDS"></a>
+  - Docstrings for JS look like:
   ```javascript
   /**
    * Learning App
@@ -146,149 +148,187 @@ methodNamesLikeThis;
    */
   ```
 
-3. <a name="HTML"><strong>Html</strong></a>
+<a name="HTML"></a>
+## 3. Html
   - Html is **only** used for linking javascript and css files
   - No spacing on attributes
+  ```html
+  <!-- Bad --> 
+  <div id = "id" class = "class"></div>
+  <!-- Better --> 
+  <div id="id" class="class"></div>
+  ```
   - Remove white space
-  - Use **Snake Case** ( snake_case )
-```html
-<!-- Bad --> 
-<p> text is here </p>
-<!-- Better --> 
-<p>text is here</p>
+  ```html
+  <!-- Bad --> 
+  <p> text is here </p>
+  <!-- Better --> 
+  <p>text is here</p>
 
-```
+  ```
   - New lines on children
-```html
-<ul>
-  <li>1
-  <li>2
-  <li>3
-</ul>
-```
+  ```html
+  <ul>
+    <li>1
+    <li>2
+    <li>3
+  </ul>
+  ```
   - (optional) break long lines
-  - Use lowerCaseCamel for all names in css and html
-```html
-<div
-    property="p"
-    class="class_name"
-    id="id_name">
-    text
-</div>
-```
-  - again always use double quotes `"`
-  
-4. <a name="CSS"><strong>Css</strong></a>
+  - Use **Snake Case** ( snake_case ) for HTML and CSS
+  ```html
+  <div
+      property="p"
+      class="class_name"
+      id="id_name">
+      text
+  </div>
+  ```
+  - **always** use double quotes `""`
+  <a name="HTMLMultiline"></a>
+  - Multiline comments for HTML should look like:
+  ```html
+  <!-- 
+    this 
+    is 
+    a 
+    multiline 
+    comment
+  -->
+  ...
+  ```
+  <a name="HTMLDS"></a>
+  - Docstrings for HTML look like:
+  ```html
+  <!-- file.html
+       learning app
+       Created by __ on ___
+       Copyright © 2019 Brandon Li. All rights reserved. 
+  -->
+  ```
+
+<a name="CSS"></a>
+## 3. Css
   - Use **Snake Case** ( snake_case )
-```css
-/* Bad */
-#idNameHere {
+  ```css
+  /* not for css */
+  #idNameHere {
 
-}
-/* Use Snake Case for css */
-#id_name_here {
- 
-}
-```
+  }
+  /* Use Snake Case for css */
+  #id_name_here {
+   
+  }
+  ```
   - Space after the ':'
-```css
-/* bad */
-div { 
-  width:9px;
-  height:8px; /* cramped */
-}
-/* use a space */
-div { 
-  width: 9px;
-  height: 8px; /* lesscramped */
-}
-```
+  ```css
+  /* bad */
+  div { 
+    width:9px;
+    height:8px; /* cramped */
+  }
+  /* use a space */
+  div { 
+    width: 9px;
+    height: 8px; /* better */
+  }
+  ```
   - Use newlines/indents when styling:
-```css
-/* Bad */
-div {
-  width: 80%; height: 90%;
-}
-/* Use new line for sub styling and 2 space tabs */
-div {
-  width: 80%; 
-  height: 90%;
-}
-```
+  ```css
+  /* Bad */
+  div {
+    width: 80%; height: 90%;
+  }
+  /* Use new line for sub styling and 2 space tabs */
+  div {
+    width: 80%; 
+    height: 90%;
+  }
+  ```
   - Use newlines on inheritance
-```css
-/* Bad */
-.class1, .class2, .class3 {
-  
-}
-/* Better */
-.class1, 
-.class2, 
-.class3 {
-  
-}
-```
-  - Again, always use double quotes `"`
-```css
-/* Use double quotes */
-.class1, .class2, .class3 {
-  font-family: "Courier";
-}
-```
-  - start off all css files with a docstring
-```css 
-/**
- * Learning App
- * file.css
- *
- * @author Brandon Li <brandon.li820@icloud.com> 
- * Created on date
- * Copyright © 2019 Brandon Li. All rights reserved.
- *
- * functionality here
- */
-```
-  - Create spacing on comma seperated values and
-```css
-div {
-  /* dont put units on 0 values! */
-  box-shadow: 0 40px 40px -40px rgba( 200, 100, 200, 0.2 );  
-  /* 
-   * Spacing in between parenthesis.
-   * Spacing After commas.
-   */
-}
-```
-
-
+  ```css
+  /* Bad */
+  .class1, .class2, .class3 {
     
-5. <a name="Naming"><strong>Naming</strong></a>
-    - be specific when naming variables
+  }
+  /* Better */
+  .class1, 
+  .class2, 
+  .class3 {
+    
+  }
+  ```
+  - Again, always use double quotes `" "`
+  ```css
+  /* Use double quotes */
+  .class1, .class2, .class3 {
+    font-family: "Courier";
+  }
+  ```
+  <a name="CSSDS"></a>
+  - start off all css files with a docstring
+  ```css 
+  /**
+   * Learning App
+   * file.css
+   *
+   * @author Brandon Li <brandon.li820@icloud.com> 
+   * Created on date
+   * Copyright © 2019 Brandon Li. All rights reserved.
+   *
+   * functionality here
+   */
+  ```
+  <a name="CSSMultiline"></a>
+  - Css multiline comments are the same as javascripts
+  ```css 
+    /**
+     - This
+     - Is 
+     - A
+     - Multiline
+     - Comment
+     */
+  ```
+  - Create spacing on comma seperated values and
+  ```css
+  div {
+    /* dont put units on 0 values! */
+    box-shadow: 0 40px 40px -40px rgba( 200, 100, 200, 0.2 );  
+    /* 
+     - Spacing in between parenthesis.
+     - Spacing After commas.
+     */
+  }
+  ```
 
-```javascript
-// REALLY BAD
+<a name="Naming"></a>  
+## 5. Naming
+  - be specific when naming variables
+  ```javascript
+  // REALLY BAD
 
-function dog(cat) {
-  return cat*5-6;
-}
-var i=0;
-var gi=["23"];
-var lol=false;
+  function dog(cat) {
+    return cat*5-6;
+  }
+  var i=0;
+  var gi=["23"];
+  var lol=false;
 
-// better
+  // better
 
-function query( selector ) {
-  return document.querySelectorAll( selector );
-}
+  function query( selector ) {
+    return document.querySelectorAll( selector );
+  }
 
-var keyIsPressed = false;
-if ( keyIsPressed ){
-  console.log( "key was pressed" )
-}
+  var keyIsPressed = false;
+  if ( keyIsPressed ){
+    console.log( "key was pressed" )
+  }
 
-// use singular for a item, use plural for a collection
-'book' is a single book
-'books' is a list of books
+  // use singular for a item, use plural for a collection
+  'book' is a single book
+  'books' is a list of books
 
-```
+  ```
 
