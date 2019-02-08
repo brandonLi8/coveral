@@ -5,9 +5,9 @@
 -->
 Styling Guidline for Learning App
 =======
-By [@brandonLi8](https://github.com/brandonLi8)
+By [Brandon Li](https://github.com/brandonLi8)
 
-## Table of Contents
+# Table of Contents
  * [General](#general)
  * [Javacript](#JS)
  * [Html](#HTML)
@@ -15,10 +15,10 @@ By [@brandonLi8](https://github.com/brandonLi8)
 
 -----------------------------------------------
 <a name="general"></a>
-# 1. General
+## 1. General
   - This is the style guidline for the Learning app - required for this
-      - The most important thing is to keep everything consistent
-  - Tab sizes will always be 2 spaces. Don't mix tabs and spaces.
+      - The most important thing is to keep everything **consistent**
+  - Tab sizes will always be **2 spaces**. Don't mix tabs and spaces.
   - No end of line whitespace or blank line whitespace
   - ***Never*** go over 80 characters a line 
   - Use spaces in between parenthesis ( readability )
@@ -45,29 +45,13 @@ By [@brandonLi8](https://github.com/brandonLi8)
         b: "item2"
   });
   ```
-  - never use single quotes ''
+  - **Always** use double duotes, **never** use single quotes.
+  ```javascript
+  var string = "stringname";
+  ```
   -  `// single line comments should look like this`
-  -  Use built in multiline comments
-  ```javascript
-  /**
-   - This 
-   - is 
-   - a multiline comment
-   */
-  ```
-  - start every document with a docstring
-  ```javascript
-  /**
-   - Learning App
-   - document name (fils.js)
-   *
-   - @author Brandon Li <brandon.li820@icloud.com> 
-   - Created on date
-   - Copyright © 2019 Brandon Li. All rights reserved.
-   *
-   - Briefly explain functionality
-   */
-  ```
+  -  Use appropriate multiline comments for [Javacript](#JSMultiline), [Html](#HTMLMultiline), and[Css](#CSSMultiline)
+  - start every document with a docstring for [Javacript](#JSDS), [Html](#HTMLDS), and[Css](#CSSDS)
   - since the limit for a line is 80 spaces, runnning out or room is common
   ```javascript
   // long functions names should start at the same space and split as evenly as possible
@@ -136,6 +120,31 @@ variableNamesLikeThis;
 ConstructorNamesLikeThis;
 methodNamesLikeThis;
 ```
+<a name="JSMultiline"></a>
+ - Multiline comments for js should look like:
+  ```javascript
+  /**
+   * This 
+   * is 
+   * a multiline comment
+   */
+  ...
+  ```
+<a name="JSDS"></a>
+
+ - Docstrings for js look like:
+  ```javascript
+  /**
+   * Learning App
+   * document name (fils.js)
+   *
+   * @author Brandon Li <brandon.li820@icloud.com> 
+   * Created on date
+   * Copyright © 2019 Brandon Li. All rights reserved.
+   *
+   * Briefly explain functionality
+   */
+  ```
 
 3. <a name="HTML"><strong>Html</strong></a>
   - Html is **only** used for linking javascript and css files

@@ -37,6 +37,10 @@ export default class Stack {
   push(element){ 
     this.arr.push(element);
   }
+  /**
+   * @public
+   * string representation of the stack
+   */
   toString(){
     return "<" + this.arr + ">";
   }
