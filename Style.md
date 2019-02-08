@@ -55,6 +55,19 @@ randomFunction({
  * a multiline comment
  */
 ```
+- start every document with a docstring
+```javascript
+/**
+ * Learning App
+ * document name (fils.js)
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on date
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * Briefly explain functionality
+ */
+```
 2. <a name="JS"><strong>JavaScript</strong></a>
   - use type coercion
 ```javascript
@@ -183,8 +196,8 @@ if ( keyIsPressed ){
 }
 
 // use singular for a item, use plural for a collection
-book is a single book
-book is a list of books
+'book' is a single book
+'books' is a list of books
 
 ```
 
