@@ -6,11 +6,16 @@
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the buttons
+ * Style the buttons
  */
-
+.c_row {
+  /* the container for each row on the calculator */ 
+  margin:  0 0.1%;
+  display: flex;
+  flex-direction: row;
+}
 /**
- * button inheritance
+ * common styling for all the buttons
  */ 
 .c_button, 
 .c_button_normal, 
@@ -18,7 +23,7 @@
 .c_operator_button, 
 .c_e_button, 
 .c_pi_button,
-.c_equals_button{
+.c_equals_button {
   height: 55px;
   width: 17%;
   background-color: #777A7B;
@@ -28,81 +33,69 @@
   display: flex;
   box-shadow: 1px 1px 1px 0px #373A3B;
 }
-
-.c_pi_button{
+/**
+ * over ride for specific buttons
+ */ 
+.c_pi_button {
   font-size: 140%;
 }
-.c_pi_button:hover{
+.c_pi_button:hover {
   cursor: pointer;
   background-color: #878A8B;
 }
-
-.c_e_button{
+.c_e_button {
   font-size: 180%;
 }
-.c_e_button:hover{
+.c_e_button:hover {
   cursor: pointer;
   background-color: #878A8B;
 }
-
-.c_button:hover{
+.c_button:hover {
   cursor: pointer;
   background-color: #878A8B;
 }
-
-.c_equals_button{
+.c_equals_button {
   width: calc(34% + 6px);
   background-color: #D7312D;
 }
-.c_equals_button:hover{
+.c_equals_button:hover {
   cursor: pointer;
   background-color: #E7413D;
 }
-
-.c_button_normal{
+.c_button_normal {
   background-color: #666769;
   font-weight: 100;
 }
-.c_button_normal:hover{
+.c_button_normal:hover {
   cursor: pointer;
   background-color: #707170;
 }
-
-.c_dark_button{
+.c_dark_button {
   background-color: #4F5152;
 }
-.c_dark_button:hover{
+.c_dark_button:hover {
   cursor: pointer;
   background-color: #595A5B;
 }
-
-.c_operator_button{
+.c_operator_button {
   background-color: #F3923D;
   font-size: 125%;
 }
-.c_operator_button:hover{
+.c_operator_button:hover {
   cursor: pointer;
   background-color: #FFA24D;
 }
-
-.c_extend_button:hover{
+.c_extend_button:hover {
   cursor: pointer;
   background-color: #999C9D;
 }
 
-.c_row{
-  margin:  0 0.1%;
-  display: flex;
-  flex-direction: row;
-}
-
-#input{
+#input {
+  /* the place where the user enters in the calculation */ 
   border-radius: 5px 5px 3px 3px;
   height: 85px;
   width: 100%;
   background-color: #2E2F2F; 
-  color: rgb(255,255,255);
-  border: none;
   font-size: 190%;
   color: rgb(240, 240, 240);
   font-weight: 60;
@@ -116,7 +109,8 @@
   outline:0;
 }
 
-.button_text{
+.button_text {
+  /* the text node for the calculator */ 
   margin: auto; 
   text-align: center; 
   font-family: 'Helvetica', 'Arial', sans-serif;

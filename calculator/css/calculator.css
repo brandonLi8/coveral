@@ -1,74 +1,68 @@
 /**
  * Learning App
- * calculator.css
+ * Calculator.css
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the main elements of the page
+ * Style the main elements of the page
  */
 
-html, body{
+html, body {
+  /* style the background */
   max-width: 100%;
   height: 120%;
   overflow-x: hidden;
   background: #DEDAD8;
 }
 
-body {
-  padding: 0;
-  margin: 0;
-  line-height: 1.5;
-}
 
-#calculator_wrapper{
+#calculator_wrapper {
+  /* the wrapper for the calculator, return button, and the help button */
   width: 80%;
   margin: 2% auto;
   display: flex;
+  /* flex box */
   flex-direction: column;
   text-align: center;
 }
 
-
-#title{
-  font-size: 150%;
-  margin-top: -20%;
-}
-#subtitle{
-  margin-right: 15px;
-  font-size: 110%;
-  font-weight: 700;
-}
-.back_to_dashboard{
+.back_to_dashboard {
+  /* the back to dashboard button */
   border-radius: 50%;
   height: 100%;
   width: 100%;
   box-shadow: 1px 2px 5px 2px #4D4E4E;
 }
 
-.back_to_dashboard:hover{
+.back_to_dashboard:hover {
+  /* the back to dashboard button IMAGE */
   cursor: pointer;
 }
 
-#back_to_dashboard_button{
+#back_to_dashboard_button {
+  /* the back to dashboard button Container*/
   width: 90px;
   height: 90px;
   margin: auto auto 2% 0%;
 }
 
-#help_button{
+#help_button {
+  /* the help button image */
   width: 55px;
   height: 55px;
   margin: auto auto 0% 80%;
 }
 
 #calculator{
+  /* the actual calculator */
   background: #515151;
   border: 20px solid #515151;  
   border-radius: 5px;
   margin:  0 19%;
   display: flex;
+  /* use flex box: the calculator basically a table */
   flex-direction: column;
   padding: 0.1%;
   box-shadow: 
@@ -77,17 +71,19 @@ body {
 }
 
 #help {
+  /* The wrapper for the help page */
   width: 70%;
   margin: -6% auto;
-  
 }
 
-#help #item{
+#help #item {
+  /* the wrapper for each section of the help page */
   border: 1px solid white;
   border-radius: 40px;
 }
 
-#help_wrapper, #explanations{
+#help_wrapper, #explanations {
+  /* The wrapper for the just the TEXT of the help page */
   display: flex;
   margin: 15px 0;
   width: 100%;
@@ -95,10 +91,26 @@ body {
   flex-direction: column;
 }
 
-#help_wrapper div{
+#help_wrapper div {
+  /* each definition of the help page (key binds) */
   margin-left: 40%;
 }
 
-#explanations div{
+#explanations div {
+  /* each definition of the help page (explanations) */
   margin-left: 30%;
 }
+
+#title {
+  /* help page title */
+  font-size: 150%;
+  margin-top: -20%;
+}
+
+#subtitle {
+  /* the left side of each key bind in the help page */
+  margin-right: 15px;
+  font-size: 110%;
+  font-weight: 700;
+}
+
