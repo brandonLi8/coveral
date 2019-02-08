@@ -5,17 +5,17 @@
 -->
 Styling Guidline for Learning App
 =======
-By Brandon Li [@brandonLi8](https://github.com/brandonLi8)
+By [@brandonLi8](https://github.com/brandonLi8)
 
 ## Table of Contents
  * [General](#general)
  * [Javacript](#JS)
  * [Html](#HTML)
  * [Css](#CSS)
- 
------------------------------------------------
 
-1. <a name="general"><strong>General</strong></a>
+-----------------------------------------------
+<a name="general"></a>
+# 1. General
   - This is the style guidline for the Learning app - required for this
       - The most important thing is to keep everything consistent
   - Tab sizes will always be 2 spaces. Don't mix tabs and spaces.
