@@ -8,7 +8,9 @@
  *
  * style the Card
  */
-.card{
+
+.card {
+  /* The wrapper for the actual plan */
   width: 50%;
   margin: 30px auto;
   background: #FFFFFF;
@@ -20,7 +22,8 @@
               2px 3px 6px 0px #999999;
 }
 
-.card #heading{
+.card #heading {
+  /* The title of the plan */
   background: #3053A4;
   border-radius: 10px 10px 0 0;
   min-height: 55px;
@@ -29,7 +32,8 @@
   z-index: 0;
 }
 
-#heading #text{
+#heading #text {
+  /* The description of the plan */
   width: 90%;
   text-align: center;
   padding-top: 1%;
@@ -44,10 +48,13 @@
   position: relative;
 }
 
-#value{
+#value {
+  /* The value for the plan */
   width: 10%;
   height: 20px;
-  margin-top: 15px; margin-left: 5px; margin-right: 5px;
+  margin-top: 15px;
+  margin-left: 5px; 
+  margin-right: 5px;
   background: none;
   font-size: 15px;
   color: #F1F1F1;
@@ -55,19 +62,22 @@
   border-radius: 5px;
 }
 
-#description{
+#descriptio n{
+  /* The description */
   margin: 2% 10%;
   color: #888888;
 }
 
-#tags{
+#tags {
+  /* The tags wrapper */
   color: #888888;
   margin-left: 5%;
   display: flex;
   flex-direction: row;
 }
 
-#tags div{
+#tags div {
+  /* The actual tag */
   margin: 0 0 20px 5px;
   border: 2px solid #DDD;
   border-radius: 10px;
@@ -75,43 +85,49 @@
   color: #3053A4;
 }
 
-#tags div:hover{
+#tags div:hover {
+  /* hover on the tag */
   cursor: default;
 }
 
-#highlighted{
+#highlighted {
+  /* Special Plans */
   width: 52%;
   background: #FFF5F5;
   border: 1px solid #DDD;
   min-height: 190px;
 }
 
-#highlighted #heading{
+#highlighted #heading {
+  /* The title for the special plan */
   background: #4F3A88;
   border-radius: 7px 7px 0 0;
   font-size: 24px;
 }
 
 #highlighted #description {
+  /* The description for the special plan */
   color: #777777;
   font-size: 20px;
 }
 
 .trash {
+  /* The trash icon */
   width: 2.8%;
   height: 2.8%;
   margin: auto 0px auto 15px;
   animation-fill-mode: forwards;
 }
 
-.edit{
+.edit {
+  /* The edit icon */
   width: 4%;
   height: 4%;
   margin: auto 0px auto 15px;
   animation-fill-mode: forwards;
 }
 
-.edit:hover{
+.edit:hover {
   cursor: pointer;
   animation-name: editHoverAnimation;
   animation-duration: .3s;
@@ -125,7 +141,7 @@
 
 
 @keyframes editHoverAnimation {
-  to{
+  to {
     width: 5%;
     height: 5%;
     margin-right: -1%;
@@ -133,7 +149,7 @@
 }
 
 @keyframes trashHoverAnimation {
-  to{
+  to {
     width: 3.5%;
     height: 3.5%;
     margin-right: -0.7%;

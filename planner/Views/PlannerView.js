@@ -20,7 +20,7 @@ export default class PlannerView {
   /**
    * No Constructor. Basic view is rendered in addHeader().
    */
-  constructor( ){ return; }
+  constructor(){ return; }
   /**
    * add a card to the view
    * @public
@@ -76,8 +76,8 @@ export default class PlannerView {
         null, node.description, card );
     // create the tags 
     let tagWrapper = screen.addChildToParentNode( 
-                        "div", "tags", null, "", card
-                    );
+                        "div", "tags", 
+                        null, "", card );
     for ( var i = 0 ; i < node.tags.length; i++ ){
       screen.addChildToParentNode( 
                         "div", null, null, 
@@ -95,13 +95,13 @@ export default class PlannerView {
     // set up wrappers
     screen.addChildToParentType( "div", "planner_wrapper", null, "", "body" );
     
-    let header = screen.addChildToParentId( "div", "header", null, 
-                                            "", "planner_wrapper" );
+    let header = screen.addChildToParentId( 
+                      "div", "header", null, 
+                      "", "planner_wrapper" );
     screen.addChildToParentId( "div", "left", null, "", "header" );
     this.container = screen.addChildToParentId( 
                         "div", "header_content", 
-                        null, "", "left" 
-                     );
+                        null, "", "left" );
     return header;
   }
   /**
@@ -111,9 +111,8 @@ export default class PlannerView {
   addImageToHeader( ){
     // add the image to the container
     let image = screen.addChildToParentNode( 
-                  "img", "backToDashboard", 
-                  null, "", this.container
-                );
+                  "img", "planner_icon", 
+                  null, "", this.container );
     // controller sets up event listeners
     return image;
   }
@@ -124,14 +123,13 @@ export default class PlannerView {
   addLinkToHeader( text ){
     return screen.addChildToParentId( 
             "div", "header_content", 
-            null, text, "left" 
-    );
+            null, text, "left" );
   }
   /**
    * display message when there are 0 plans
    * @public
    */
-  displayNone(  ){
+  displayNone(){
     let msg = screen.addChildToParentId( "div", "none", 
        null, "You have no plans.", "planner_wrapper" 
     );

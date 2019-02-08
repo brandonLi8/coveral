@@ -10,11 +10,14 @@
  *  - Display contents based on what node is being edited
  */
 'use strict';
+
 import PlannerController from "../../Controllers/PlannerController.js"
 import Form from "../Form.js"
 import PlannerNode from "../../Models/PlannerNode.js";
 // modules
 var controller = new PlannerController();
+
+// get the current node that is being edited
 let node = JSON.parse( localStorage.getItem( "edit" ) );
 let tags = node.tags;
 let tagStr = "";

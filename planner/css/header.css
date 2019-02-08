@@ -6,9 +6,11 @@
  * Created on 1/23/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the header
+ * Style the header
  */
-#header{
+
+#header {
+  /* The header wrapper */
   position: fixed;
   width: 100%;
   height: 9%; min-height: 71px;
@@ -19,7 +21,8 @@
   z-index: 1;
 }
 
-#header #left, #header #right{
+#header #left {
+  /* The content wrapper for the header */
   width: 90%;
   height: 100%;
   margin-left:6%; 
@@ -28,39 +31,32 @@
   white-space: nowrap;
 }
 
-#header #right{
-  width: 35%;
-  margin-top: -4%;
-}
-
-#backToDashboard{
+#planner_icon {
+  /* The planner icon */
   width: 50px;
 }
 
-#header_content, #header_content_right{
+#header_content {
+  /* The wrapper of the text */
   border-right: 2px solid #6E7881;
   color: #C6D0D9;
   font-size: 18px;
   height: 26px;
   padding-right: 2.2%;
   padding-left: 2.2%;
-  margin: auto 0; /*center vertically*/
+  margin: auto 0; /* center vertically */
   animation-fill-mode: forwards;
 }
 
-#header_content_right{
-  border: none; 
-  margin-left: 49%;
-}
-
-#header_content:hover, #header_content_right:hover{
+#header_content:hover {
+  /* hover effect */
   cursor: pointer;
   color: #FFFFFF;
-  animation-name: hover;
+  animation-name: hoverText;
   animation-duration: 0.5s;
 }
 
-@keyframes hover {
+@keyframes hoverText {
   from {
     border-radius: 30%;
   }

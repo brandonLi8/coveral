@@ -20,19 +20,19 @@ import PlannerModel from "../Models/PlannerModel.js";
 import PlannerNode from "../Models/PlannerNode.js";
 
 // create the instances for the view and the model
-var view = new PlannerView( ); 
-var model = new PlannerModel( );
+var view = new PlannerView(); 
+var model = new PlannerModel();
 
 /**
  * @public 
  * provide a class for outside modules
  */
-export default class PlannerController{
+export default class PlannerController {
   /**
    * @public 
    * render the planner page
    */
-  run( ){
+  run(){
     this.renderBasics();
     this.renderInOrder();
   }
@@ -40,13 +40,13 @@ export default class PlannerController{
    * @public 
    * render the header
    */
-  renderBasics( ){
+  renderBasics(){
     /**
      * Set up the header and its children.
      */
-    let header = view.addHeader( );
+    let header = view.addHeader();
 
-    let plannerIcon = view.addImageToHeader( );
+    let plannerIcon = view.addImageToHeader();
     // add events
     plannerIcon.setAttribute( "src", "./assets/plannerTBackground.png" );
     // handle user input
@@ -77,7 +77,7 @@ export default class PlannerController{
     // add the remove all
     let removeAll = view.addLinkToHeader( "Remove All" );
     removeAll.style.border = "none"
-    removeAll.onclick = function( ){
+    removeAll.onclick = function(){
       model.clear();
     };
     // create instance data
@@ -92,7 +92,7 @@ export default class PlannerController{
    * render everything from the model in order by popping elements from a heap.
    */
   renderInOrder(){
-    let heap = model.getHeap( );
+    let heap = model.getHeap();
     let current = heap.pop();
     if( !current ){
       view.displayNone();
@@ -118,7 +118,7 @@ export default class PlannerController{
    * called when trash can is pressed
    * remove the node from the model and the view.
    */
-  removeNode( ){
+  removeNode(){
     // this is the image dom node
     let id = this.id;
     model.removeNode( id ); // remove it from the model

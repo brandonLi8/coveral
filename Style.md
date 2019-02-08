@@ -83,6 +83,25 @@ By [Brandon Li](https://github.com/brandonLi8)
 
 <a name="JS"></a>
 ## 2. JavaScript
+  - **Always** Specify Parameters and function types
+  ```javascript
+  //Example:
+  /**
+   * @constructor
+   * @param {ButtonNode} Node - the node that will be modified
+   * @public
+   */
+   constructor( Node ){
+    ...
+   }
+   // specify @public or @private, 
+   // @constructor for constructors
+   // @recursive for recursive functions
+   // ALWAYS specificy every type of arguement. If the arguement is and object
+   // specify all the properties of it. If the arguement is a function specify 
+   // what the function should do and it's arguments
+
+  ``` 
   - Use type coercion to your benefit
   ```javascript
   // unnecessary

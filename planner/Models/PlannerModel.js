@@ -19,7 +19,9 @@
 import Heap from "../../Heap/Heap.js";
 import Node from "../../Heap/Node.js";
 import PlannerNode from "../Models/PlannerNode.js";
+// create date object
 var date = new Date();
+
 export default class PlannerModel{
   /**
    * Since it uses local storage (already constructed) the model won't need a 

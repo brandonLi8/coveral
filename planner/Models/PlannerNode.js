@@ -11,7 +11,7 @@
  */
 'use strict';
 
-export default class PlannerNode{
+export default class PlannerNode {
   /**
    * @constructor
    * @param { number } value - the value of the plan

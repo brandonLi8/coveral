@@ -1,19 +1,22 @@
 /**
  * Learning App
- * NEw.css
+ * New.css
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
  * Created on 1/30/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the new page
+ * Style the form
  */
-#backToDashboardButton{
+
+#back_to_dashboard_button {
+  /* Button to go back to the planner */
   display: flex;
   height: 90px;
 }
 
-#NewTitle{
+#new_title {
+  /* The title for the new page */
   width: 100%;
   margin-right: 90px;
   font-size: 60px;
@@ -23,15 +26,8 @@ html{
   min-height: 105%;
 }
 
-#titleLabel{
-  margin-top: 50px;
-  font-size: 20px;
-  text-align: left;
-  width: 50%;
-  margin: auto;
-}
-
-textarea{
+textarea {
+  /* The text area of the form*/
   height: 100%;
   background: none;
   font-family: Courier;
@@ -50,22 +46,26 @@ textarea{
   color: #333;
 }
 
-#title{
+#title {
+  /* The text area for the title of the plan */
   width: 50%;
   min-height: 40px;
 }
 
-#description{
+#description {
+  /* The text area for the description of the plan */
   width: 50%;
   min-height: 160px;
 }
 
-#tags{
+#tags {
+   /* The text area for the tags of the plan */
   width: 50%;
   min-height: 80px;
 }
 
-#enter{
+#enter {
+   /* The enter button */
   width: 17%;
   margin: 40px 30% 0px auto;
   padding: 15px 32px; 
@@ -80,11 +80,11 @@ textarea{
               2px 3px 6px 0px #999999;
 }
 
-#enter:focus{
+#enter:focus {
   box-shadow: 0 0 3pt 2pt #569;
 }
 
-#enter:hover{
+#enter:hover {
   cursor: pointer;
   box-shadow: 0 0 3pt 2pt #569;
 }

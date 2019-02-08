@@ -42,22 +42,25 @@ export default class Form{
     addReturnButton( "./assets/reset.png", 
                      "../planner.html", 
                      "./assets/resetHover.png",
-                     "backToDashboardButton" 
+                     "back_to_dashboard_button" 
     );
     //add the title
-    screen.addChildToParentId( "div", "NewTitle", null, 
-                              options.page, "backToDashboardButton" );
+    screen.addChildToParentId( 
+              "div", "new_title", null, 
+              options.page, "back_to_dashboard_button" );
 
     // add the title
-    let titleLabel = screen.addChildToParentId( "div", "titleLabel", null, 
-                                                "Title", "planner_wrapper" );
+    let titleLabel = screen.addChildToParentId( 
+                        "div", "titleLabel", null, 
+                        "Title", "planner_wrapper" );
 
-    let title = screen.addChildToParentId( "textarea", "title", null, 
-                                            options.title, "planner_wrapper" );
+    let title = screen.addChildToParentId( 
+                    "textarea", "title", null, 
+                    options.title, "planner_wrapper" );
     title.focus();
     title.oninput = function() {
       title.style.height = 50 + "px";;
-      title.style.height = title.scrollHeight + "px";;
+      title.style.height = title.scrollHeight + "px";
     }
     title.addEventListener( "keydown", function( event ){
       if ( event.key === "Tab" ) {
@@ -75,7 +78,7 @@ export default class Form{
                                 options.description, "planner_wrapper" );
     description.oninput = function() {
       description.style.height = 50 + "px";;
-      description.style.height = description.scrollHeight + "px";;
+      description.style.height = description.scrollHeight + "px";
     }
     description.addEventListener( "keydown", function(){
       if ( event.key === "Tab" ) {
@@ -96,10 +99,12 @@ export default class Form{
     document.getElementById( "planner_wrapper" ).appendChild( slider.getDom() );
 
     // add the tags
-    let tagsLabel = screen.addChildToParentId( "div", "titleLabel", null, 
-                                                "tags", "planner_wrapper" );
-    let tags = screen.addChildToParentId( "textarea", "tags", null, 
-                                           options.tags, "planner_wrapper" );
+    let tagsLabel = screen.addChildToParentId( 
+                        "div", "titleLabel", null, 
+                        "tags", "planner_wrapper" );
+    let tags = screen.addChildToParentId( 
+                  "textarea", "tags", null, 
+                  options.tags, "planner_wrapper" );
     tags.oninput = function() {
       tags.style.height = 50 + "px";
       tags.style.height = tags.scrollHeight + "px";
@@ -108,8 +113,9 @@ export default class Form{
     tags.placeholder = options.tagsPlaceholder;
 
     // the submit button
-    let enter = screen.addChildToParentId( "button", "enter", null, 
-                                       "Enter", "planner_wrapper" );
+    let enter = screen.addChildToParentId( 
+                  "button", "enter", null, 
+                  "Enter", "planner_wrapper" );
     enter.onclick = function(){
       options.submit( title, description, slider, tags );
     }
@@ -139,6 +145,6 @@ function addReturnButton( src, url , hoverSrc, id ){
     image.setAttribute( "src", src );
   };
   image.onclick = function() { 
-    window.open(url, '_self');
+    window.open( url, '_self' );
   }
 }
