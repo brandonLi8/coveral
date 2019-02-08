@@ -116,7 +116,7 @@ methodNamesLikeThis;
   - Remove white space
   - Use **Snake Case** ( snake_case )
 ```html
-<!-- Not good --> 
+<!-- Bad --> 
 <p> text is here </p>
 <!-- Better --> 
 <p>text is here</p>
@@ -131,6 +131,7 @@ methodNamesLikeThis;
 </ul>
 ```
   - (optional) break long lines
+  - Use lowerCaseCamel for all names in css and html
 ```html
 <div
     property="p"
@@ -143,13 +144,36 @@ methodNamesLikeThis;
   
 4. <a name="CSS"><strong>Css</strong></a>
   - Use **Snake Case** ( snake_case )
-  - Use spaces and newlines/indents when styling
 ```css
-/* Not good */
-div{
+/* Bad */
+#idNameHere {
+
+}
+/* Use Snake Case for css */
+#id_name_here {
+ 
+}
+```
+  - Space after the ':'
+  ```css
+  /* bad */
+  div { 
+    width:9px;
+    height:8px; /* cramped */
+  }
+  /* use a space */
+  div { 
+    width: 9px;
+    height: 8px; /* lesscramped */
+  }
+  ```
+  - Use newlines/indents when styling:
+```css
+/* Bad */
+div {
   width: 80%; height: 90%;
 }
-/* Better */
+/* Use new line for sub styling and 2 space tabs */
 div {
   width: 80%; 
   height: 90%;
@@ -157,7 +181,7 @@ div {
 ```
   - Use newlines on inheritance
 ```css
-/* Not good */
+/* Bad */
 .class1, .class2, .class3 {
   
 }
@@ -169,6 +193,37 @@ div {
 }
 ```
   - Again, always use double quotes `"`
+```css
+/* Use double quotes */
+.class1, .class2, .class3 {
+  font-family: "Courier";
+}
+```
+  - start off all css files with a docstring
+```css 
+/**
+ * Learning App
+ * file.css
+ *
+ * @author Brandon Li <brandon.li820@icloud.com> 
+ * Created on date
+ * Copyright © 2019 Brandon Li. All rights reserved.
+ *
+ * functionality here
+ */
+```
+  - Create spacing on comma seperated values and
+```css
+div {
+  /* dont put units on 0 values! */
+  box-shadow: 0 40px 40px -40px rgba( 200, 100, 200, 0.2 );  
+  /* 
+   * Spacing in between parenthesis.
+   * Spacing After commas.
+   */
+}
+```
+
 
     
 5. <a name="Naming"><strong>Naming</strong></a>

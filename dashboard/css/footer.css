@@ -6,36 +6,44 @@
  * Created on 1/11/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the footer
+ * Style the footer
  */
+
 #footer a {
+  /* the footer text color */
   color: #C6D0D9;
 }
 
 #footer {
+  /* the container of the footer */
   position: fixed;
   width: 100%;
   height: 9%;
   margin: 0;
+  /* text color */
   color: #C6D0D9;
   bottom: 0;
   left: 0;
-  box-shadow: inset 0 40px 40px -40px rgba( 200, 100, 200, 0.2);
+  /* gradient affect */
+  box-shadow: inset 0 40px 40px -40px rgba( 200, 100, 200, 0.2 );
   text-align: center;
   background: #3B4851;
+  /* use flex box */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-#footer #content{
-  margin: auto;
-  width: 100%;
-}
-
-#footer p{
+#footer p {
+  /* The container for the text node */
   display: inline;
   margin: 1%;
   margin-top: 5%;
+}
+
+#footer #content {
+  /* The container for all the text nodes */
+  margin: auto;
+  width: 100%;
 }

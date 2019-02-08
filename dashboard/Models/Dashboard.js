@@ -32,41 +32,44 @@ var Planner = {
   title: "Planner",
   src: "assets/plannerIcon.png",
   hover: "assets/plannerHoverIcon.png",
-  url: "../planner.html"
+  url: "../planner.html",
+  id: "planner"
 };
 var Simulations = {
   title: "Simulations",
   src: "assets/simulationIcon.png",
   hover: "assets/simulationHoverIcon.png",
-  url: "../sims.html"
+  url: "../sims.html",
+  id: "simulations"
 };
 var Calculator = {
   title: "Calculator",
   src: "assets/calculatorIcon.png",
   hover: "assets/calculatorHoverIcon.png",
   url: "../calculator.html",
+  id: "calculator"
 };
 var apps = {
   "Planner": Planner,
   "Simulations": Simulations,
-  "Calculator": Calculator,
+  "Calculator": Calculator
 } ;
 // add each app to the screen
 var appsList = Object.keys( apps );
 for ( var i = 0 ; i < appsList.length; i ++ ){
   let app = apps[ appsList[ i ] ];
-  addApp( app.title, app.src, app.url )
+  addApp( app.title, app.src, app.url, app.id )
 }
 
-function addApp( title, src, url ){
+function addApp( title, src, url, id ){
     // add the app container
-    let app = screen.addChildToParentId( "div", title, "app", 
+    let app = screen.addChildToParentId( "div", id, "app", 
                                          "", "app_wrapper" );
     let link = screen.addChildToParentNode( "a", null, null, "", app );
     link.setAttribute( "target", "_self" );
     link.setAttribute( "href", url );
     // add a button and set attributes
-    let button = screen.addChildToParentNode( "input", title, null, "", link );
+    let button = screen.addChildToParentNode( "input", id, null, "", link );
     let label = screen.addChildToParentNode( "p", null, null, title, app );
     button.type = "image";
     button.src = src;

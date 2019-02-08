@@ -6,27 +6,34 @@
  * Created on 1/11/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the main elements of the page
+ * Style the main elements of the page
  */
-html, body{
-    max-width: 100%;
-    overflow-x: hidden;
-    height: 100%;
-    background: rgb( 210 , 211 , 214 );
-    font-family: Courier;
-}
 
+/* The main elements */
+html, 
 body {
-    padding: 0;
-    margin: 0;
-    line-height: 1.5;
+  max-width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  background: rgb( 210 , 211 , 214 );
+  font-family: Courier;
 }
 
+/* The wrapper containing everything */
 #main_wrapper {
-    box-sizing: border-box;
-    padding: 0 0 71px;
-    position: relative;
-    height: 88%; 
-    display: flex;
+  box-sizing: border-box;
+  padding: 0 0 71px;
+  position: relative;
+  height: 88%; 
+  display: flex;
 }
 
+#app_wrapper {
+  /* The wrapper for all the apps */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* use flex box, apps should go from left to right */
+  flex-wrap: wrap;
+  justify-content: center;
+}

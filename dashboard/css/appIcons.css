@@ -6,11 +6,13 @@
  * Created on 1/11/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * style the app icons
+ * Style the app icons, style the overiden app icons.
  */
+
 .app {
+  /* The container a single app */
   display: flex;
-  /* app icons are 140px + the border of the app*/
+  /* use flex box, the image goes on top of the label */
   flex-direction: column;
   flex-basis: calc( 140px + 2*3px );
   margin: 18% 3.5%;
@@ -19,77 +21,59 @@
   font-size: 18px;
   font-weight: 600;
   position: relative;
-
 }
 
-.app input{
+.app input {
+  /* This is the actual app icon */
   border-radius: 30px;
   width: 140px;
   height: 140px;
   animation-fill-mode: forwards;
 }
 
-#Simulations input{
-  box-shadow: 0px 0px 0px 0.5px #44386E,
-              1px 1px 3px 3px #6D7E8E;
+.app input:focus {
+  /* no outline */
+  outline: 0;
 }
 
-#Calculator input{
-  box-shadow: 0px 0px 0px 1px #444,
-              1px 1px 7px 3px #6D6E6E;
-}
-
-#Planner input{
-  box-shadow: 0px 0px 0px 1.5px #800080,
-              1px 1px 6px 3px #606181;
-}
-
-.app input:focus{
-  outline:0;
-}
-
-.app input:hover{
-  animation-name: hover;
+.app input:hover {
+  animation-name: hoverApp;
   animation-duration: 0.5s;
 }
 
-.app p{
+.app p {
+  /* This is the label for the app */
   text-align: center;
   margin-top: 165px;
   position: fixed;
   width: 140px;
-
-}
-
-#app_wrapper{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 
-@keyframes hover {
-
-  0%{
+@keyframes hoverApp {
+  0% {
+    /* starting positions */
     -webkit-transform: scale( 1 );
     -ms-transform: scale( 1 );
     transform: scale( 1 );
-     position:fixed;
+    /* use positions fized to not effect its siblings */
+    position:fixed;
     -webkit-transform: rotate( 0deg ); 
   }
-  35%{
-     -webkit-transform: rotate( 360deg );
+  35% {
+    /* 1st part of the animation is to flip it */
+    -webkit-transform: rotate( 360deg );
   }
-  42%{
+  42% {
+    /* jiggle to the right and make the border go out */
     -webkit-transform: translateX( 1px );
     transform: translateX( 1px );
     padding: 25px;
     margin: -25px;
   }
 
-  60%{
+  60% {
+    /* jiggle back, inlarge the app keeping the border out and away */
     -webkit-transform: translateX( -1px );
     transform: translateX( -1px );
     -webkit-transform: scale( 1.13 );
@@ -99,7 +83,8 @@
     padding: 25px;
     margin: -25px;
   }
-  100%{
+  100% {
+    /* final position: inlarge it, make the border go back in slightly */
     -webkit-transform: translateX( 0 );
     transform: translateX( 0 );
     -webkit-transform: scale( 1.2 );
@@ -111,6 +96,22 @@
     border-style: solid;
     -moz-transform: rotate( 180deg );
     position:fixed;
-
   }
+}
+
+
+/* Overide for customized app box shawdows */
+#simulations input {
+  box-shadow: 0px 0px 0px 0.5px #44386E,
+              1px 1px 3px 3px #6D7E8E;
+}
+
+#calculator input {
+  box-shadow: 0px 0px 0px 1px #444,
+              1px 1px 7px 3px #6D6E6E;
+}
+
+#planner input {
+  box-shadow: 0px 0px 0px 1.5px #800080,
+              1px 1px 6px 3px #606181;
 }
