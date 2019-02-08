@@ -22,7 +22,7 @@
 import Node from "./Node.js";
 // modules
 
-export default class Heap{
+export default class Heap {
   /**
    * @constructor
    * @param {Node} - the default values of a heap
@@ -35,7 +35,6 @@ export default class Heap{
       this.add( args[ i ] );
     }
     return;
-
   }
   /**
    * @param {Node} - the Node to add to the heap
@@ -68,10 +67,11 @@ export default class Heap{
         node.parent = rootNode;
         return;
       }
-      if ( !rootNode.leftChild.rightChild || !rootNode.leftChild.leftChild){
+      if ( !rootNode.leftChild.rightChild || !rootNode.leftChild.leftChild ){
         addNormally( rootNode.leftChild )
       }
-      else if ( !rootNode.rightChild.rightChild || !rootNode.rightChild.leftChild){
+      else if ( !rootNode.rightChild.rightChild || 
+                !rootNode.rightChild.leftChild){
         addNormally( rootNode.rightChild )
       }
       else addNormally( rootNode.leftChild )
@@ -81,7 +81,7 @@ export default class Heap{
     let current = node;
     while ( current ){
       if ( current.parent && 
-           current.parent.value.lessThanOrEqualTo( current.value ) ) {
+           current.parent.value.lessThanOrEqualTo( current.value ) ){
         let copyOfParent = current.parent.value;
         current.parent.value = current.value;
         current.value = copyOfParent;
@@ -180,7 +180,7 @@ export default class Heap{
         return 0;
       }
       let leftChild = depthHelper( rootNode.leftChild );
-      let rightChild = depthHelper(rootNode.rightChild );
+      let rightChild = depthHelper( rootNode.rightChild );
       // defined as the max of the depth of the left tree and right tree
       // plus 1 because the current node is also counted for the depth
       return Math.max( rightChild, leftChild ) + 1;
@@ -205,7 +205,7 @@ export default class Heap{
     let arr = rootOrder.rootOrder;
     let isNotNull = rootOrder.isNotNull;
     let lastAdded;
-    for ( var i = rootOrder.size - 1; i >= 0 ; i--){
+    for ( var i = rootOrder.size - 1; i >= 0 ; i-- ){
       if ( isNotNull[ i ] ) {
         lastAdded = arr[ i ];
         break;
@@ -231,7 +231,8 @@ export default class Heap{
 
       let max;
       if ( current.leftChild && current.rightChild ){
-        if ( !current.leftChild.value.lessThanOrEqualTo( current.rightChild.value ) ){
+        if ( !current.leftChild.value.lessThanOrEqualTo( 
+                                        current.rightChild.value ) ){
           max = current.leftChild;
         }
         else{
