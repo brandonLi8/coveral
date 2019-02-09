@@ -6,44 +6,38 @@
  * Created on 2/7/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * Style the links on the left side
+ * Style the links ( title of the accordion )
  */
         
-#links { /* the wrapper containing all the links */ 
-  display: flex;
-  width: 40%; /* parent is main_wrapper */ 
+.sim { /* wrapper for the entire simulation */
+  margin: 80px auto -20px auto; 
+  width: 40%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 50px; /* margin for the bottom link */ 
-  overflow-y: auto;
-  overflow-x: hidden;
-  border: 3px solid #90CC4E;
-  border-radius: 13px;
-  background-color: #FFFDE4;
-  box-shadow: inset 100px 150px 600px -40px rgba( 100, 100, 100, 0.1);
-  margin-right: 2.5%;
+  padding: 3px;
+  background: #FFF;
+  border-radius: 8px 8px 6px 6px;
+  box-shadow: 0px 2px 0px 0px #777777,
+              2px 3px 6px 0px #999999;
+  -webkit-animation-play-state: paused;
+  -webkit-animation-direction: alternate;
+  animation-name: showDescription;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
 }
 
-#title { /* the title for the links wrapper */
-  text-align: center;
-  color: #3A6280;
-  font-size: 40px;
-  margin: 5% 5% 0px 5%;
+.arrow {
+   /* change the arrow image size*/
+  width: 25px;
 }
 
-.link { /* the actual link itself */
-  /* this is the container for the icon and the label */
-  margin: 50px 15% 0 15% ; 
-  height: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.arrow:hover {
+   /* hover effect */
+  filter: contrast( 5% );
 }
 
-.link :hover {
-  /* hover effect for the link */
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
+.accordion_title {
+   /* the accorion title */
+  color: #1A4735;
+  margin: 0 auto;
 }

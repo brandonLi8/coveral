@@ -37,3 +37,25 @@
     border-style: solid;
   }
 }
+
+ /* animation for when the accordion is clicked */
+@keyframes showDescription {
+  30% { /* first change the width */
+    width: 100%;
+  }
+  100%{
+    width: 100%;
+  }
+}
+
+@keyframes removeDescription {
+  0% {/* first change the width */
+    width: 100%;
+  }
+  30% {
+    width: 40%;
+  }
+  100%{
+    width: 40%;
+  }
+}

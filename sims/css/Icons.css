@@ -9,11 +9,6 @@
  * Style all the Icons. User adds specific icons in this file
  */
 
-.label { /* the label for the icon */
-  font-size: 20px;
-  padding-left: 30px;
-}
-
 .icon { /* the actual icon image itself */
   width: 60px;
   height: 60px;
@@ -22,11 +17,10 @@
   animation-fill-mode: forwards;
 }
 
-.icon :hover { /* hover effect for the icon img */
+.icon:hover { /* hover effect for the icon img */
   animation-name: hover_icon;
   animation-duration: 0.5s;
 }
-
 
 #collision_icon { /* @overide icon */
   border: 1px solid rgb( 150, 150, 150 );
