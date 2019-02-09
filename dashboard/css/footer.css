@@ -33,7 +33,9 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  
 }
+
 
 #footer p {
   /* The container for the text node */

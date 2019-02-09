@@ -109,9 +109,12 @@
 #calculator input {
   box-shadow: 0px 0px 0px 1px #444,
               1px 1px 7px 3px #6D6E6E;
+  -webkit-mask-image: url("../assets/grit.png");
+  mask-image: url("../assets/grit.png");
 }
 
 #planner input {
   box-shadow: 0px 0px 0px 1.5px #800080,
               1px 1px 6px 3px #606181;
+  
 }
