@@ -20,6 +20,7 @@
   display: block;
   box-shadow: 0px 2px 0px 0px #777777,
               2px 3px 6px 0px #999999;
+
 }
 
 .card #heading {
@@ -62,7 +63,7 @@
   border-radius: 5px;
 }
 
-#descriptio n{
+#description {
   /* The description */
   margin: 2% 10%;
   color: #888888;

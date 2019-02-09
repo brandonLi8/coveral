@@ -24,6 +24,7 @@
   animation-name: showDescription;
   animation-duration: 0.3s;
   -webkit-animation-fill-mode: forwards;
+
 }
 
 .arrow {
@@ -44,4 +45,5 @@
   margin: 0 0 5px;
   min-height: 20px;
   margin: 0 auto;
+  
 }
