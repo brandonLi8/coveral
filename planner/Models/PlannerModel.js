@@ -43,7 +43,6 @@ export default class PlannerModel{
    * @param {PlannerNode} plannerNode - node that is being added.
    */
   add( plannerNode ){
-    console.log("arhwaeh")
     let length = "" + localStorage[ "length" ];
     let identifier =  Date.now() + " number: " + length;
     let obj = {

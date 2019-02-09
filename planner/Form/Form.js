@@ -77,7 +77,7 @@ export default class Form{
                                 "textarea", "description", null, 
                                 options.description, "planner_wrapper" );
     description.oninput = function() {
-      description.style.height = 50 + "px";;
+      description.style.height = 50 + "px";
       description.style.height = description.scrollHeight + "px";
     }
     description.addEventListener( "keydown", function(){
