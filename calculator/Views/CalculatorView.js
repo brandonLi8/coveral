@@ -62,6 +62,16 @@ function addReturnButton( src, url , hoverSrc, id ){
 screen.addChildToParentId( 
   "div", "calculator", null, 
   "", "calculator_wrapper" );
+screen.addChildToParentId( 
+        "div", "label", null, 
+        "calculator" ,"calculator" );
+
+// add a help link
+let help = screen.createChild( "a", "helpLink", null, "help" )
+help.href = "help.html";
+help.setAttribute( "target", "_self" );
+document.getElementById( "label" ).appendChild( help );
+
 // add the input textfield
 var row = screen.addChildToParentId( 
             "div", null, "c_row", 
@@ -101,10 +111,6 @@ function addCalculatorButton( row, buttonNode ){
                buttonNode.text, button );
   button.onclick = function() { handleButtonPress( buttonNode, text ) };
 }
-addReturnButton( "./assets/helpButton.png", 
-                 "./help.html", 
-                 "./assets/helpHoverButton.png", 
-                 "help_button" )
 
 /**
  * add listener's for user interaction

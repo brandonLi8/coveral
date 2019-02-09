@@ -10,7 +10,7 @@
  */
 .c_row {
   /* the container for each row on the calculator */ 
-  margin:  0 0.1%;
+  margin:  0;
   display: flex;
   flex-direction: row;
 }
@@ -24,15 +24,24 @@
 .c_e_button, 
 .c_pi_button,
 .c_equals_button {
-  height: 55px;
-  width: 17%;
-  background-color: #777A7B;
+  height: 54px;
+  width: 72px;
+  background-color: #353535;
   border: 1px solid #3D3E3E;
-  border-radius: 3px;
-  margin: 1px;
+  border-radius: 6px;
+  margin: 4px 4px;
   display: flex;
   box-shadow: 1px 1px 1px 0px #373A3B;
+  -webkit-mask-image: url("../assets/grit.png");
+  mask-image: url("../assets/grit.png");
+  color: rgb( 240, 240, 240 );
 }
+.c_button,
+.c_e_button, 
+.c_pi_button {
+  width: 72px;
+}
+
 /**
  * over ride for specific buttons
  */ 
@@ -41,49 +50,59 @@
 }
 .c_pi_button:hover {
   cursor: pointer;
-  background-color: #878A8B;
+  background-color: #454545;
+  -webkit-mask-image: none;
 }
 .c_e_button {
   font-size: 180%;
 }
 .c_e_button:hover {
   cursor: pointer;
-  background-color: #878A8B;
+  background-color: #454545;
+  -webkit-mask-image: none;
 }
 .c_button:hover {
   cursor: pointer;
-  background-color: #878A8B;
+  background-color: #454545;
 }
 .c_equals_button {
-  width: calc(34% + 6px);
+  width: calc(34% + 15px);
   background-color: #D7312D;
+  -webkit-mask-image: none;
 }
 .c_equals_button:hover {
   cursor: pointer;
   background-color: #E7413D;
+  -webkit-mask-image: none;
 }
 .c_button_normal {
-  background-color: #666769;
+  background-color: #bbb;
+  color: #000 !important;
   font-weight: 100;
 }
 .c_button_normal:hover {
   cursor: pointer;
-  background-color: #707170;
+  background-color: #ccc;
+  -webkit-mask-image: none;
 }
 .c_dark_button {
-  background-color: #4F5152;
+  background-color: #888;
+   -webkit-mask-image: none;
 }
 .c_dark_button:hover {
   cursor: pointer;
   background-color: #595A5B;
+  -webkit-mask-image: none;
 }
 .c_operator_button {
   background-color: #F3923D;
   font-size: 125%;
+  -webkit-mask-image: none;
 }
 .c_operator_button:hover {
   cursor: pointer;
   background-color: #FFA24D;
+  -webkit-mask-image: none;
 }
 .c_extend_button:hover {
   cursor: pointer;
@@ -92,17 +111,17 @@
 
 #input {
   /* the place where the user enters in the calculation */ 
-  border-radius: 5px 5px 3px 3px;
-  height: 85px;
-  width: 100%;
-  background-color: #2E2F2F; 
+  border-radius: 2px 2px 1px 1px;
+  height: 95px;
+  width: 93%;
+  background-color: #DDD;
   font-size: 190%;
-  color: rgb(240, 240, 240);
+  color: #000;
   font-weight: 60;
-  border: 1px solid #1D1E1E;
   text-align: right;
-  margin-bottom: 5px;
-  box-shadow: 1px 1px 1px 1px #373A3B;
+  margin: 40px auto; 
+  border: 1px solid #888;
+  box-shadow: 0 -40px 0 50px #E7DDDB;
 }
 
 #input:focus {
@@ -115,6 +134,5 @@
   text-align: center; 
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 115%;
-  color: rgb(240, 240, 240);
   font-weight: 80;
 }
