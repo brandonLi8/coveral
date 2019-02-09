@@ -13,7 +13,7 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   height: 100%;
-  background: #EEE;
+  background: #FFF;
   font-family: Courier;
 }
 
@@ -23,7 +23,7 @@ body {
 
 #title { /* the title for the sims_wrapper */
   text-align: center;
-  color: #4056A1;
+  color: #444;
   font-size: 40px;
   margin: 5px 5% 0px 5%;
   padding-left: 10px;
@@ -31,7 +31,7 @@ body {
 }
 
 #sims_wrapper { /* the wrapper containing all the sims */
-  margin: 4% 5% 4% 5%;
+  margin: 4% 5% 20% 5%;
   display: flex;
   flex-direction: column;
 }
@@ -47,8 +47,7 @@ body {
 }
 
 .title_wrapper:hover {
-  cursor: pointer;
-  color: blue;
+  color: #900;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -56,6 +55,13 @@ body {
 .description { /* the description of the simulation */
   display: none;
   margin: 20px 5%;
+  flex-direction: column;
+  font-family: "arial", Verdana, Arial, Helvetica, sans-serif;
+  color: #111;
+  font-size: 13px;
+  width: 471px;
+  margin: 5px auto;
+  
 }
  /* @overide .sim only used when removing the simulation */
 .removeDescription {
@@ -64,12 +70,29 @@ body {
   display: flex;
   flex-direction: column;
   padding: 3px;
-  background: #FFF;
+  background: #D1D1D1;
   border-radius: 8px 8px 6px 6px;
   box-shadow: 0px 2px 0px 0px #777777,
               2px 3px 6px 0px #999999;
   -webkit-animation-play-state: paused;
   animation-name: removeDescription;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   -webkit-animation-fill-mode: forwards;
+}
+
+.screenshot {
+  width: 471px; /* 16:9 ratio */
+  height: 265px;
+  margin-bottom: 10px;
+}
+
+.screenshot:hover {
+  cursor: pointer;
+}
+
+.description h3 {
+  color: #00a6d3;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: -5px;
 }

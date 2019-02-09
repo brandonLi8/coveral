@@ -3,15 +3,15 @@
     "title": "Collision Theory",
     "image": "./assets/momentumIcon.png",
     "imageId": "collision_icon",
-    "screenshot": "./assets/screenshot.png",
-    "description": "<strong>Topics</strong> <ul> <li>Momentum</li> <li>Conservation of Energy</li> <li>Energy Transfer</li> </ul>"
+    "screenshot": "./assets/collisionTheorySS.png",
+    "description": "<h3>Topics</h3><ul><li>Momentum</li><li>Conservation of Energy</li><li>Conservation of Momentum</li><li>Energy Transfer</li></ul> <h3>Description</h3><ul><li>Explore different collisions and how momentum is always conserved in the system. See how kinetic energy is conserved on perfectly elastic collisions and how thermal energy is conserved on perfectly inelastic collisions. Observe how momentum is always conserved for this system.</li></ul>"
   },
   "Circular Motion": {
     "title": "Circular Motion",
     "image": "./assets/circularMotionIcon.png",
     "imageId": "circular_motion_icon",
-    "screenshot": "./assets/screenshot.png",
-    "description": "Adfasdf this is the descriptionscmadfadjkhfladshflkadshflkadhslkfhadklfhasdlkfhjaklsdhfkladshaflkahsdfkljahsdkljfhasdlkfhakldshfakljshfklahsdfklahslkfhalkfhadslkjfhkaldshfklajdshflkadshflkasdhfklashfklhasdlkfhadslkfhaldskhfklasdjhfklashflkahdfkl"
+    "screenshot": "./assets/collisionTheorySS.png",
+    "description": "<h3>Topics</h3><ul><li>Momentum</li><li>Conservation of Energy</li><li>Conservation of Momentum</li><li>Energy Transfer</li></ul> <h3>Description</h3><ul><li>Explore different collisions and how momentum is always conserved in the system. See how kinetic energy is conserved on perfectly elastic collisions and how thermal energy is conserved on perfectly inelastic collisions. Observe how momentum is always conserved for this system.</li></ul>"
   }
 }
 

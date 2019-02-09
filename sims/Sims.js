@@ -98,9 +98,15 @@ class Sims {
     // put the description for now
     const description = screen.addChildToParentNode( 
                           "div", null, "description", 
-                          simNode.description, sim );
+                          "", sim );
+    const screenshot = screen.addChildToParentNode( 
+                          "img", null, "screenshot",
+                          null, description
+                        );
+    screenshot.setAttribute( "src", simNode.screenshot );
+    description.innerHTML += simNode.description;
     
-    sim.onclick = function() {
+    titleWrapper.onclick = function() {
       // already closed, now clicking
       if ( !description.style.display || description.style.display == "none" ){
         // show the description
