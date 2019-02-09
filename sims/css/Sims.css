@@ -13,7 +13,8 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   height: 100%;
-  background: #FFF;
+  
+  background: rgb( 238 , 239 , 241 );
   font-family: Courier;
 }
 
@@ -65,7 +66,7 @@ body {
 }
  /* @overide .sim only used when removing the simulation */
 .removeDescription {
-  margin: 80px auto -20px auto; 
+  margin: -20px auto 80px auto; 
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -95,4 +96,25 @@ body {
   font-size: 16px;
   margin-top: 5px;
   margin-bottom: -5px;
+}
+
+.back_to_dashboard {
+  /* the back to dashboard button */
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  box-shadow: 1px 2px 5px 2px #4D4E4E;
+  margin-bottom: -5%;
+}
+
+.back_to_dashboard:hover {
+  /* the back to dashboard button IMAGE */
+  cursor: pointer;
+}
+
+#back_to_dashboard_button {
+  /* the back to dashboard button Container*/
+  width: 90px;
+  height: 90px;
+  margin: auto auto 2% 0%;
 }

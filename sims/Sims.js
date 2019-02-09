@@ -15,6 +15,7 @@
 // modules
 import ScreenView from "../../ScreenView/ScreenView.js";
 
+
 class Sims {
   /**
    * @constructor
@@ -43,6 +44,16 @@ class Sims {
   setup( self, sims ) {
     // @public {ScreenView} - the screen
     self.screen = new ScreenView();
+    // load the footer items
+    var footer = [ "2019© By Brandon Li", 
+                   "brandon.li820@icloud.com", 
+                   "303-717-1568" 
+                 ];
+    for ( var i = 0; i < footer.length; i++ ){
+      self.screen.addChildToParentId( 
+              "p",  null, null, 
+              footer[ i ], "content" );
+    }
     // @public {object} sims - the sim data
     self.sims = sims;
     // set up the basic structre
@@ -52,6 +63,34 @@ class Sims {
     self.title = self.screen.addChildToParentNode(
                     "div", "title", null,
                     "Simulations", self.simsWrapper );
+    addReturnButton( "./assets/reset.png", 
+                     "../dashboard.html", 
+                     "./assets/resetHover.png",
+                     "back_to_dashboard_button" );
+    // add the return to dasboard button
+    function addReturnButton( src, url , hoverSrc, id ){
+      // add the div to the wrapper
+      let button = self.screen.addChildToParentId( 
+                    "div", id, 
+                    null, "", "sims_wrapper" 
+                  );
+      // add the image to the button node
+      let image = self.screen.addChildToParentNode( 
+                    "img", null, 
+                    "back_to_dashboard", "", button 
+                  );
+      image.setAttribute( "src", src );
+      // handle user input
+      image.onmouseover = function() { 
+        image.setAttribute( "src", hoverSrc );
+      };
+      image.onmouseout = function() { 
+        image.setAttribute( "src", src );
+      };
+      image.onclick = function() { 
+        window.open(url, '_self');
+      };
+    }
     // for each sim in the data, add it to the view
     let keys = Object.keys( self.sims )
     for ( var i = 0; i < keys.length; i++ ){
@@ -118,6 +157,9 @@ class Sims {
         sim.className = "sim";
         // put a border
         titleWrapper.style.borderBottom = "1px solid #444";
+        sim.scrollIntoView({
+          behavior: 'smooth'
+        });
       }
       else { // closing the accorion
         // remove the description
@@ -128,30 +170,8 @@ class Sims {
         sim.style.WebkitAnimationPlayState = "running";
         titleWrapper.style.border = "none";
       }
+
     }
-  //   // user responsible for changing the border, the id is the options.imageId
-  //   
-  //   wrapper.onclick = function(){
-  //     description.innerHTML = "";
-  //     const screenshot = screen.addChildToParentNode( 
-  //                 "img", null, "screenshot",
-  //                 null, description
-  //               );
-  //     // maintain 16:9 aspect ratio
-  //     const width = "650px";
-  //     const height = "365px";
-  //     screenshot.style.width = width;
-  //     screenshot.style.height = height;
-  //     screenshot.style.margin = "auto";
-  //     screenshot.setAttribute( "src", options.screenshot );
-
-  //     const content = screen.addChildToParentNode( 
-  //                       "div", null, "description_content", 
-  //                       "", description );
-  //     content.innerHTML = options.description;
-
-  //   }
-  // }
   } 
 }
 
