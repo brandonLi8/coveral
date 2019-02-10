@@ -64,7 +64,7 @@ class Sims {
                     "div", "title", null,
                     "Simulations", self.simsWrapper );
     addReturnButton( "./assets/reset.png", 
-                     "../dashboard.html", 
+                     "../dashboard", 
                      "./assets/resetHover.png",
                      "back_to_dashboard_button" );
     // add the return to dasboard button

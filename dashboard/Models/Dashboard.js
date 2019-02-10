@@ -10,7 +10,6 @@
  *  - add apps
  */
 'use strict';
-
 // modules
 import ScreenView from "../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
@@ -75,7 +74,7 @@ addApp({
   title: "Planner",
   src: "assets/plannerIcon.png",
   hoverSrc: "assets/plannerHoverIcon.png",
-  url: "../planner.html",
+  url: "../planner",
   id: "planner"
 });
 
@@ -84,7 +83,7 @@ addApp({
   title: "Simulations",
   src: "assets/simulationIcon.png",
   hoverSrc: "assets/simulationHoverIcon.png",
-  url: "../sims.html",
+  url: "../sims",
   id: "simulations"
 });
 
@@ -93,7 +92,7 @@ addApp({
   title: "Calculator",
   src: "assets/calculatorIcon.png",
   hoverSrc: "assets/calculatorHoverIcon.png",
-  url: "../calculator.html",
+  url: "../calculator",
   id: "calculator"
 });
 

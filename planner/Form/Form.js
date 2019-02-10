@@ -40,7 +40,7 @@ export default class Form{
     // remove the remove all button
     controller.removeAll.style.display = "none";
     addReturnButton( "./assets/reset.png", 
-                     "../planner.html", 
+                     "../planner", 
                      "./assets/resetHover.png",
                      "back_to_dashboard_button" 
     );

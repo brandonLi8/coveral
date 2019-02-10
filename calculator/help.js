@@ -22,7 +22,7 @@ screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
  * add the button that brings you back to the dashboard
  */
 addReturnButton( "./assets/reset.png", 
-                 "../calculator.html", 
+                 "../calculator", 
                  "./assets/resetHover.png",
                  "back_to_dashboard_button" );
 // add the help button
