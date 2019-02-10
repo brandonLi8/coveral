@@ -10,7 +10,6 @@
  *  - add apps
  */
 'use strict';
-
 // modules
 import ScreenView from "../../ScreenView/ScreenView.js";
 var screen = new ScreenView();
