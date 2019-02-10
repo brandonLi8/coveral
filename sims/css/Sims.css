@@ -87,6 +87,7 @@ body {
   width: 471px; /* 16:9 ratio */
   height: 265px;
   margin-bottom: 10px;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);
 }
 
 .screenshot:hover {

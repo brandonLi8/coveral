@@ -138,11 +138,18 @@ class Sims {
     const description = screen.addChildToParentNode( 
                           "div", null, "description", 
                           "", sim );
-    const screenshot = screen.addChildToParentNode( 
+    var link = screen.addChildToParentNode( 
+                          "a", null, null,
+                          "", description );
+    var screenshot = screen.addChildToParentNode( 
                           "img", null, "screenshot",
-                          null, description
-                        );
-    screenshot.setAttribute( "src", simNode.screenshot );
+                          "", link );
+    link.target = "_self";
+    link.href = simNode.url;
+    screenshot.src = simNode.screenshot;
+
+    
+
     description.innerHTML += simNode.description;
     
     titleWrapper.onclick = function() {
