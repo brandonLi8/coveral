@@ -12,8 +12,8 @@
 
  // import modules
 import PlannerController from "./../Controllers/PlannerController.js"
-import ScreenView from "../../../ScreenView/ScreenView.js";
-import Slider from "../../../Slider/Slider.js";
+import ScreenView from "../../ScreenView/ScreenView.js";
+import Slider from "../../Slider/Slider.js";
 // modules
 var screen = new ScreenView();
 var controller = new PlannerController();

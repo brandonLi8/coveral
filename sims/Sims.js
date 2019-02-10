@@ -13,7 +13,7 @@
 'use strict';
 
 // modules
-import ScreenView from "../../ScreenView/ScreenView.js";
+import ScreenView from "../ScreenView/ScreenView.js";
 
 
 class Sims {
