@@ -59,19 +59,19 @@ export default class PlannerController {
     // back to dashboard button
     let backToDashboard = view.addLinkToHeader( "Back To Dashboard" );
     backToDashboard.onclick = function(){
-      window.open( "../dashboard.html", "_self" ) 
+      window.open( "../dashboard", "_self" ) 
     }
     backToDashboard.style.border = "none";
     // add the help button
     let help = view.addLinkToHeader( "Help" )
     help.onclick = function(){
-      window.open( "./help.html", "_self" ) 
+      window.open( "./help", "_self" ) 
     }
     help.style.border = "none";
     // add the new plan button
     let newPlan = view.addLinkToHeader( "New" );
     newPlan.onclick = function(){
-      window.open( "/planner/new.html", "_self" ) 
+      window.open( "/planner/new", "_self" ) 
     }
     newPlan.style.border = "none";
     // add the remove all
@@ -131,7 +131,7 @@ export default class PlannerController {
    */
   editNode( node ){
     localStorage.setItem( "edit", JSON.stringify( node ) );
-    window.open( "edit.html", "_self" )
+    window.open( "edit", "_self" )
   }
   /**
    * @private

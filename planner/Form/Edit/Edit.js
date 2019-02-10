@@ -53,7 +53,7 @@ var form = new Form( {
           reduced, 
           node.identifier 
     ) );
-    window.open( "../planner.html", "_self" )
+    window.open( "../planner", "_self" )
     
   }
 

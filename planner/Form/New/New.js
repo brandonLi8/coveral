@@ -39,7 +39,7 @@ var form = new Form( {
         title.value, description.value, 
         slider.getValue(), reduced 
     );
-    window.open( "../planner.html", "_self" )
+    window.open( "../planner", "_self" )
   }
 
 } );

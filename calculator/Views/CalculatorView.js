@@ -31,7 +31,7 @@ screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
  * add the button that brings you back to the dashboard
  */
 addReturnButton( "./assets/reset.png", 
-                 "../dashboard.html", 
+                 "../dashboard", 
                  "./assets/resetHover.png",
                  "back_to_dashboard_button" )
 // add the help button
@@ -68,7 +68,7 @@ screen.addChildToParentId(
 
 // add a help link
 let help = screen.createChild( "a", "helpLink", null, "help" )
-help.href = "help.html";
+help.href = "help";
 help.setAttribute( "target", "_self" );
 document.getElementById( "label" ).appendChild( help );
 
