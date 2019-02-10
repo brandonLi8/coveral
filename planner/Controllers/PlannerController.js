@@ -71,7 +71,7 @@ export default class PlannerController {
     // add the new plan button
     let newPlan = view.addLinkToHeader( "New" );
     newPlan.onclick = function(){
-      window.open( "/planner/new", "_self" ) 
+      window.open( "./new", "_self" ) 
     }
     newPlan.style.border = "none";
     // add the remove all
@@ -131,7 +131,7 @@ export default class PlannerController {
    */
   editNode( node ){
     localStorage.setItem( "edit", JSON.stringify( node ) );
-    window.open( "edit", "_self" )
+    window.open( "./edit", "_self" )
   }
   /**
    * @private

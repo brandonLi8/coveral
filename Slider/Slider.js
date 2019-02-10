@@ -70,7 +70,7 @@
  *    thumbBorder: "1px solid #00E",
  * }
  */
-import ScreenView from "./../../ScreenView/ScreenView.js";
+import ScreenView from "../ScreenView/ScreenView.js";
 var screen = new ScreenView();
 // modules
 export default class Slider{

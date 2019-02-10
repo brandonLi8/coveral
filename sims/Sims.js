@@ -27,7 +27,7 @@ class Sims {
     // new http get request to the json file
     var simsFile = new XMLHttpRequest();
     simsFile.overrideMimeType( "application/json" );
-    simsFile.open( "GET", "Js/SimulationsStrings.json", true );
+    simsFile.open( "GET", "js/SimulationsStrings.json", true );
     var setup = this.setup;
     simsFile.onreadystatechange = function() {
       if ( simsFile.readyState === 4 && simsFile.status == "200" ) {
