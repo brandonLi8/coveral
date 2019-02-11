@@ -164,9 +164,7 @@ class Sims {
         sim.className = "sim";
         // put a border
         titleWrapper.style.borderBottom = "1px solid #444";
-        sim.scrollIntoView({
-          behavior: 'smooth'
-        });
+
       }
       else { // closing the accorion
         // remove the description

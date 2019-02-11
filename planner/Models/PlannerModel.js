@@ -35,7 +35,7 @@ export default class PlannerModel{
    */
   clear( ){ 
     localStorage.clear();
-    window.open( "/planner.html", "_self" );
+    window.open( "/planner", "_self" );
   }
   /**
    * @public
