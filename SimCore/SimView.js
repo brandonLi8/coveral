@@ -11,6 +11,8 @@
 
 import ScreenView from "../Screen/ScreenView.js";
 import Node from "../Screen/Node.js";
+import ImageButton from "../Buttons/ImageButton.js";
+
 
 "use strict";
 export default class Sim {
@@ -27,6 +29,7 @@ export default class Sim {
    * }
    */
    constructor( options ){
+    // the whole screen
     this.simWrapper = new Node({
       id: "sim_wrapper",
       style: {
@@ -36,8 +39,7 @@ export default class Sim {
         background: "url(" + options.backgroundSrc + ")"
       }
     });
-    // this.simWrapper.DOMobject.src = options.backgroundSrc;
-    // the are for the sim
+    // just the sim
     this.sim = new Node({
       id: "sim",
       style: {
@@ -46,7 +48,8 @@ export default class Sim {
         width: "100%",
         position: "relative",
       }
-    })
+    });
+    // the footer at the bottom
     this.footer = new Node({
       id: "footer",
       style: {
@@ -66,31 +69,45 @@ export default class Sim {
         boxShadow: "0 -3px 0 0 rgba( 50, 50, 50, 0.2 )"
       }
     });
+    this.simWrapper.appendChildren([ this.sim, this.footer ])
 
-
-    this.homeButton = new Node({
-      type: "img",
+    // the home Button
+    this.homeButton = new ImageButton({
       style: {
         width: "60px",
         position: "absolute",
-        left: "50px"
+        left: "50px",
+        color: "#000"
+      },
+      src: "../SimCore/home.png",
+      hover: "../SimCore/homeHover.png",
+      listener: function(){
+        window.open( options.home, "_self" )
+      },
+    });
+    // the title of the sim
+    this.title = new Node({
+      text: options.title,
+      style: {
+        position: "absolute",
+        fontSize: "24px",
+        padding: "0",
+        left: "200px",
+        fontFamily: "Courier"
       }
     })
-
-    this.homeButton.DOMobject.src = "../SimCore/home.png";
-    this.homeButton.addEventListener( "mouseover", function(){
-      this.src = "../SimCore/homeHover.png";
-      this.style.cursor = "pointer";
-    });
-    this.homeButton.addEventListener( "mouseout", _ =>
-      this.homeButton.DOMobject.src = "../SimCore/home.png"
-     );
-    this.homeButton.addEventListener( "mousedown", function(){
-      window.open( options.home, "_self" )
-    } );
-
-    this.footer.addChild( this.homeButton )
-    this.simWrapper.appendChildren([ this.sim, this.footer ])
+    // the author of the sim
+    this.author = new Node({
+      text: options.author,
+      style: {
+        position: "absolute",
+        fontSize: "17px",
+        padding: "0",
+        right: "130px",
+        fontFamily: "Courier"
+      }
+    })
+    this.footer.appendChildren([ this.homeButton, this.title, this.author ])
 
     this.screenView = new ScreenView( this.simWrapper )
     this.screenView.dispose();
