@@ -12,6 +12,7 @@
 import ScreenView from "../Screen/ScreenView.js";
 import Node from "../Screen/Node.js";
 import ImageButton from "../Buttons/ImageButton.js";
+import TextPushButton from "../Buttons/TextPushButton.js";
 
 
 "use strict";
@@ -129,7 +130,6 @@ export default class Sim {
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options };
-    console.log( attributes)
     const controlPanel = new Node({
       style: attributes
     })
@@ -137,4 +137,26 @@ export default class Sim {
     this.sim.addChild( controlPanel )
     return controlPanel;
   } 
+  /**
+   * @param {object} options - the options for the button (@overide)
+   * @return {node} - the button
+   */
+   addButtonToControlPanel( options ){
+    // provide the defaults
+    const defaults = {
+      text: null,
+      style: null,
+      hoverStyle: null,
+      id: null, 
+      class: null,
+      listener: null,
+      parent: null,
+    }
+    // merge them with options overriding
+    const attributes = { ...defaults, ...options }; 
+    // the home Button
+    var button = new TextPushButton( attributes );
+    attributes.parent.addChild( button );
+    return button;
+   }
 }
