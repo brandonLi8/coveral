@@ -111,5 +111,30 @@ export default class Sim {
 
     this.screenView = new ScreenView( this.simWrapper )
     this.screenView.dispose();
+  }
+ /**
+   * @param {object} options - the style of the control panel itself 
+   * @return {node} - the control panel
+   */
+  addControlPanel( options ){
+    const defaults = {
+      border: "2px solid red",
+      width: "250px",
+      height: "190px",
+      border: "1px solid black",
+      borderRadius: "5%",
+      position: "absolute",
+      background: "#DDC",
+      boxShadow: "0 0 3px 0 rgb( 40, 40, 40 )"
+    }
+    // merge them with options overriding
+    const attributes = { ...defaults, ...options };
+    console.log( attributes)
+    const controlPanel = new Node({
+      style: attributes
+    })
+
+    this.sim.addChild( controlPanel )
+    return controlPanel;
   } 
 }

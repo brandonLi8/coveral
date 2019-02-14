@@ -1,0 +1,3 @@
+[submodule "CollisionTheory"]
+	path = CollisionTheory
+	url = https://github.com/brandonLi8/Collision-Theory
