@@ -84,7 +84,9 @@ export default class Node {
       type: "div", // @optional
       id: null, // @optional
       text: null, // @optional null means no text, otherwise use a string
-      innerHTML: null
+      innerHTML: null,
+      class: null,
+      style: null
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options }; 
@@ -105,6 +107,9 @@ export default class Node {
     }
     if ( attributes.innerHTML ){
       this.DOMobject.innerHTML = attributes.innerHTML;
+    }
+    if ( attributes.style ){
+      this.setStyle( attributes.style )
     }
     // create instance data
     this.children = [];
@@ -201,6 +206,16 @@ export default class Node {
   get class(){
     console.log( this.DOMobject.className)
     return this.DOMobject.className;
+  }
+  /**
+   * change the style of the node;
+   * @param {object} options - the attributes that are changing
+   */
+  setStyle( options ){
+    let keys = Object.keys( options );
+    for ( var i = 0; i < keys.length; i++ ){
+      this.DOMobject.style[ keys[ i ] ] = options[ keys[ i ] ];
+    }
   }
 
 }
