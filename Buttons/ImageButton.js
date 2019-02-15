@@ -80,4 +80,8 @@ export default class ImageTextButton {
     }
     return this.button;
   }
+  /**
+   * Animate the node on a event (mousedown, mouseover)
+   * IT IS possible to animate the node whenever you want
+   */
 }

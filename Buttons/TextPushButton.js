@@ -65,7 +65,7 @@ export default class TextPushButton {
       },
 
       // @optional the style for the text on the button hover
-      textHoverSyle: null,
+      textHoverStyle: null,
       // the id of the button <string>
       id: null, 
       // the class of the button <string>
@@ -81,7 +81,7 @@ export default class TextPushButton {
     // merge the styles 
     attributes.style = { ...defaults.style, ...options.style }
     attributes.hoverStyle = { ...defaults.hoverStyle, ...options.hoverStyle } 
-    attributes.textStyle = { ...defaults.textStyle, ...options.hoverStyle }
+    attributes.textStyle = { ...defaults.textStyle, ...options.textStyle }
     // we know the style has to exist, set the style for the button
     // @very public ( the purpose of this class )
     this.button = new Node({
@@ -89,11 +89,19 @@ export default class TextPushButton {
     });
     // add hover styling ( you can call animations from your css in here )
     this.button.addEventListener( "mouseover", _ => 
-      this.button.setStyle( attributes.hoverStyle )
+      hover( this )
     );
-    this.button.addEventListener( "mouseout", _ => 
-      this.button.setStyle( attributes.style )
+    this.button.addEventListener( "mouseout", _ =>
+      unHover( this ) 
     );
+    function hover( self ){
+      self.button.setStyle( attributes.hoverStyle )
+      self.textNode.setStyle( attributes.textHoverStyle )
+    }
+    function unHover( self ){
+      self.button.setStyle( attributes.style );
+      self.textNode.setStyle( attributes.textStyle )
+    }
     // on click listener
     this.button.addEventListener( "mousedown", function(){
       if ( attributes.listener ) attributes.listener();
@@ -106,7 +114,7 @@ export default class TextPushButton {
       text: attributes.text,
       style: attributes.textStyle
     })
-    this.button.addChild( this.textNode )
-    return this.button
+    this.button.addChild( this.textNode );
+    return this.button;
   }
 }
