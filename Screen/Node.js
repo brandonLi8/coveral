@@ -204,7 +204,6 @@ export default class Node {
    * get the class 
    */
   get class(){
-    console.log( this.DOMobject.className)
     return this.DOMobject.className;
   }
   /**
@@ -212,10 +211,95 @@ export default class Node {
    * @param {object} options - the attributes that are changing
    */
   setStyle( options ){
+    if ( !options ) return;
     let keys = Object.keys( options );
     for ( var i = 0; i < keys.length; i++ ){
       this.DOMobject.style[ keys[ i ] ] = options[ keys[ i ] ];
     }
   }
+  // **ANIMATIONS**
 
+  /**
+   * Uses Web Animations API
+   * Animates the node @custom
+   * @public 
+   * @animation
+   * @param options {
+   *    animation: @required {Array} 
+   *    timing: @required {object}
+   * }
+   * @return {animation} - the animation object
+   */
+  newAnimation( options ){
+    /**
+     * The animation property of the object desribes where the animation goes
+     * The timing describes the looping/ timing of the animation
+     * Example Usage:
+     * Node.newAnimation({
+     *   animation: [
+     *     { transform: "translateY( 0 )" },
+     *     { transform: "translateY( -80% )" }
+     *   ],  // this moves it upwards
+     *   timing: {
+     *     fill: "forwards", // keeps it still at the end
+     *     duration: 500 // milliseconds
+     *   }
+     * });
+     */
+    return this.DOMobject.animate( options.animation, options.timing );
+  }
+  /**
+   * Animate by moving vertically
+   * @param {string} amount - express how much to go down or up by
+   * this can be expressed in rem, px, % etc.
+   * @param duration {number} milliseconds of the duration of the animation
+   */
+  moveVertically( amount ){
+    return this.newAnimation({
+      animation: [
+        { transform: "translateY( 0 )" },
+        { transform: "translateY(" + amount + ")"}
+      ], 
+      timing: {
+        fill: "forwards",
+        duration: duration
+      }
+    });
+  }
+  /**
+   * Animate by moving horizontally
+   * @param {string} amount - express how much to go left or right by
+   * this can be expressed in rem, px, % etc.
+   * @param duration {number} milliseconds of the duration of the animation
+   */
+  moveHorizontally( amount, duration ){
+    return this.newAnimation({
+      animation: [
+        { transform: "translateX( 0 )" },
+        { transform: "translateX(" + amount + ")"}
+      ], 
+      timing: {
+        fill: "forwards",
+        duration: duration
+      }
+    });
+  }
+  /**
+   * Animate by moving horizontally
+   * @param {string} changeX - the amount to change x in
+   */
+  jiggle( duration ){
+    return this.newAnimation({
+      animation: [
+        {  transform: "translate3d( -4px, 0, 0 )" },
+        {  transform: "translate3d( 6px, 0, 0 )" },
+        {  transform: "translate3d( -6px, 0, 0 )" },
+        {  transform: "translate3d( 4px, 0, 0 )" }
+      ],
+      timing: {
+        fill: "forwards",
+        duration: duration
+      }
+    });
+  }
 }
