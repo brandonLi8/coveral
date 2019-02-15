@@ -78,7 +78,6 @@ export default class Sim {
         width: "60px",
         position: "absolute",
         left: "50px",
-        color: "#000"
       },
       src: "../SimCore/home.png",
       hover: "../SimCore/homeHover.png",
@@ -141,22 +140,11 @@ export default class Sim {
    * @param {object} options - the options for the button (@overide)
    * @return {node} - the button
    */
-   addButtonToControlPanel( options ){
-    // provide the defaults
-    const defaults = {
-      text: null,
-      style: null,
-      hoverStyle: null,
-      id: null, 
-      class: null,
-      listener: null,
-      parent: null,
-    }
-    // merge them with options overriding
-    const attributes = { ...defaults, ...options }; 
+  addButtonToControlPanel( options ){
     // the home Button
-    var button = new TextPushButton( attributes );
-    attributes.parent.addChild( button );
+    var button = new TextPushButton( options );
+    options.parent.addChild( button );
+
     return button;
-   }
+  }
 }
