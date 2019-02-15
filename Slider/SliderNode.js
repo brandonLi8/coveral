@@ -210,13 +210,14 @@ export default class Slider{
     let listener = ( options.listener ) ? options.listener: function() {} ;
     // event listeners
     slider.addEventListener( "mousedown", function( event ){ 
-      let coord = ( event.pageX - slider.DOMobject.offsetLeft )
+      let coord = getCoordinates( event, slider.DOMobject )
       let length = slider.DOMobject.clientWidth;
       if ( coord > length ) return;
       if ( coord < 0 ) return;
       let percentage = coord / length * 100;
 
-      let newNumber = ( attributes.upperBound - attributes.lowerBound ) * percentage / 100 + attributes.lowerBound;
+      let newNumber = ( attributes.upperBound - attributes.lowerBound ) 
+                      * percentage / 100 + attributes.lowerBound;
       //round the new Number 
       newNumber = Math.round( newNumber * Math.pow( 10, attributes.round ) ) / 
                             Math.pow( 10, attributes.round )
@@ -239,14 +240,13 @@ export default class Slider{
 
     function dragThumb( event ) {
       event.preventDefault();
-      let coord = ( event.pageX - slider.DOMobject.offsetLeft )
-
+      let coord = getCoordinates( event, slider.DOMobject )
       let length = slider.DOMobject.clientWidth;
       let percentage = coord / length * 100;
-
       if ( coord > length ) percentage = 100;
       if ( coord < 0 ) percentage = 0;
-      let newNumber = ( attributes.upperBound - attributes.lowerBound ) * percentage / 100 + attributes.lowerBound;
+      let newNumber = ( attributes.upperBound - attributes.lowerBound ) 
+                      * percentage / 100 + attributes.lowerBound;
       // round the new Number 
       newNumber = Math.round( newNumber * Math.pow( 10, attributes.round ) ) / 
                             Math.pow( 10, attributes.round )
@@ -271,22 +271,36 @@ export default class Slider{
         cursor: "pointer"
       });
     }
-    this.value = value;
+    this.valueNode = value;
     this.slider = sliderBackground;
+    
   }
   /**
-   * @get
-   * @retrun {dom} - the actual element
+   * @return {node} - the actual element node
    */ 
-  getDom(){
+  get node(){
     return this.slider;
   }
   /**
-   * @get
-   * @retrun {string} - the value of where the slider is at
+   * @return {string} - the value of where the slider is at
    */ 
-  getValue(){
-    return this.value.innerHTML;
+  get value(){
+    return this.valueNode.DOMobject.innerHTML;
   }
+}
+
+
+function getCoordinates( event, element ){ // the x coord
+  const position = event.pageX;
+  const offset = {
+    left: element.offsetLeft,
+    top: element.offsetTop
+  };
+  let reference = element.offsetParent;
+  while ( reference != null ){
+    offset.left += reference.offsetLeft;
+    reference = reference.offsetParent;
+  }
+  return position - offset.left; 
 }
 
