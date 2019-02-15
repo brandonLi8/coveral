@@ -307,4 +307,36 @@ export default class Node {
       }
     });
   }
+  /**
+   * inlarge the node
+   * @param {string} changeX - the amount to change x in
+   */
+  enlarge( duration ){
+    return this.newAnimation({
+      animation: [
+        {  transform: "scale( 1, 1 )" },
+        {  transform: "scale( 1.2, 1.2 )" },
+      ],
+      timing: {
+        fill: "forwards",
+        duration: duration
+      }
+    });
+  }
+  /**
+   * add a border around the sides
+   * @param {string} changeX - the amount to change x in
+   */
+  addBorderAnimation( duration, padding ){
+    return this.newAnimation({
+      animation: [
+        {  border:  "none", padding: "0" },
+        {  border: "2px solid red", padding: padding },
+      ],
+      timing: {
+        fill: "forwards",
+        duration: duration
+      }
+    });
+  }
 }
