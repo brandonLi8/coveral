@@ -35,9 +35,9 @@ export default class PlannerModel{
    */
   clear( ){ 
     localStorage.clear();
-    window.open( "", "_self" );
+    window.open( "./", "_self" );
   }
-  /**
+  /**g
    * @public
    * Add a 'plan' to the model.
    * @param {PlannerNode} plannerNode - node that is being added.
