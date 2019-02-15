@@ -44,7 +44,8 @@ export default class ImageTextButton {
       class: null,
       src: null,
       hover: null, 
-      listener: null
+      listener: null,
+      scope: null // the scope you want on the call
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options }; 
@@ -62,26 +63,24 @@ export default class ImageTextButton {
     // hover effect
     if ( attributes.hover ){
       this.button.addEventListener( "mouseover", _ => 
-        hover( this.button ) 
+        hover( this.button, attributes.scope ) 
+  
       );
     }
-    function hover( node ){
+    function hover( node, scope ){
       // no matter what, change the cursor
       node.setStyle({
         cursor: "pointer"
       })
       if ( !attributes.hover ) return;
       node.DOMobject.src = attributes.hover;
+      if ( attributes.listener ){
+        node.addEventListener( "mousedown", function( _ ){
+          attributes.listener( scope ) 
+        });   
+      }
     }
-    if ( attributes.listener ){
-      this.button.addEventListener( "mousedown", function(){
-        attributes.listener();
-      } );
-    }
-    return this.button;
+    this.attributes = attributes;
+    this.node = this.button;
   }
-  /**
-   * Animate the node on a event (mousedown, mouseover)
-   * IT IS possible to animate the node whenever you want
-   */
 }
