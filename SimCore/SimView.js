@@ -84,7 +84,17 @@ export default class Sim {
       listener: function(){
         window.open( options.home, "_self" )
       },
-    });
+    }).node;
+    // add a animation
+    var enlargeHomeButton = this.homeButton.enlarge( 200 );
+    enlargeHomeButton.pause();
+    this.homeButton.addEventListener( "mouseover", function( _ ){
+      enlargeHomeButton.play()
+    })
+    this.homeButton.addEventListener( "mouseout", function( _ ){
+      enlargeHomeButton.cancel()
+    })
+
     // the title of the sim
     this.title = new Node({
       text: options.title,
@@ -140,11 +150,18 @@ export default class Sim {
    * @param {object} options - the options for the button (@overide)
    * @return {node} - the button
    */
-  addButtonToControlPanel( options ){
+  addTextButton( options ){
     // the home Button
     var button = new TextPushButton( options );
-    options.parent.addChild( button );
-
+    return button;
+  }
+  /**
+   * @param {object} options - the options for the button (@overide)
+   * @return {node} - the button
+   */
+  addImageButton( options ){
+    // the home Button
+    var button = new ImageButton( options );
     return button;
   }
 }
