@@ -117,6 +117,51 @@ export default class Node {
     if ( attributes.src && attributes.type === "img" ){
       this.DOMobject.src = attributes.src;
     }
+    this.attributes = attributes;
+    if ( attributes.draggable && attributes.draggable === true ) 
+      this.setupDrag();
+  }
+  setupDrag(){
+    dragElement( this.DOMobject, this );
+
+    function dragElement( element, self ) {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      element.onmousedown = dragMouseDown;
+
+      function dragMouseDown( event ) {
+        event = event || window.event;
+        event.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = event.clientX;
+        pos4 = event.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+        if ( self.attributes.drag )
+          self.attributes.drag( self.attributes.dragScope )
+      }
+
+      function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+        if ( self.attributes.dragClose ) 
+          self.attributes.dragClose( self.attributes.dragScope );
+      }
+    }
   }
   /**
    * Get the parent DOM OBJECT
