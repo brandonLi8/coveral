@@ -99,7 +99,6 @@ export default class Slider{
       listener: null, // function called on change
 
     }
-    console.log( options)
     // merge them with options overriding
     const attributes = { ...defaults, ...options };
     attributes.backgroundStyle = { 
@@ -167,7 +166,7 @@ export default class Slider{
     /**
      *  sides labeling the left and the right side
      */ 
-
+  
     var left = new Node({
       text: attributes.leftText,
       style: attributes.leftStyle

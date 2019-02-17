@@ -114,6 +114,9 @@ export default class Node {
     // create instance data
     this.children = [];
     this.parent = null;
+    if ( attributes.src && attributes.type === "img" ){
+      this.DOMobject.src = attributes.src;
+    }
   }
   /**
    * Get the parent DOM OBJECT
