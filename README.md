@@ -41,7 +41,7 @@ Planner
 - A self implemented Max Heap to get the largest urgency in constant time
 - Delete, Edit, and new plans
 - Easy user interaction with animations on hovers
-- data is save for each browser, so everyone gets their own planner as it is saved on refreshes and system shutdowns
+- data is saved for each browser, so everyone gets their own planner as it is saved on refreshes and system shutdowns
 
 ### Try it!
 <a href="https://brandonli8.github.io/Learning_App/planner" target="_blank">Visit the App</a>.
