@@ -15,11 +15,10 @@
  *
  */
 
-
 import Node from "../Screen/Node.js";
 
 "use strict";
-
+    
 export default class ImageTextButton {
   /**
    * Creates the button node
