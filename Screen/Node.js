@@ -86,7 +86,18 @@ export default class Node {
       text: null, // @optional null means no text, otherwise use a string
       innerHTML: null,
       class: null,
-      style: null
+      style: null,
+      src: null, // only on type "img"
+      draggable: false, // is it draggable?
+
+      // only on draggable = true, function called on drag
+      drag: null, 
+
+      // only on draggable = true, function called on drag release
+      dragClose: null,
+
+      // the scope that is passed on drag/dragClose 
+      dragScope: null, 
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options }; 
@@ -121,46 +132,52 @@ export default class Node {
     if ( attributes.draggable && attributes.draggable === true ) 
       this.setupDrag();
   }
+  /**
+   * Sets up the node to be draggable.
+   * @public
+   *
+   */
   setupDrag(){
-    dragElement( this.DOMobject, this );
+    let node = this.DOMobject;
+    let attributes = this.attributes;
+    // keep track of positions
+    var position1 = 0, position2 = 0, position3 = 0, position4 = 0;
+    // start drag event listener
+    node.onmousedown = dragMouseDown;
 
-    function dragElement( element, self ) {
-      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      element.onmousedown = dragMouseDown;
+    function dragMouseDown( event ) {
+      event = event || window.event;
+      event.preventDefault();
+      // mouse cursor
+      position3 = event.clientX;
+      position4 = event.clientY;
 
-      function dragMouseDown( event ) {
-        event = event || window.event;
-        event.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = event.clientX;
-        pos4 = event.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-      }
+      document.onmouseup = closeDrag;
+      document.onmousemove = drag;
+    }
 
-      function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
-        if ( self.attributes.drag )
-          self.attributes.drag( self.attributes.dragScope )
-      }
+    function drag( event ) {
+      event = event || window.event;
+      event.preventDefault();
+      // new position
+      position1 = position3 - event.clientX;
+      position2 = position4 - event.clientY;
+      position3 = event.clientX;
+      position4 = event.clientY;
+      
+      node.style.top = node.offsetTop - position2  + "px";
+      node.style.left = node.offsetLeft - position1 + "px";
+      if ( attributes.drag )
+        attributes.drag( attributes.dragScope ) // call user provided
+    }
 
-      function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-        if ( self.attributes.dragClose ) 
-          self.attributes.dragClose( self.attributes.dragScope );
-      }
+    function closeDrag() {
+      // on the release
+      document.onmouseup = null; // remove event listeners
+      document.onmousemove = null;
+
+      if ( attributes.dragClose ) // call user provided
+        attributes.dragClose( attributes.dragScope );
     }
   }
   /**
