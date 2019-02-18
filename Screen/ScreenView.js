@@ -13,18 +13,19 @@
  * ScreenView is the actual tree being played out.
  * 
  * For example:
- *    Html  <- Document
- *     |
- *    body
- *     |
- *   wrapper <- ScreenView
- *    / \
- *   A   B <- Node.js
- *  / \
- * D   E
+ *     Dom -> Html  <- Document
+ *             |
+ *     Dom -> body
+ *             |
+ *   Node -> wrapper 
+ *            / \
+ *   Node -> A   B <- Node
+ *          / \
+ * Node -> D   E <- Node
  *
  * The advantage of this is that you can add children to a specific id/class.
  * However it will be searched through the root node and not the body.
+ *
  */
 
 
@@ -37,23 +38,71 @@ export default class ScreenView {
    *
    * @param {Node} rootNode - the rootNode of the screenView
    * this will add this node to the body.
+   * @param {object} htmlStyle @optional, you have the chance to overide the 
+   * style for the html
+   * @param {object} bodyStyle @optional, you have the change the overide the 
+   * style for the body
+   *
    */
-  constructor( rootNode ){
+  constructor( rootNode, htmlStyle, bodyStyle ){
+    // provide the default for the screen ( style html )
+    var html = {
+      maxWidth: "100%",
+      overflow: "hidden",
+      height: "100%",
+      maxHeight: "100%",
+      maxWidth: "100%",
+      margin: "0",
+      background: "rgb( 238 , 239 , 241 )",
+      backgroundColor: "hsl(220, 1.24, 94.51)",
+    };
+    // now overide with the user provided styling if they choose to overide
+    var htmlStyleOveride = { ...html, ...htmlStyle };
+    // provide the default for the screen ( style body )
+    var body = {
+      maxWidth: "100%",
+      overflow: "hidden",
+      height: "100%",
+      maxHeight: "100%",
+      maxWidth: "100%",
+      background: "none",
+      padding: "0",
+      margin: "0",
+      lineHeight: "1.5",
+      color: "#333",
+    };
+    // now overide with the user provided styling if they choose to overide
+    var bodyStyleOveride = { ...body, ...htmlStyle };
+
+    // @private
+    this.bodyNode = document.getElementsByTagName( "body" )[ 0 ];
+    this.htmlNode = document.getElementsByTagName( "html" )[ 0 ];
+    // now set the styles
+    setStyle( this.bodyNode, bodyStyleOveride );
+    setStyle( this.htmlNode, htmlStyleOveride );
+    
+    function setStyle( node, style ) {
+      let keys = Object.keys( style );
+      for ( var i = 0; i < keys.length; i++ ){
+        node.style[ keys[ i ] ] = style[ keys[ i ] ];
+      }
+    }
     // @public
     this.rootNode = rootNode;
-    // get the body
-    // @private
-    this.body = document.getElementsByTagName( "body" )[ 0 ];
+
     rootNode.parent = this.body;
-    this.body.appendChild( rootNode.DOMobject ); // this will display it
+
+    this.bodyNode.appendChild( rootNode.DOMobject ); // this will display it
   } 
   /**
    * Delete the bond between the body and the root Node
    * @public
-   * This will remove it from the display ( the nodes itself wont be disposed! )
+   * This will remove it from the display ( the nodes itself wont be disposed )
    */
   dispose(){
+    // remove its children
     this.body.innerHTML = "";
+    // break the bond
     this.rootNode.parent = null;
   }
   /**
@@ -103,18 +152,31 @@ export default class ScreenView {
    * @private
    * @recursive
    * @return {array}  the root order representation of the tree
+   * For example if the screen view is:
+   *       A 
+   *      / \
+   *     B   C 
+   *   / | \
+   *  D  E  F
+   * then the root order is [ A, B, C, D, E, F ]
+   *
    */
   get rootOrderList(){
-    let arr = [];
-    arr.push( this.rootNode )
-    if ( !this.rootNode.children.length ) return arr;
+    // the result array
+    let result = [];
+    result.push( this.rootNode );
+    // automatically push the root node
+
+    // make sure there are children
+    if ( !this.rootNode.children.length ) return result;
+     
     rootHelper( this.rootNode )
     function rootHelper( node ){
-      if ( node.children.length === 0 ) arr.push( node );
+      if ( node.children.length === 0 ) result.push( node );
       for ( var i = 0; i < node.children.length; i++ ){
         rootHelper( node.children[ i ] );
       }
     }
-    return arr;
+    return result;
   }
 }
