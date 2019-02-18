@@ -79,7 +79,9 @@ export default class ImageTextButton {
         });   
       }
     }
+    // @public
     this.attributes = attributes;
+    // @public
     this.node = this.button;
   }
 }

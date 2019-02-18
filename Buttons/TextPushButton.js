@@ -73,7 +73,7 @@ export default class TextPushButton {
       // the function called on the click <function> (caller's scope)
       onclick: null,
       // the function called on the hover <function> (caller's scope)
-      onhover: null
+      onhover: null,
 
     }
     // merge them with options overriding
@@ -104,7 +104,7 @@ export default class TextPushButton {
     }
     // on click listener
     this.button.addEventListener( "mousedown", function(){
-      if ( attributes.listener ) attributes.listener();
+      if ( attributes.onclick ) attributes.onclick();
     } );
     /**
      * The reason for a seperate node for text is that the user can provide
