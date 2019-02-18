@@ -8,6 +8,8 @@ Learning App
 
 "Learning App" is an educational platform in HTML5, by [Brandon Li](https://github.com/brandonLi8), which includes a calculator, planner, and multiple interactive simulations.
 
+**note the simulations are both under development and haven't been published yet**
+
 ### Try it!
 <a href="https://brandonli8.github.io/Learning_App/dashboard" target="_blank">Visit the App</a>.
 
