@@ -82,10 +82,10 @@ export default class TextPushButton {
       class: null,
 
       // {function} the function called on the click 
-      onclick: null,
+      listener: null,
 
       // {function} the function called on the hover 
-      onhover: null,
+      hoverListener: null,
 
       // {function} the function called on the mouseout of the hover
       mouseout: null,
@@ -94,7 +94,7 @@ export default class TextPushButton {
       scope: null,
 
     }
-
+    var self = this;
     // merge them with options overriding
     let attributes = { ...defaults, ...options };
 
@@ -108,32 +108,32 @@ export default class TextPushButton {
     this.button = new Node({
       style: attributes.style
     });
+
     // add hover styling ( you can call animations from your css in here )
-    this.button.addEventListener( "mouseover", _ => 
-      hover( this, attributes.scope )
-    );
-
-    this.button.addEventListener( "mouseout", _ =>
-      unHover( this, attributes.scope  ) 
-    );
-
-    function hover( self, scope ){
+    this.button.addEventListener( "mouseover", function( event ){ 
+      event.stopPropagation();
       self.button.setStyle( attributes.hoverStyle );
       self.textNode.setStyle( attributes.textHoverStyle );
 
-      if ( attributes.onhover ) attributes.onhover( scope )
-    }
+      if ( attributes.hoverListener )
+        attributes.hoverListener( attributes.scope )
 
-    function unHover( self, scope ){
+    } );
+
+    this.button.addEventListener( "mouseout", function( event ){ 
+      event.stopPropagation();
       self.button.setStyle( attributes.style );
       self.textNode.setStyle( attributes.textStyle )
 
-      if ( attributes.mouseout ) attributes.mouseout( scope )
-    }
+      if ( attributes.mouseout ) attributes.mouseout( attributes.scope )
+
+    } );
 
     // on click listener
-    this.button.addEventListener( "mousedown", function(){
-      if ( attributes.onclick ) attributes.onclick( attributes.scope );
+    this.button.addEventListener( "mousedown", function( event ){
+      event.stopPropagation()
+      if ( attributes.listener ) 
+        attributes.listener( attributes.scope );
     } );
     
 
@@ -151,4 +151,7 @@ export default class TextPushButton {
     // {node} @public the actual button
     this.node = this.button;
   }
+
 }
+
+

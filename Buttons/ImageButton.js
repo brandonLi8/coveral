@@ -8,8 +8,8 @@
  *
  *
  * ## Description:
- * This well create a tree that you can add to your tree which represents a 
- * button that contains a image.
+ * This well create a tree that you can add to your Screenview which represents 
+ * a button that contains a image.
  *
  * A Node that takes a image, its hover image (optional), and text (optional)
  * that is a button. The user will provide the styling and the listener function
@@ -75,7 +75,12 @@ export default class ImageTextButton {
 
     }
     // merge them with options overriding
-    const attributes = { ...defaults, ...options }; 
+    const attributes = { ...defaults, ...options };
+
+    // merge the styles
+    attributes.hoverStyle = { ...defaults.hoverStyle, ...options.hoverStyle } 
+ 
+    var self = this;
 
     // {node} @public - the actual button node
     this.button = new Node({
@@ -86,37 +91,36 @@ export default class ImageTextButton {
 
     // add hover event listener
     if ( attributes.hover ){
-      this.button.addEventListener( "mouseover", _ => 
-        hover( this.button, attributes.scope ) 
-      );
+      this.button.addEventListener( "mouseover", function( event ){
+        event.stopPropagation();
+        self.button.setStyle( attributes.hoverStyle )
+        // call the user provided method with the scope
+        if ( attributes.hoverListener ) 
+          attributes.hoverListener( attributes.scope );
+
+        // change the image
+        if ( !attributes.hover ) return;
+        self.button.DOMobject.src = attributes.hover;
+      } );
     }
 
-    let button = this.button;
 
     // change back to original src on the mouse out
-    this.button.addEventListener( "mouseout", function( _ ){
-      button.DOMobject.src = attributes.src;
+    this.button.addEventListener( "mouseout", function( event ){
+      event.stopPropagation();
+      self.button.setStyle( attributes.style );
+
+      self.button.DOMobject.src = attributes.src;
       // call the user provided method with the scope
       if ( attributes.mouseout ) attributes.mouseout( attributes.scope );
     }
     );
 
-    // function called on the hover
-    function hover( node, scope ){
-      node.setStyle( attributes.hoverStyle )
-
-      // call the user provided method with the scope
-      if ( attributes.hoverListener ) attributes.hoverListener( scope );
-
-      // change the image
-      if ( !attributes.hover ) return;
-      node.DOMobject.src = attributes.hover;
-      if ( attributes.listener ){
-        node.addEventListener( "mousedown", function( _ ){
-          attributes.listener( scope ) 
-        });   
-      }
-    }
+    // add the click listener
+    this.button.addEventListener( "mousedown", function( event ){
+      event.stopPropagation();
+      attributes.listener( attributes.scope ) 
+    }); 
 
     // @public {object} - the attributes (options)
     // you can overide it to change attributes (animations, images, etc.)
