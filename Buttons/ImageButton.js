@@ -6,18 +6,24 @@
  * Created on 2/13/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * Supported for DOM, inheritance of Node
  *
  * ## Description:
+ * This well create a tree that you can add to your tree which represents a 
+ * button that contains a image.
+ *
  * A Node that takes a image, its hover image (optional), and text (optional)
  * that is a button. The user will provide the styling and the listener function
  * when the button is pressed
  *
+ *  img <- root ( the actual button)
+ *
  */
 
+"use strict";
+// modules
 import Node from "../Screen/Node.js";
 
-"use strict";
+
     
 export default class ImageTextButton {
   /**
@@ -25,52 +31,84 @@ export default class ImageTextButton {
    * @public
    * @constructor
    *
-   * @param {object} options - options {
-   *  style: null - the style of the button {object} 
-   *  id: null, // the id of the node
-   *  class: null, // the class of the node
-   *  src: null, // the string of the src of the image {string}
-   *  hover: null, the src of the image {string}
-   *  listener: null, the function called when clicked on 
-   * }
-   * @return {Node} the node containing all the attributes of a button
+   * @param {object} options - optionto overide the defauls
+   * visit const defaults to see the defaults
+   * 
+   * to get the node just use the .node property: ex:
+   * let button = new ImageButton({}).node
    */
   constructor( options ){
     // provide the defaults
     const defaults = {
-      style: null,
+
+      // {object} this style of the button, usually for positioining it 
+      style: null, // @optional
+
+      // {string} the id of the button@optional
       id: null, 
+
+      // {string} the class of the button @optional
       class: null,
-      src: null,
+
+      // {string} the src of the button @required!
+      src: null, 
+
+      // {string} the src of the button @optional
       hover: null, 
+
+      // {function} called on the hover @optional
+      hoverListener: null,
+
+      // {object} - the style on the hover @optional
+      hoverStyle: {
+        cursor: "pointer"
+      },
+
+      // {function} called on the mouseout of the button @optional
+      mouseout: null,
+
+      // {function} called on the click of the button @optional
       listener: null,
-      scope: null // the scope you want on the call of the click
+
+      // the scope you want on the call of the click (provided as the first arg)
+      scope: null // also on hoverListener
+
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options }; 
+
+    // {node} @public - the actual button node
     this.button = new Node({
       type: "img",
-      style: attributes.style
+      style: attributes.style,
+      src: attributes.src,
     });
-    // set the src
-    if ( attributes.src ){
-      this.button.DOMobject.src = attributes.src;
-      this.button.addEventListener( "mouseout", _ =>
-        this.button.DOMobject.src = attributes.src 
-      );
-    }
-    // hover effect
+
+    // add hover event listener
     if ( attributes.hover ){
       this.button.addEventListener( "mouseover", _ => 
         hover( this.button, attributes.scope ) 
       );
     }
 
+    let button = this.button;
+
+    // change back to original src on the mouse out
+    this.button.addEventListener( "mouseout", function( _ ){
+      button.DOMobject.src = attributes.src;
+      // call the user provided method with the scope
+      if ( attributes.mouseout ) attributes.mouseout( attributes.scope );
+    }
+    );
+
+    // function called on the hover
     function hover( node, scope ){
-      // no matter what, change the cursor
-      node.setStyle({
-        cursor: "pointer"
-      })
+      node.setStyle( attributes.hoverStyle )
+
+      // call the user provided method with the scope
+      if ( attributes.hoverListener ) attributes.hoverListener( scope );
+
+      // change the image
       if ( !attributes.hover ) return;
       node.DOMobject.src = attributes.hover;
       if ( attributes.listener ){
@@ -79,9 +117,13 @@ export default class ImageTextButton {
         });   
       }
     }
-    // @public
+
+    // @public {object} - the attributes (options)
+    // you can overide it to change attributes (animations, images, etc.)
     this.attributes = attributes;
-    // @public
+
+    // @public {node} - the actual node of the object
     this.node = this.button;
   }
+
 }
