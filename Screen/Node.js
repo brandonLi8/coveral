@@ -324,7 +324,7 @@ export default class Node {
    * this can be expressed in rem, px, % etc.
    * @param duration {number} milliseconds of the duration of the animation
    */
-  moveVertically( amount ){
+  moveVertically( amount, duration ){
     return this.newAnimation({
       animation: [
         { transform: "translateY( 0 )" },
@@ -355,8 +355,8 @@ export default class Node {
     });
   }
   /**
-   * Animate by moving horizontally
-   * @param {string} changeX - the amount to change x in
+   * Animate by moving horizontally ( jiggle )
+   * @param {number} duration - the time in ms of the animation
    */
   jiggle( duration ){
     return this.newAnimation({
@@ -373,8 +373,8 @@ export default class Node {
     });
   }
   /**
-   * inlarge the node
-   * @param {string} changeX - the amount to change x in
+   * enlarge the node
+   * @param {number} duration - the time in ms of the animation
    */
   enlarge( duration ){
     return this.newAnimation({
@@ -391,6 +391,7 @@ export default class Node {
   /**
    * add a border around the sides
    * @param {string} changeX - the amount to change x in
+   * Still in development!
    */
   addBorderAnimation( duration, padding ){
     return this.newAnimation({
