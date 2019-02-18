@@ -9,7 +9,6 @@
  * Create a tree with the beginning nodes filled ( background, footer etc.)
  */
 
-import ScreenView from "../Screen/ScreenView.js";
 import Node from "../Screen/Node.js";
 import ImageButton from "../Buttons/ImageButton.js";
 import TextPushButton from "../Buttons/TextPushButton.js";
@@ -28,9 +27,11 @@ export default class Sim {
    *  home: {string} - the url to the home page (usually the sim page)
    *  author: {string} - the author of the sim
    * }
+   *
    */
    constructor( options ){
-    // the whole screen
+
+    // @public {node} the whole screen
     this.simWrapper = new Node({
       id: "sim_wrapper",
       style: {
@@ -40,7 +41,8 @@ export default class Sim {
         background: "url(" + options.backgroundSrc + ")"
       }
     });
-    // just the sim
+
+    // @public {node} just the Sim Node
     this.sim = new Node({
       id: "sim",
       style: {
@@ -50,7 +52,8 @@ export default class Sim {
         position: "relative",
       }
     });
-    // the footer at the bottom
+
+    // @public {node} the footer at the bottom
     this.footer = new Node({
       id: "footer",
       style: {
@@ -70,9 +73,11 @@ export default class Sim {
         boxShadow: "0 -3px 0 0 rgba( 50, 50, 50, 0.2 )"
       }
     });
+
+    // append the chlidren to the base node
     this.simWrapper.appendChildren([ this.sim, this.footer ])
 
-    // the home Button
+    // @public {ImageButton} the home Button
     this.homeButton = new ImageButton({
       style: {
         width: "60px",
@@ -85,17 +90,22 @@ export default class Sim {
         window.open( options.home, "_self" )
       },
     }).node;
-    // add a animation
+    // add a animation that enlarges the home button
     var enlargeHomeButton = this.homeButton.enlarge( 200 );
+    // don't play
     enlargeHomeButton.pause();
-    this.homeButton.addEventListener( "mouseover", function( _ ){
-      enlargeHomeButton.play()
-    })
-    this.homeButton.addEventListener( "mouseout", function( _ ){
-      enlargeHomeButton.cancel()
-    })
 
-    // the title of the sim
+    this.homeButton.addEventListener( "mouseover", function( _ ){
+      // play the enlarge on mouse over
+      enlargeHomeButton.play()
+    });
+
+    this.homeButton.addEventListener( "mouseout", function( _ ){
+      // reset on the mouse out
+      enlargeHomeButton.cancel()
+    });
+
+    // @public {node} the title of the sim
     this.title = new Node({
       text: options.title,
       style: {
@@ -106,7 +116,8 @@ export default class Sim {
         fontFamily: "Courier"
       }
     })
-    // the author of the sim
+
+    // @public {node} the author of the sim
     this.author = new Node({
       text: options.author,
       style: {
@@ -116,13 +127,13 @@ export default class Sim {
         right: "130px",
         fontFamily: "Courier"
       }
-    })
-    this.footer.appendChildren([ this.homeButton, this.title, this.author ])
+    });
 
-    this.screenView = new ScreenView( this.simWrapper )
-    this.screenView.dispose();
+    // add the author and the home button to the footer
+    this.footer.appendChildren([ this.homeButton, this.title, this.author ]);
   }
- /**
+  /**
+   * add a Control Panel
    * @param {object} options - the style of the control panel itself 
    * @return {node} - the control panel
    */
@@ -146,22 +157,27 @@ export default class Sim {
     this.sim.addChild( controlPanel )
     return controlPanel;
   } 
+
   /**
+   * add a text button
+   * @param {node} parent- the parent of the new text button
    * @param {object} options - the options for the button (@overide)
-   * @return {node} - the button
    */
-  addTextButton( options ){
-    // the home Button
-    var button = new TextPushButton( options );
-    return button;
+  addTextButton( parent, options ){
+    // add a text button the the parent
+    var newChild = new TextPushButton( options );
+    parent.addChild( newChild );
+    return newChild; 
   }
   /**
+   * add a image button
+   * @param {node} parent- the parent of the new image button
    * @param {object} options - the options for the button (@overide)
-   * @return {node} - the button
    */
-  addImageButton( options ){
-    // the home Button
-    var button = new ImageButton( options );
-    return button;
+  addImageButton( parent, options ){
+    // add a image button to the parent
+    var newChild = new ImageButton( options ).node
+    parent.addChild( newChild );
+    return newChild;
   }
 }

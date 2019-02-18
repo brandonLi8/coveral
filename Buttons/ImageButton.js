@@ -44,7 +44,7 @@ export default class ImageTextButton {
       src: null,
       hover: null, 
       listener: null,
-      scope: null // the scope you want on the call
+      scope: null // the scope you want on the call of the click
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options }; 
@@ -63,9 +63,9 @@ export default class ImageTextButton {
     if ( attributes.hover ){
       this.button.addEventListener( "mouseover", _ => 
         hover( this.button, attributes.scope ) 
-  
       );
     }
+
     function hover( node, scope ){
       // no matter what, change the cursor
       node.setStyle({
