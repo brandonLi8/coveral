@@ -165,7 +165,7 @@ export default class Sim {
    */
   addTextButton( parent, options ){
     // add a text button the the parent
-    var newChild = new TextPushButton( options );
+    var newChild = new TextPushButton( options ).node;
     parent.addChild( newChild );
     return newChild; 
   }
