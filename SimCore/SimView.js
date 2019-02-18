@@ -1,17 +1,28 @@
 /**
- * Learning App
- * SimView.js
+ * Portfolio
+ * CheckButton.js
  *
  * @author Brandon Li <brandon.li820@icloud.com> 
- * Created on 2/13/19
+ * Created on 2/18/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
- * Create a tree with the beginning nodes filled ( background, footer etc.)
+ *
+ * ## Description:
+ * This well create a tree that you can add to your tree which represents a 
+ * button that contains a image.
+ *
+ * A Node that takes a image, its hover image (optional), and text (optional)
+ * that is a button. The user will provide the styling and the listener function
+ * when the button is pressed
+ *
+ *  img <- root ( the actual button)
+ *
  */
 
 import Node from "../Screen/Node.js";
 import ImageButton from "../Buttons/ImageButton.js";
 import TextPushButton from "../Buttons/TextPushButton.js";
+import CheckButton from "../Buttons/CheckButton.js";
 
 
 "use strict";
@@ -167,6 +178,17 @@ export default class Sim {
     // add a text button the the parent
     var newChild = new TextPushButton( options ).node;
     parent.addChild( newChild );
+    return newChild; 
+  }
+   /**
+   * add a text button
+   * @param {node} parent- the parent of the new text button
+   * @param {object} options - the options for the button (@overide)
+   */
+  addCheckButton( parent, options ){
+    // add a text button the the parent
+    var newChild = new CheckButton( options );
+    parent.addChild( newChild.container );
     return newChild; 
   }
   /**
