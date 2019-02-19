@@ -56,12 +56,10 @@ export default class Button {
       // check for inverse trig first
       if ( precedence.isFunction( 
               str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
-        
-        if ( str.substring( carrotPosition - 7, carrotPosition - 1 ).length ){  
-          return removeFunction( str, carrotPosition, 3 ) 
-        }
+      
         return removeFunction( str, carrotPosition, 6 ) 
       }
+
       else if ( precedence.isFunction( 
                   str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){  
         return removeFunction( str, carrotPosition, 3 ) 
@@ -101,7 +99,7 @@ export default class Button {
       try {
         if ( str.includes( "rnd:" ) ){
           var newRnd = parseInt( str.substring( 4, str.length ) );
-          if ( Number.isInteger( newRnd ) ){
+          if ( Number.isInteger( newRnd ) && newRnd < 30 && newRnd > 0 ){
             return newRnd;
           }
           else throw new Error( "Syntax on RND" );
