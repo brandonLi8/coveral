@@ -28,7 +28,7 @@ export default class controlPanel {
         new Button( "10^", "c_button" ) ],
       [
         new Button( "rad", "c_button" ),
-        new Button( "10^", "c_button" ),
+        new Button( "2^", "c_button" ),
         new Button( "sin", "c_button" ),
         new Button( "cos", "c_button" ),
         new Button( "tan", "c_button" ) ],
