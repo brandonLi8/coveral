@@ -67,7 +67,8 @@ export default class ObservableVariable {
          */
         set: function( newValue ) {
           val = newValue;
-          this.listener();
+          // call the listener with the newValue as the parameter
+          if ( this.listener ) this.listener( newValue );
         }
 
     } );
