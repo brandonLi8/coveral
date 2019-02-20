@@ -65,44 +65,56 @@
  *
  * ## Events
  * The user must provide the functions when a event is triggered.
+ * Use the addEventListener method. Event types are the same as the default
+ * document events ie mousedown, keydown, etc.
+ *
  */
-
 
 "use strict";
 export default class Node {
   /**
-   * Creates a Node with options.
+   * Creates a Node with options that can overide the defaults.
+   * The defaults are const defaults = {...
    * @public
    * @constructor
    *
    * @param {Object} [options] - Object with its attributes.
-   * information of the default options is inside (const defualts ...)
+   * 
    */
   constructor( options ){
+    // alias self
+    var self = this;
+
     // the defualts 
     const defaults = {
-      type: "div", // @optional
-      id: null, // @optional
-      text: null, // @optional null means no text, otherwise use a string
+      // {string} @optional
+      type: "div", 
+      // {string} @optional
+      id: null, 
+      // {string} @optional null means no text, otherwise use a string
+      text: null, 
+      // {string} @optional null means no text, otherwise use a string
       innerHTML: null,
+      // {string} @optional the class of the node.
       class: null,
+      // {object} @optional style the node
       style: null,
-      src: null, // only on type "img"
-      draggable: false, // is it draggable?
+      // ONLY on type "img" @optional {string}
+      src: null, 
+      // {boolean} is it draggable?
+      draggable: false, 
 
-      // only on draggable = true, function called on drag
+      // {function} only on draggable = true, function called on drag
       drag: null, 
 
-      // only on draggable = true, function called on drag release
-      dragClose: null,
+      // {function} only on draggable = true, function called on drag release
+      dragClose: null
 
-      // the scope that is passed on drag/dragClose 
-      dragScope: null, 
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options }; 
     // create the type of child
-    // @Public {DOM} - the actual object for html
+    // @public {DOM} - the actual object for html
     this.DOMobject = document.createElement( attributes.type ); 
     // set attributes
     if ( attributes.id ){ 
@@ -116,21 +128,33 @@ export default class Node {
       var textNode = document.createTextNode( attributes.text ); 
       this.DOMobject.appendChild( textNode ); 
     }
+    // create the innerHTML
     if ( attributes.innerHTML ){
       this.DOMobject.innerHTML = attributes.innerHTML;
     }
+    // set style
     if ( attributes.style ){
       this.setStyle( attributes.style )
     }
-    // create instance data
+    
+    // @public {array}
     this.children = [];
+
+    // @public {node}
     this.parent = null;
+
+    // on image nodes set the image if given
     if ( attributes.src && attributes.type === "img" ){
       this.DOMobject.src = attributes.src;
     }
+
+    // @public {object} the attributes to the node. This will not listen to
+    // in class id etc..
     this.attributes = attributes;
+
     if ( attributes.draggable && attributes.draggable === true ) 
       this.setupDrag();
+    
   }
   /**
    * Sets up the node to be draggable.
