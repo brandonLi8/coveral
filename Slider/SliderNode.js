@@ -111,7 +111,7 @@ export default class Slider{
     attributes.rightStyle = { ...defaults.rightStyle, ...options.rightStyle };
     attributes.sliderStyle = { ...defaults.sliderStyle, ...options.sliderStyle }
     attributes.thumbStyle = { ...defaults.thumbStyle, ...options.thumbStyle };
-
+    this.attributes = attributes;
     /**
      * The Slider Background: the container containing the entire slider element
      * with the value and the title.
@@ -191,20 +191,8 @@ export default class Slider{
       style: attributes.thumbStyle,
 
     })  
-    /**
-     * shift the thumb based on startingValue
-     */ 
-    let percentage = ( parseFloat( attributes.startingValue ) 
-                      - attributes.lowerBound ) 
-                      / ( attributes.upperBound - attributes.lowerBound ) 
-                      * 100;
-    thumb.setStyle({
-      marginLeft : "calc( -" 
-                    + attributes.thumbStyle.width 
-                    + " * 0.5 + " 
-                    + percentage 
-                    + "% )"
-    });
+    this.thumb = thumb;
+  
     slider.addChild( thumb )
 
 
@@ -274,7 +262,11 @@ export default class Slider{
     }
     this.valueNode = value;
     this.slider = sliderBackground;
-    
+
+    /**
+     * shift the thumb based on startingValue
+     */ 
+    this.setValue( attributes.startingValue )  
   }
   /**
    * @return {node} - the actual element node
@@ -287,6 +279,25 @@ export default class Slider{
    */ 
   get value(){
     return this.valueNode.DOMobject.innerHTML;
+  }
+  /**
+   * change the value to a slider
+   * @param {number || string} the new value
+   */
+  setValue( value ){
+    let percentage = ( parseFloat( value ) 
+                      - this.attributes.lowerBound ) 
+                      / ( this.attributes.upperBound 
+                        - this.attributes.lowerBound ) 
+                      * 100;
+    this.thumb.setStyle({
+      marginLeft : "calc( -" 
+                    + this.attributes.thumbStyle.width 
+                    + " * 0.5 + " 
+                    + percentage 
+                    + "% )"
+    });
+    this.valueNode.DOMobject.innerHTML = value + " " + this.attributes.unit;
   }
 }
 
