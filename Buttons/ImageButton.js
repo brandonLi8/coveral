@@ -39,6 +39,11 @@ export default class ImageTextButton {
    */
   constructor( options ){
     // provide the defaults
+    /**
+     * Note: for listeners to the imageTextButton ff you want to use your own 
+     * scope on the listener create a alias to this with self ie. 
+     * var self = this and use self as a refrence to yourself.
+     */
     const defaults = {
 
       // {object} this style of the button, usually for positioining it 
@@ -70,9 +75,6 @@ export default class ImageTextButton {
       // {function} called on the click of the button @optional
       listener: null,
 
-      // the scope you want on the call of the click (provided as the first arg)
-      scope: null // also on hoverListener
-
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options };
@@ -80,6 +82,7 @@ export default class ImageTextButton {
     // merge the styles
     attributes.hoverStyle = { ...defaults.hoverStyle, ...options.hoverStyle } 
  
+    // alias self for listeners
     var self = this;
 
     // {node} @public - the actual button node
@@ -92,11 +95,13 @@ export default class ImageTextButton {
     // add hover event listener
     if ( attributes.hover ){
       this.button.addEventListener( "mouseover", function( event ){
+        // stop propagation to children
         event.stopPropagation();
-        self.button.setStyle( attributes.hoverStyle )
+
+        self.button.setStyle( attributes.hoverStyle );
         // call the user provided method with the scope
         if ( attributes.hoverListener ) 
-          attributes.hoverListener( attributes.scope );
+          attributes.hoverListener();
 
         // change the image
         if ( !attributes.hover ) return;
@@ -112,14 +117,14 @@ export default class ImageTextButton {
 
       self.button.DOMobject.src = attributes.src;
       // call the user provided method with the scope
-      if ( attributes.mouseout ) attributes.mouseout( attributes.scope );
+      if ( attributes.mouseout ) attributes.mouseout();
     }
     );
 
     // add the click listener
     this.button.addEventListener( "mousedown", function( event ){
       event.stopPropagation();
-      attributes.listener( attributes.scope ) 
+      attributes.listener() 
     }); 
 
     // @public {object} - the attributes (options)

@@ -43,6 +43,12 @@ export default class CheckButton{
    */
   constructor( options ){
     // provide the defaults
+    /**
+     * Note: for listeners to the check if you want to use your own 
+     * scope on the listener create a alias to this with self ie. 
+     * var self = this and use self as a refrence to yourself.
+     * 'this' inside the listeners will be the checkButton
+     */
     const defaults = {
       // {bool} true for switch on, false for switch off
       switch: false,
@@ -111,10 +117,7 @@ export default class CheckButton{
       mouseout: null,
 
       // {function} called on the click of the button @optional
-      listener: null,
-
-      // the scope you want on the call of the click (provided as the first arg)
-      scope: null // also on hoverListener
+      listener: null, 
 
     }
     // merge them with options overriding
@@ -160,15 +163,17 @@ export default class CheckButton{
     this.button.addEventListener( "mouseover", function( event ) {
       event.stopPropagation();
       self.button.setStyle( attributes.hoverStyle )
-      // call the user provided method with the scope
+      // call the user provided method 
       if ( attributes.hoverListener ) 
-        attributes.hoverListener( attributes.scope ); 
+        attributes.hoverListener(); 
     } );
     
     // hover end
     this.button.addEventListener( "mouseout", function( event ){
       event.stopPropagation();
-      if ( attributes.mouseout ) attributes.mouseout( attributes.scope );
+      // call user provided method
+      if ( attributes.mouseout ) attributes.mouseout();
+      // reset the style
       self.button.setStyle( attributes.buttonStyle )
     } );
 
@@ -176,6 +181,7 @@ export default class CheckButton{
     this.button.addEventListener( "mousedown", function( event ){
       event.stopPropagation();
       self.isSwitched = !self.isSwitched;
+      // switch the check
       if ( self.isSwitched ){
         self.check.setStyle({ display: "" });
       }
@@ -183,8 +189,9 @@ export default class CheckButton{
         self.check.setStyle({ display: "none" })
       }
       if ( attributes.listener )
-        attributes.listener( attributes.scope );
-    });   
+        attributes.listener();
+    }); 
+      
     // add the check to the box
     this.button.addChild( this.check )
 

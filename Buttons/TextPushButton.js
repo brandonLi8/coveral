@@ -42,6 +42,12 @@ export default class TextPushButton {
    */
   constructor( options ){
     // provide the defaults 
+    /**
+     * Note: for listeners to the textPush ff you want to use your own 
+     * scope on the listener create a alias to this with self ie. 
+     * var self = this and use self as a refrence to yourself.
+     * this is a refrence to the textPushButton
+     */
     let defaults = {
 
       // {string} the text on the node @optional
@@ -90,9 +96,6 @@ export default class TextPushButton {
       // {function} the function called on the mouseout of the hover
       mouseout: null,
 
-      // the scope as the first arg of the oncick and the onhover
-      scope: null,
-
     }
     var self = this;
     // merge them with options overriding
@@ -116,7 +119,7 @@ export default class TextPushButton {
       self.textNode.setStyle( attributes.textHoverStyle );
 
       if ( attributes.hoverListener )
-        attributes.hoverListener( attributes.scope )
+        attributes.hoverListener()
 
     } );
 
@@ -125,7 +128,7 @@ export default class TextPushButton {
       self.button.setStyle( attributes.style );
       self.textNode.setStyle( attributes.textStyle )
 
-      if ( attributes.mouseout ) attributes.mouseout( attributes.scope )
+      if ( attributes.mouseout ) attributes.mouseout()
 
     } );
 
@@ -133,7 +136,7 @@ export default class TextPushButton {
     this.button.addEventListener( "mousedown", function( event ){
       event.stopPropagation()
       if ( attributes.listener ) 
-        attributes.listener( attributes.scope );
+        attributes.listener();
     } );
     
 
