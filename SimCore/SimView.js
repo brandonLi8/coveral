@@ -49,7 +49,8 @@ export default class Sim {
         height: "100%",
         width: "100%",
         position: "relative",
-        background: "url(" + options.backgroundSrc + ")"
+        margin: "0",
+        padding: "0"
       }
     });
 
@@ -60,10 +61,20 @@ export default class Sim {
         margin: "0",
         height: "92%", // the footer is the remaining 8%
         width: "100%",
-        position: "relative",
+        position: "absolute",
+        bottom: "8%",
       }
     });
 
+    this.imageNode = new Node({
+      type: "img",
+      src: options.backgroundSrc,
+      style: {
+        top: "0",
+        position: "absolute",
+      }
+    })
+    this.sim.addChild( this.imageNode )
     // @public {node} the footer at the bottom
     this.footer = new Node({
       id: "footer",
@@ -75,7 +86,7 @@ export default class Sim {
         bottom: "0",
         left: "0",
         background: "#000",
-        position: "relative",
+        position: "absolute",
         display: "flex",
         justifyContent: "center",
         alignSelf: "center",
