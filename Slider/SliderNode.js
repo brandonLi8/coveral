@@ -97,7 +97,6 @@ export default class Slider{
         marginTop: "calc( -" + "20px" + " * 0.5"  + ")",
       },
       listener: null, // function called on change
-
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options };
@@ -266,7 +265,10 @@ export default class Slider{
     /**
      * shift the thumb based on startingValue
      */ 
-    this.setValue( attributes.startingValue )  
+    this.setValue( attributes.startingValue ) 
+
+    //@public the original value
+    this.originalStartingValue = attributes.startingValue;
   }
   /**
    * @return {node} - the actual element node
@@ -290,6 +292,7 @@ export default class Slider{
                       / ( this.attributes.upperBound 
                         - this.attributes.lowerBound ) 
                       * 100;
+    if ( percentage > 100 ) percentage = 100;
     this.thumb.setStyle({
       marginLeft : "calc( -" 
                     + this.attributes.thumbStyle.width 
