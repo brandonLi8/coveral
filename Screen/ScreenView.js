@@ -53,6 +53,7 @@ export default class ScreenView {
       maxHeight: "100%",
       maxWidth: "100%",
       margin: "0",
+      padding: "0",
       background: "rgb( 238 , 239 , 241 )",
       backgroundColor: "hsl(220, 1.24, 94.51)",
     };

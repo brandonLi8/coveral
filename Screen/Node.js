@@ -192,7 +192,7 @@ export default class Node {
       node.style.top = node.offsetTop - position2  + "px";
       node.style.left = node.offsetLeft - position1 + "px";
       if ( attributes.drag )
-        attributes.drag( attributes.dragScope ) // call user provided
+        attributes.drag() // call user provided
     }
 
     function closeDrag() {
@@ -201,7 +201,7 @@ export default class Node {
       document.onmousemove = null;
 
       if ( attributes.dragClose ) // call user provided
-        attributes.dragClose( attributes.dragScope );
+        attributes.dragClose();
     }
   }
   /**
