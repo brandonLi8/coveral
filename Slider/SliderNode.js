@@ -129,6 +129,7 @@ export default class Slider{
         alignItems: "center",
       }
     })
+    valueAndTitleContainer.setStyle( options.valueAndTitleContainerStyle )
 
     var value = new Node({
       text: attributes.startingValue + " " + attributes.unit,
