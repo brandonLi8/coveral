@@ -25,9 +25,9 @@
 "use strict";
 // modules
 import Node from "../Screen/Node.js";
+import ObservableVariable from "../Observe/ObservableVariable.js"
 
-
-export default class CheckButton{
+export default class CheckButton {
   /**
    * Creates the button node
    * @public
@@ -137,7 +137,16 @@ export default class CheckButton{
     // @private
     var self = this;
     // @public 
-    this.isSwitched = attributes.switch;
+    this.isSwitched = new ObservableVariable( attributes.switch );
+    this.isSwitched.setListener( function( newValue ){
+      if ( newValue ){
+        self.check.setStyle({ display: "" });
+      }
+      else {
+        self.check.setStyle({ display: "none" })
+      }
+    })
+    // when this is changed, the check mark (view) reflects it 
 
     // add a container
     // @public {node} the container of the label and the button
@@ -157,7 +166,7 @@ export default class CheckButton{
     })
 
     // set the defualt check state
-    if ( !this.isSwitched ) this.check.setStyle({ display: "none" });
+    if ( !this.isSwitched.value ) this.check.setStyle({ display: "none" });
 
     // hover effect
     this.button.addEventListener( "mouseover", function( event ) {
@@ -180,14 +189,7 @@ export default class CheckButton{
     // click
     this.button.addEventListener( "mousedown", function( event ){
       event.stopPropagation();
-      self.isSwitched = !self.isSwitched;
-      // switch the check
-      if ( self.isSwitched ){
-        self.check.setStyle({ display: "" });
-      }
-      else {
-        self.check.setStyle({ display: "none" })
-      }
+      self.isSwitched.value = !self.isSwitched.value;
       if ( attributes.listener )
         attributes.listener();
     }); 
