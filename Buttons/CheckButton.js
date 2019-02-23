@@ -166,7 +166,8 @@ export default class CheckButton {
     })
 
     // set the defualt check state
-    if ( !this.isSwitched.value ) this.check.setStyle({ display: "none" });
+    if ( !this.isSwitched.value === true ) 
+      this.check.setStyle({ display: "none" });
 
     // hover effect
     this.button.addEventListener( "mouseover", function( event ) {

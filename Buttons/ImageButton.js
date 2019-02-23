@@ -124,7 +124,7 @@ export default class ImageTextButton {
     // add the click listener
     this.button.addEventListener( "mousedown", function( event ){
       event.stopPropagation();
-      attributes.listener() 
+      if ( attributes.listener ) attributes.listener() 
     }); 
 
     // @public {object} - the attributes (options)
