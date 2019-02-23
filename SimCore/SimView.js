@@ -180,37 +180,4 @@ export default class Sim {
     return controlPanel;
   } 
 
-  /**
-   * add a text button
-   * @param {node} parent- the parent of the new text button
-   * @param {object} options - the options for the button (@overide)
-   */
-  addTextButton( parent, options ){
-    // add a text button the the parent
-    var newChild = new TextPushButton( options ).node;
-    parent.addChild( newChild );
-    return newChild; 
-  }
-   /**
-   * add a text button
-   * @param {node} parent- the parent of the new text button
-   * @param {object} options - the options for the button (@overide)
-   */
-  addCheckButton( parent, options ){
-    // add a text button the the parent
-    var newChild = new CheckButton( options );
-    parent.addChild( newChild.container );
-    return newChild; 
-  }
-  /**
-   * add a image button
-   * @param {node} parent- the parent of the new image button
-   * @param {object} options - the options for the button (@overide)
-   */
-  addImageButton( parent, options ){
-    // add a image button to the parent
-    var newChild = new ImageButton( options ).node
-    parent.addChild( newChild );
-    return newChild;
-  }
 }
