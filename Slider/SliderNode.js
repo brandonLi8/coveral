@@ -302,6 +302,13 @@ export default class Slider{
     });
     this.valueNode.DOMobject.innerHTML = value + " " + this.attributes.unit;
   }
+  /**
+   * reset to original value
+   */
+  reset(){
+    this.setValue( this.originalStartingValue )
+  }
+
 }
 
 
