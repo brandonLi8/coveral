@@ -188,7 +188,6 @@ export default class Node {
       position2 = position4 - event.clientY;
       position3 = event.clientX;
       position4 = event.clientY;
-      
       node.style.top = node.offsetTop - position2  + "px";
       node.style.left = node.offsetLeft - position1 + "px";
       if ( attributes.drag )
