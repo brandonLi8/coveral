@@ -45,7 +45,7 @@ export default class ObservableVariable {
     }
 
     // @private the method called on the variable change
-    this.listener = listener;
+    this.listeners = [ listener ];
 
     // create a variable to listen to
     var val = value; 
@@ -68,7 +68,10 @@ export default class ObservableVariable {
         set: function( newValue ) {
           val = newValue;
           // call the listener with the newValue as the parameter
-          if ( this.listener ) this.listener( newValue );
+          for ( var i = 0; i < this.listeners.length; i++ ){
+            if ( this.listeners[ i ] ) this.listeners[ i ]( newValue );
+          } 
+          
         }
 
     } );
@@ -93,7 +96,7 @@ export default class ObservableVariable {
       "listener must be type: function"
     );
 
-    this.listener = newListener;
+    this.listeners.push( newListener );
     
   }
   /**
