@@ -76,9 +76,10 @@ export default class CheckButton {
       // {object} this style of the button, usually for coloring
       // not recommended to change positioning
       checkStyle: {
-        fontSize: "35px",
+        fontSize: "30px",
         textAlign: "center",
-        marginLeft: "10px",
+        marginLeft: "6px",
+        marginBottom: "3px",
         userSelect: "none"
       },
 
