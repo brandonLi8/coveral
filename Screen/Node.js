@@ -310,6 +310,32 @@ export default class Node {
       this.DOMobject.style[ keys[ i ] ] = options[ keys[ i ] ];
     }
   }
+
+  /**
+   * Rotate the node
+   * @param {number} amount - how much to rotate it by
+   * @param {string} unit - the unit (rad || deg)
+   */
+  rotate( amount, unit ){
+    if ( unit === "rad" )
+      amount *= ( 180 / Math.PI ); // convert to degrees
+
+    this.setStyle({
+      webkitTransform: "rotate(" + amount + "deg)"
+    });
+    this.setStyle({
+      mozTransform: "rotate("+ amount +"deg)"
+    });
+    this.setStyle({
+      msTransform: "rotate("+ amount +"deg)"
+    });
+    this.setStyle({
+      oTransform: "rotate("+ amount +"deg)"
+    });
+    this.setStyle({
+      transform: "rotate("+ amount +"deg)"
+    });
+  }
   // **ANIMATIONS**
 
   /**
