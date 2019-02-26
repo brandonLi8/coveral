@@ -46,7 +46,8 @@ export default class Vector {
         bottom: "4%",
         left: "40%",
       },
-      percentArrow: 20, // {number} the percent of the vector that is arrow
+      arrowLength: 20, // {number} the length of the arrow in pixels
+      precentStem: 50, // {number} the percent the stem is on the total height
     }
     this.attributes = { ...defaults, ...options }
     this.attributes.position = { ...defaults.position, ...options.position }
@@ -59,8 +60,7 @@ export default class Vector {
         height: attributes.height + "px",
         width: attributes.length + "px",
         
-
-        border: "2px solid red",
+        display: "flex"
       },
     })
 
@@ -69,26 +69,48 @@ export default class Vector {
         width: "0",
         height: "0",
         borderTop:  attributes.height / 2 + "px solid transparent",
-        borderLeft: attributes.length
-                    * attributes.percentArrow 
-                    / 100 
-                    + "px solid " + attributes.color,
+        borderLeft: attributes.arrowLength + "px solid " + attributes.color,
         borderBottom:  attributes.height / 2 + "px solid transparent",
       }
     })
 
-    this.container.appendChildren([ this.arrow ])
-    this.rotate( attributes.orientation )
+    this.stem = new Node({
+      style: {
+        margin: "auto",
+        width: 100 - attributes.percentArrow + "%",
+        height: attributes.precentStem + "%",
+        background: attributes.color,
+        borderRight: "none",
+        flexGrow: 2,
+      }
+    })
 
+    this.container.appendChildren([ this.stem, this.arrow ])
+    this.rotate( attributes.orientation )
   }
 
-
+  /**
+   * @return {node} the node of the arrow
+   */
   get node(){
     return this.container;
   }
 
-
+  /**
+   * @private rotate the arrow
+   * @return {node} the node of the arrow
+   */
   rotate( rad ){
     this.container.rotate( rad, "rad" );
+  }
+  /**
+   * @public change the length of the vector
+   * @param {number} newLength in pixels
+   */
+  setLength( newLength ){
+
+    this.container.setStyle({
+      width: newLength + "px"
+    })
   }
 }
