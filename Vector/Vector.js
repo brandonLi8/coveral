@@ -53,6 +53,7 @@ export default class Vector {
     this.attributes.position = { ...defaults.position, ...options.position }
 
     var attributes = this.attributes;
+    this.length = attributes.length
     this.container = new Node({
       style: {
         ...attributes.position,
@@ -108,7 +109,7 @@ export default class Vector {
    * @param {number} newLength in pixels
    */
   setLength( newLength ){
-
+    this.length = newLength
     this.container.setStyle({
       width: newLength + "px"
     })
