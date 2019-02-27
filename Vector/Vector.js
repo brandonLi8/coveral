@@ -40,28 +40,29 @@ export default class Vector {
       length: null, // {number} in pixels - the length of the vector
       height: null, // {number} in pixels - the width of the vector
       orientation: null, // in radians 0 radians points to the right
-
-      position: { // this is where the container goes on the screen
+      style: {
         position: "absolute",
-        bottom: "4%",
-        left: "40%",
       },
+      x: 100, // the location of the arrow (this is the stem) {pixels}
+      y: 100, // the y location of the arrow (stem) {pixels}
       arrowLength: 20, // {number} the length of the arrow in pixels
       precentStem: 50, // {number} the percent the stem is on the total height
     }
     this.attributes = { ...defaults, ...options }
-    this.attributes.position = { ...defaults.position, ...options.position }
+    this.attributes.style = { ...defaults.style, ...options.style }
 
     var attributes = this.attributes;
     this.length = attributes.length
     this.container = new Node({
       style: {
-        ...attributes.position,
+        
 
         height: attributes.height + "px",
         width: attributes.length + "px",
-        
-        display: "flex"
+        left: attributes.x - this.length + "px" ,
+        top: attributes.y + "px",
+        display: "flex",
+        ...attributes.style,
       },
     })
 
@@ -102,6 +103,7 @@ export default class Vector {
    * @return {node} the node of the arrow
    */
   rotate( rad ){
+    this.container.rotate( 0 , "rad" );
     this.container.rotate( rad, "rad" );
   }
   /**
@@ -113,5 +115,16 @@ export default class Vector {
     this.container.setStyle({
       width: newLength + "px"
     })
+  }
+
+  /**
+   * @public change the length of the vector
+   * @param {number} newLength in pixels
+   */
+  setX( newX ){
+    this.container.setStyle({
+      left: newX + "px" ,
+    })
+    this.attributes.x = newX
   }
 }
