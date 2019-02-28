@@ -31,6 +31,13 @@ Help us improve, create a <a href="https://github.com/brandonLi8/Learning_App/is
 
 Use the [style guidline](Style.md) for this project
 
+Collision Theory (sim)
+=============
+
+### Try it!
+<a href="https://github.com/brandonLi8/Collision-Theory" target="_blank">Visit the Repo</a>
+
+
 
 Planner
 =============
@@ -48,7 +55,7 @@ Planner
 ### Try it!
 <a href="https://brandonli8.github.io/Learning_App/planner" target="_blank">Visit the App</a>.
 
-Planner
+Calculator
 =============
 
 ## Screenshots
