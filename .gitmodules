@@ -1,6 +1,6 @@
 [submodule "CollisionTheory"]
 	path = CollisionTheory
 	url = https://github.com/brandonLi8/Collision-Theory
-[submodule "CircularMotion"]
-	path = CircularMotion
+[submodule "Circular-Motion"]
+	path = Circular-Motion
 	url = https://github.com/brandonLi8/Circular-Motion
