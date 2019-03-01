@@ -10,3 +10,5 @@
  * Model for Circular Motion
  * 
  */
+
+ console.log( "Erherh")
