@@ -1,23 +1,23 @@
 <!--  README.md
-      Learning_App
+      coveral
       Created by Brandon Li on 2/15/19.
       Copyright © 2019 Brandon Li. All rights reserved. 
 -->
-Learning App
+coveral
 =============
 
-"Learning App" is an educational platform in HTML5, by [Brandon Li](https://github.com/brandonLi8), which includes a calculator, planner, and multiple interactive simulations.
+"Coveral" is an educational platform in HTML5, by [Brandon Li](https://github.com/brandonLi8), which includes a calculator, planner, and multiple interactive simulations.
 
 **note the simulations are both under development and haven't been published yet**
 
 ### Try it!
-<a href="https://brandonli8.github.io/Learning_App/dashboard" target="_blank">Visit the App</a>.
+<a href="https://brandonli8.github.io/coveral/dashboard" target="_blank">Visit the App</a>.
 
 
 ### Quick Start
 (1) Clone the simulation and its dependencies in a desirable directory:
 ```
-git clone https://github.com/brandonLi8/Learning_App.git
+git clone https://github.com/brandonLi8/coveral.git
 ```
 (2) Start an http-server
 
@@ -27,7 +27,7 @@ git clone https://github.com/brandonLi8/Learning_App.git
 
 Contact me via <a href="mailto:brandon.li820@icloud.com" target="_blank"> email </a>
 
-Help us improve, create a <a href="https://github.com/brandonLi8/Learning_App/issues" target="_blank">New Issue</a>
+Help us improve, create a <a href="https://github.com/brandonLi8/coveral/issues" target="_blank">New Issue</a>
 
 Use the [style guidline](Style.md) for this project
 
@@ -53,7 +53,7 @@ Planner
 - data is saved for each browser, so everyone gets their own planner as it is saved on refreshes and system shutdowns
 
 ### Try it!
-<a href="https://brandonli8.github.io/Learning_App/planner" target="_blank">Visit the App</a>.
+<a href="https://brandonli8.github.io/coveral/planner" target="_blank">Visit the App</a>.
 
 Calculator
 =============
@@ -68,7 +68,7 @@ Calculator
 - Micro-interactions that improve user experience, including keyboard shorcuts to type functions and ease with the backspace button
 
 ### Try it!
-<a href="https://brandonli8.github.io/Learning_App/calculator" target="_blank">Visit the App</a>.
+<a href="https://brandonli8.github.io/coveral/calculator" target="_blank">Visit the App</a>.
 
 Dashboard
 =============

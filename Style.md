@@ -220,7 +220,7 @@ By [Brandon Li](https://github.com/brandonLi8)
   - Docstrings for HTML look like:
   ```html
   <!-- file.html
-       learning app
+       coveral
        Created by __ on ___
        Copyright © 2019 Brandon Li. All rights reserved. 
   -->
