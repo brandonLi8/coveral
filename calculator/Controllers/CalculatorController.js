@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * CalculatorController.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -11,7 +11,7 @@
  */
 'use strict';
 // UNCOMMENT to TEST. Results in the console
-/* 
+/*
 import SolverTest from "../Models/SolverTest.js"
 var solverTest = new SolverTest();
 solverTest.test()
@@ -33,7 +33,7 @@ var mode = "rad"
  * function that takes in a text value and returns the buttonNode
  * @param {text} - the text of the button
  * @return {buttonNode} - the buttonNode that contains the text
- */ 
+ */
 function getButtonNode( text ){
   for ( var i = 0; i < buttons.length; i++ ){
     var row = buttons[ i ];
@@ -49,7 +49,7 @@ export default class CalculatorController{
    * @public
    */
   handlePressed( buttonNode , text ){
-    if ( buttonNode && 
+    if ( buttonNode &&
          ( buttonNode.text === "rad" || buttonNode.text === "deg" ) ){
       if ( mode === "rad" ) mode = "deg"
       else if ( mode === "deg" ) mode = "rad"
@@ -77,7 +77,7 @@ export default class CalculatorController{
      * clear it
      */
     if ( error ){ // clear no matter what
-      let values = getButtonNode( "C" ).handlePressed( "", 0, 0, "" ); 
+      let values = getButtonNode( "C" ).handlePressed( "", 0, 0, "" );
       //simulate clear
       input.value = values.newString
       input.setSelectionRange( values.newCarrot, values.newCarrot );
@@ -113,7 +113,7 @@ export default class CalculatorController{
       input.value = values.newString;
       input.setSelectionRange( values.newCarrot, values.newCarrot );
       input.focus();
-    }  
+    }
   }
   /**
    * Method for when user types in the input box
@@ -124,8 +124,8 @@ export default class CalculatorController{
   handleInput( event, input ){
     let handlePressed = this.handlePressed;
     // defualts
-    if ( event.key === "Backspace" ) handlePressed( getButtonNode( "⌫" ) ); 
-    else if ( event.keyCode <= 40 && event.keyCode >= 37 ) return; 
+    if ( event.key === "Backspace" ) handlePressed( getButtonNode( "⌫" ) );
+    else if ( event.keyCode <= 40 && event.keyCode >= 37 ) return;
     // symbols pi and e
     else if ( event.key == "p" ) handlePressed( getButtonNode( "π" ) );
     else if ( event.key == "e" ) handlePressed( getButtonNode( "ℯ" ) );
@@ -134,13 +134,13 @@ export default class CalculatorController{
     // operator shortcuts
     else if ( event.key === "x" ) handlePressed( getButtonNode( "×" ) );
     else if ( event.key === "d" ) handlePressed( getButtonNode( "÷" ) );
-    else if ( event.keyCode === 191 ) handlePressed( getButtonNode( "÷" ) ); 
+    else if ( event.keyCode === 191 ) handlePressed( getButtonNode( "÷" ) );
     // check for inverse trig first
-    else if ( event.ctrlKey && event.key == "s" ) 
+    else if ( event.ctrlKey && event.key == "s" )
         handlePressed( getButtonNode( "arcsin" ) );
-    else if ( event.ctrlKey && event.key == "c" ) 
+    else if ( event.ctrlKey && event.key == "c" )
         handlePressed( getButtonNode( "arccos" ) );
-    else if ( event.ctrlKey && event.key == "t" ) 
+    else if ( event.ctrlKey && event.key == "t" )
         handlePressed( getButtonNode( "arctan" ) );
     // trig
     else if ( event.key === "s" ) handlePressed( getButtonNode( "sin" ) );
@@ -153,6 +153,6 @@ export default class CalculatorController{
     // handle the rest
     else handlePressed( getButtonNode( event.key ) );
     event.preventDefault( );
-  } 
+  }
 }
 

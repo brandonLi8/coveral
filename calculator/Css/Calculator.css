@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Calculator.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -64,7 +64,7 @@ html, body {
   /* use flex box: the calculator basically a table */
   flex-direction: column;
   padding: 0.3%;
-  box-shadow: 
+  box-shadow:
     0 -5px 0 6px #292929,
     0 6px 0 6px #292929;
   width: 410px;

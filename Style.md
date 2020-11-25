@@ -1,9 +1,9 @@
 <!--  README.md
-      Learning App
+      Coveral
       Created by Brandon Li on 2/7/19.
       Copyright © 2019 Brandon Li. All rights reserved. 
 -->
-Styling Guidline for Learning App
+Styling Guidline for Coveral
 =======
 By [Brandon Li](https://github.com/brandonLi8)
 
@@ -156,7 +156,7 @@ By [Brandon Li](https://github.com/brandonLi8)
   - Docstrings for JS look like:
   ```javascript
   /**
-   * Learning App
+   * Coveral
    * document name (fils.js)
    *
    * @author Brandon Li <brandon.li820@icloud.com> 
@@ -288,7 +288,7 @@ By [Brandon Li](https://github.com/brandonLi8)
   - start off all css files with a docstring
   ```css 
   /**
-   * Learning App
+   * Coveral
    * file.css
    *
    * @author Brandon Li <brandon.li820@icloud.com> 

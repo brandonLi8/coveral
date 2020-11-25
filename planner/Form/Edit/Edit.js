@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Edit.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 2/2/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -26,15 +26,15 @@ tags.forEach( function( element ){
 } );
 
 var form = new Form( {
-  page: "New Plan", 
-  title: node.title, 
+  page: "New Plan",
+  title: node.title,
   description: node.description,
   value: node.value,
   tags: tagStr,
   tagsPlaceholder: "",
   submit: function( title, description, slider, tags ) {
     // concat the tags into an array
-    console.log( slider ) 
+    console.log( slider )
     let reduced = []
     if ( tags.value.length > 0 ){
       let string = tags.value;
@@ -45,16 +45,16 @@ var form = new Form( {
         if ( element.trim().length !== 0 ) reduced.push( element )
       }  );
     }
-    controller.changeNode( 
-      new PlannerNode( 
-          parseInt( slider.getValue() ), 
-          title.value, 
-          description.value, 
-          reduced, 
-          node.identifier 
+    controller.changeNode(
+      new PlannerNode(
+          parseInt( slider.getValue() ),
+          title.value,
+          description.value,
+          reduced,
+          node.identifier
     ) );
     window.open( "../planner", "_self" )
-    
+
   }
 
 } );

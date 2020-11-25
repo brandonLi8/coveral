@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * FillParenthesis.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/19/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -20,7 +20,7 @@ export default class FillParenthesis {
    * @public
    * @return {bool} if it is balanced
    */
-  hasBalancedParentheses( str ){ 
+  hasBalancedParentheses( str ){
     /**
       loop through the string keeping a count.
       everytime there is a "(" add 1 to the count
@@ -42,18 +42,18 @@ export default class FillParenthesis {
       }
       if ( count < 0 ) {
           return false;
-      } 
+      }
     }
     return ( count == 0 );
   }
   /**
    * fill parenthesis at the end
-   * @param {string} - input a string 
+   * @param {string} - input a string
    * @public
-   * @return {string} - updated string 
+   * @return {string} - updated string
    */
-  fill( str ) { 
-    while ( !this.hasBalancedParentheses( str ) ){   
+  fill( str ) {
+    while ( !this.hasBalancedParentheses( str ) ){
       var openCount = str.split( "(" ).length - 1;
       var closeCount = str.split( ")" ).length - 1;
       if ( openCount === closeCount ){
@@ -67,9 +67,8 @@ export default class FillParenthesis {
       if ( openCount > closeCount ){
           str += ")";
       }
-           
+
     }
     return str;
   }
 }
-   

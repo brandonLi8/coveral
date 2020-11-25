@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Dashboard.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/11/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -10,14 +10,14 @@
  */
 
 /* The main elements */
-html, 
+html,
 body {
   max-width: 100%;
   overflow-x: hidden;
   height: 100%;
   background: rgb( 210 , 211 , 214 );
   font-family: Courier;
-  
+
 }
 
 /* The wrapper containing everything */
@@ -25,7 +25,7 @@ body {
   box-sizing: border-box;
   padding: 0 0 71px;
   position: relative;
-  height: 88%; 
+  height: 88%;
   display: flex;
 }
 

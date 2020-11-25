@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Vector.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 2/25/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -12,12 +12,12 @@
  * a vector arrow.
  *
  *
- *      Div <-  ( the container ) 
+ *      Div <-  ( the container )
  *     /   \
  *  arrow  stem
- * 
+ *
  * This vector will have a constructor and other methods. The constructor will
- * construct the node. To access the node use the node property: 
+ * construct the node. To access the node use the node property:
  * var node = new Vector( options ).node
  *
  * There will also be methods to set the orientation (direction), set the length
@@ -55,7 +55,7 @@ export default class Vector {
     this.length = attributes.length
     this.container = new Node({
       style: {
-        
+
 
         height: attributes.height + "px",
         width: attributes.length + "px",

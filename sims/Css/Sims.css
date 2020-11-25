@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Sims.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 2/0/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -13,7 +13,7 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   height: 100%;
-  
+
   background: rgb( 238 , 239 , 241 );
   font-family: Courier;
 }
@@ -64,11 +64,11 @@ body {
   font-size: 13px;
   width: 471px;
   margin: 5px auto;
-  
+
 }
  /* @overide .sim only used when removing the simulation */
 .removeDescription {
-  margin: -20px auto 80px auto; 
+  margin: -20px auto 80px auto;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,7 @@ body {
 
 .screenshot {
   width: 600px; /* 16:9 ratio */
-  margin-left: -65px;  
+  margin-left: -65px;
   margin-bottom: 10px;
   margin-top: 10px;
   box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);

@@ -1,18 +1,18 @@
 /**
- * Learning App
+ * Coveral
  * Slider.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
- * Created on 2/14/19 
+ * @author Brandon Li <brandon.li820@icloud.com>
+ * Created on 2/14/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * **Updated version using Node **
  *
  * ## Functionality:
  *  - create the slider ui and link the css file
- *  
+ *
  * This is the full list of all the variables that can be overridden
- * The user doesn't have to provide every single property, only the property 
+ * The user doesn't have to provide every single property, only the property
  * that is changing
  *
  */
@@ -26,9 +26,9 @@ export default class Slider{
    * @constructor
    * @param optional {object} options - overide the defaults
    * @return {node} - the slider node
-   */  
+   */
   constructor( options ){
-    const defaults = { 
+    const defaults = {
       // This is the defaults, only overide the properties you wish to override
       lowerBound: 0, // the lowerBound or the slider
       upperBound: 1, // the upperBound of the slider
@@ -45,7 +45,7 @@ export default class Slider{
         width: "600px",
         margin:  "5% auto", // of the entire container
       },
-      
+
       unit: "m/s", // can be empty
       // the container holding the value and the title
       valueStyle: {
@@ -57,7 +57,7 @@ export default class Slider{
         height: "30px",
         borderRadius: "5px",
       },
- 
+
       // title of the entire div
       title: "Slider",
       titleStyle: {
@@ -100,9 +100,9 @@ export default class Slider{
     }
     // merge them with options overriding
     const attributes = { ...defaults, ...options };
-    attributes.backgroundStyle = { 
+    attributes.backgroundStyle = {
       ...defaults.backgroundStyle,
-      ...options.backgroundStyle 
+      ...options.backgroundStyle
     }
     attributes.valueStyle = { ...defaults.valueStyle, ...options.valueStyle };
     attributes.titleStyle = { ...defaults.titleStyle, ...options.titleStyle };
@@ -120,7 +120,7 @@ export default class Slider{
     })
     /**
      * the container for the value and the title
-     */  
+     */
     var valueAndTitleContainer = new Node({
       style: {
         display: "flex",
@@ -152,7 +152,7 @@ export default class Slider{
     valueAndTitleContainer.appendChildren([ title, value ])
     /**
      * container of slider
-     */ 
+     */
     var sliderContainer = new Node({
       style: {
         width: "95%",
@@ -165,8 +165,8 @@ export default class Slider{
     sliderBackground.addChild( sliderContainer )
     /**
      *  sides labeling the left and the right side
-     */ 
-  
+     */
+
     var left = new Node({
       text: attributes.leftText,
       style: attributes.leftStyle
@@ -177,7 +177,7 @@ export default class Slider{
     })
     /**
      * the actual slider line
-     */ 
+     */
     var slider = new Node({
       style: attributes.sliderStyle,
       id: "slider"
@@ -186,32 +186,32 @@ export default class Slider{
     sliderContainer.appendChildren([ left, slider, right ]); // in that order
     /**
      * the thumb of the slider
-     */   
+     */
     var thumb = new Node({
       style: attributes.thumbStyle,
 
-    })  
+    })
     this.thumb = thumb;
-  
+
     slider.addChild( thumb )
 
 
     let listener = ( options.listener ) ? options.listener: function() {} ;
     // event listeners
-    slider.addEventListener( "mousedown", function( event ){ 
+    slider.addEventListener( "mousedown", function( event ){
       let coord = getCoordinates( event, slider.DOMobject )
       let length = slider.DOMobject.clientWidth;
       if ( coord > length ) return;
       if ( coord < 0 ) return;
       let percentage = coord / length * 100;
 
-      let newNumber = ( attributes.upperBound - attributes.lowerBound ) 
+      let newNumber = ( attributes.upperBound - attributes.lowerBound )
                       * percentage / 100 + attributes.lowerBound;
-      //round the new Number 
-      newNumber = Math.round( newNumber * Math.pow( 10, attributes.round ) ) / 
+      //round the new Number
+      newNumber = Math.round( newNumber * Math.pow( 10, attributes.round ) ) /
                             Math.pow( 10, attributes.round )
       value.DOMobject.innerHTML = newNumber + " " + attributes.unit;
-      thumb.setStyle( { 
+      thumb.setStyle( {
           marginLeft :"calc( -" + attributes.thumbStyle.width + " * 0.5 + " +
                            percentage + "% )"
       } )
@@ -219,7 +219,7 @@ export default class Slider{
     } );
     /**
      * shift the thumb on drag's
-     */ 
+     */
     thumb.DOMobject.onmousedown = dragThumbStart;
     function dragThumbStart( event ) {
       event.preventDefault();
@@ -234,13 +234,13 @@ export default class Slider{
       let percentage = coord / length * 100;
       if ( coord > length ) percentage = 100;
       if ( coord < 0 ) percentage = 0;
-      let newNumber = ( attributes.upperBound - attributes.lowerBound ) 
+      let newNumber = ( attributes.upperBound - attributes.lowerBound )
                       * percentage / 100 + attributes.lowerBound;
-      // round the new Number 
-      newNumber = Math.round( newNumber * Math.pow( 10, attributes.round ) ) / 
+      // round the new Number
+      newNumber = Math.round( newNumber * Math.pow( 10, attributes.round ) ) /
                             Math.pow( 10, attributes.round )
       value.DOMobject.innerHTML = newNumber + " " + attributes.unit;
-      thumb.setStyle( { 
+      thumb.setStyle( {
           marginLeft :"calc( -" + attributes.thumbStyle.width + " * 0.5 + " +
                            percentage + "% )"
       } )
@@ -265,21 +265,21 @@ export default class Slider{
 
     /**
      * shift the thumb based on startingValue
-     */ 
-    this.setValue( attributes.startingValue ) 
+     */
+    this.setValue( attributes.startingValue )
 
     //@public the original value
     this.originalStartingValue = attributes.startingValue;
   }
   /**
    * @return {node} - the actual element node
-   */ 
+   */
   get node(){
     return this.slider;
   }
   /**
    * @return {string} - the value of where the slider is at
-   */ 
+   */
   get value(){
     return this.valueNode.DOMobject.innerHTML;
   }
@@ -288,17 +288,17 @@ export default class Slider{
    * @param {number || string} the new value
    */
   setValue( value ){
-    let percentage = ( parseFloat( value ) 
-                      - this.attributes.lowerBound ) 
-                      / ( this.attributes.upperBound 
-                        - this.attributes.lowerBound ) 
+    let percentage = ( parseFloat( value )
+                      - this.attributes.lowerBound )
+                      / ( this.attributes.upperBound
+                        - this.attributes.lowerBound )
                       * 100;
     if ( percentage > 100 ) percentage = 100;
     this.thumb.setStyle({
-      marginLeft : "calc( -" 
-                    + this.attributes.thumbStyle.width 
-                    + " * 0.5 + " 
-                    + percentage 
+      marginLeft : "calc( -"
+                    + this.attributes.thumbStyle.width
+                    + " * 0.5 + "
+                    + percentage
                     + "% )"
     });
     this.valueNode.DOMobject.innerHTML = value + " " + this.attributes.unit;
@@ -324,6 +324,6 @@ function getCoordinates( event, element ){ // the x coord
     offset.left += reference.offsetLeft;
     reference = reference.offsetParent;
   }
-  return position - offset.left; 
+  return position - offset.left;
 }
 

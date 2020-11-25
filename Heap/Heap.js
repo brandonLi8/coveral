@@ -1,18 +1,18 @@
 /**
- * Learning App
+ * Coveral
  * Heap.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/25/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * ## Functionality:
- *  - all methods of a Max heap. 
- * 
+ *  - all methods of a Max heap.
+ *
  * ## User Instructions:
- *  - The user must provide the value for the node. This means that that the 
+ *  - The user must provide the value for the node. This means that that the
  *    value for the Node.js is anything the user wants. However, the value must
- *    have a LessThanOrEqualTo method that defines if a value is <= than 
+ *    have a LessThanOrEqualTo method that defines if a value is <= than
  *    another. It also should provide a toString method if you want the root
  *    order traversal. Demo on PlannerNode.js
  */
@@ -30,7 +30,7 @@ export default class Heap {
    */
   constructor( ...args ){
     // @public
-    this.root; 
+    this.root;
     for ( var i = 0; i < args.length; i++ ){
       this.add( args[ i ] );
     }
@@ -70,7 +70,7 @@ export default class Heap {
       if ( !rootNode.leftChild.rightChild || !rootNode.leftChild.leftChild ){
         addNormally( rootNode.leftChild )
       }
-      else if ( !rootNode.rightChild.rightChild || 
+      else if ( !rootNode.rightChild.rightChild ||
                 !rootNode.rightChild.leftChild){
         addNormally( rootNode.rightChild )
       }
@@ -80,7 +80,7 @@ export default class Heap {
     // compare with its parent, and swap up.
     let current = node;
     while ( current ){
-      if ( current.parent && 
+      if ( current.parent &&
            current.parent.value.lessThanOrEqualTo( current.value ) ){
         let copyOfParent = current.parent.value;
         current.parent.value = current.value;
@@ -107,26 +107,26 @@ export default class Heap {
      * because it's a tree. Nulls are included.
      * Proof: First level is 1 = 2^0, second level is 2 children = 2^1,
      * 3rd level is 2^2 = 4 ... Therefore the size is 2^depth minus one.
-     */ 
-    if ( size === 0 ) return "||" ; 
+     */
+    if ( size === 0 ) return "||" ;
     let arr = new Array( size ); // the array representation of the heap
-    /** example [ 1, 2, N ] for the tree 
+    /** example [ 1, 2, N ] for the tree
      *    2
      *   / \
      *  1   N
      */
     let isNotNull = new Array( size );
     // an array that tells if the current index isn't null. Lines up with arr.
-    arr[ 0 ] = this.root; 
+    arr[ 0 ] = this.root;
     rootHelper( this.root, 0 );
     isNotNull[ 0 ] = true;
     /**
      * @recursive
      * @param {node} parent - the current TODO explain this
      * o(n) recursive, looks at each element in the tree.
-     */   
+     */
     function rootHelper( parent, index ) {
-      if ( !parent ) return; 
+      if ( !parent ) return;
       if ( parent.leftChild ) {
         arr[ 2*index + 1 ] = parent.leftChild;
         isNotNull[ 2*index + 1 ] = true;
@@ -134,10 +134,10 @@ export default class Heap {
       }
       if ( parent.rightChild ) {
         arr[ 2*index + 2 ] = parent.rightChild;
-        isNotNull[ 2*index + 2 ] = true; 
+        isNotNull[ 2*index + 2 ] = true;
         rootHelper(  parent.rightChild, 2*index + 2 ) ;
       }
-    } 
+    }
     return {
       rootOrder: arr,
       isNotNull: isNotNull,
@@ -154,7 +154,7 @@ export default class Heap {
     let arr = rootOrder.rootOrder;
     let isNotNull = rootOrder.isNotNull;
     // concatanate the arr into a string and return it
-    let res = "|"; 
+    let res = "|";
     for ( var i = 0; i < rootOrder.size; i++ ) {
       if ( isNotNull[ i ] ) {
         res += arr[ i ].value.toString() + ", ";
@@ -167,14 +167,14 @@ export default class Heap {
   }
   /**
    * return the Depth of the of heap
-   * the depth is defined as the number of edges from 
+   * the depth is defined as the number of edges from
    * the node to the tree's root node
    * @public
    * @recursive
    * @return {int} - the depth
    */
   getDepth( root ) {
-    return depthHelper( root ); 
+    return depthHelper( root );
     function depthHelper( rootNode ) {
       if ( !rootNode ) {
         return 0;
@@ -226,12 +226,12 @@ export default class Heap {
     // step 3: swap with the max of the children down until it's legal heap
     let current = this.root;
 
-    while ( current ){      
+    while ( current ){
       let currentValue = current.value;
 
       let max;
       if ( current.leftChild && current.rightChild ){
-        if ( !current.leftChild.value.lessThanOrEqualTo( 
+        if ( !current.leftChild.value.lessThanOrEqualTo(
                                         current.rightChild.value ) ){
           max = current.leftChild;
         }
@@ -256,7 +256,7 @@ export default class Heap {
     }
     return popped;
   }
-  
+
 }
 
 
@@ -266,6 +266,6 @@ function assert(condition, message) {
     if (typeof Error !== "undefined") {
         throw new Error(message);
     }
-    throw message; 
+    throw message;
   }
 }

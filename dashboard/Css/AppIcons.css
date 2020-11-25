@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * AppIcons.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/11/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -58,7 +58,7 @@
     transform: scale( 1 );
     /* use positions fized to not effect its siblings */
     position:fixed;
-    -webkit-transform: rotate( 0deg ); 
+    -webkit-transform: rotate( 0deg );
   }
   35% {
     /* 1st part of the animation is to flip it */
@@ -79,7 +79,7 @@
     -webkit-transform: scale( 1.13 );
     -ms-transform: scale( 1.13 );
     transform: scale( 1.13 );
-    border: 3px solid #333;  
+    border: 3px solid #333;
     padding: 25px;
     margin: -25px;
   }
@@ -115,5 +115,5 @@
 #planner input {
   box-shadow: 0px 0px 0px 1.5px #800080,
               1px 1px 6px 3px #606181;
-  
+
 }

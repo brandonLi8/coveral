@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Node.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/25/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *

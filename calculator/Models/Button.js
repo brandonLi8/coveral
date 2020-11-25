@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Button.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/17/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -30,23 +30,23 @@ export default class Button {
    * @param {string} type - The type of button ex: dark, operator etc.
    */
   constructor( text, type ){
-    // @public 
+    // @public
     this.text = text;
     // @public
-    this.type = type; 
+    this.type = type;
   }
   /**
    * Handle the functionality of each button when pressed
    * @param {str} - the string that goes in.
    * @public
-   * @return {String} the new string that it should display 
+   * @return {String} the new string that it should display
    * after the button is pressed
    */
   handlePressed( str, carrotPosition , round, mode ){
     // handle each case
     if ( precedence.isFunction( this.text ) || this.text === "^" ){
       // put the curser inside the parenthesis
-      return { 
+      return {
         newString: str.insert( this.text + "()" , carrotPosition ),
         newCarrot: carrotPosition + this.text.length + 1,
         error: false
@@ -54,42 +54,42 @@ export default class Button {
     }
     if ( this.text === "⌫" ) { // delete when inside a function
       // check for inverse trig first
-      if ( precedence.isFunction( 
+      if ( precedence.isFunction(
               str.substring( carrotPosition - 7, carrotPosition - 1 ) ) ){
-      
-        return removeFunction( str, carrotPosition, 6 ) 
+
+        return removeFunction( str, carrotPosition, 6 )
       }
 
-      else if ( precedence.isFunction( 
-                  str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){  
-        return removeFunction( str, carrotPosition, 3 ) 
+      else if ( precedence.isFunction(
+                  str.substring( carrotPosition - 4, carrotPosition - 1 ) ) ){
+        return removeFunction( str, carrotPosition, 3 )
       }
-      else if ( precedence.isFunction( 
-                  str.substring( carrotPosition - 2, carrotPosition - 1 ) ) ){  
-        return removeFunction( str, carrotPosition, 1 ) 
+      else if ( precedence.isFunction(
+                  str.substring( carrotPosition - 2, carrotPosition - 1 ) ) ){
+        return removeFunction( str, carrotPosition, 1 )
       }
-      return { 
+      return {
         newString: str.replace( "", carrotPosition - 1 ),
         newCarrot: carrotPosition - 1,
         error: false
       };
     }
     if ( this.text === "C" ){
-      return { 
+      return {
         newString: "",
         newCarrot: 0,
         error: false
       };
     }
     if ( this.text === "(-)" ){
-      return { 
+      return {
         newString: str.insert( "-", carrotPosition ),
         newCarrot: carrotPosition + 1,
         error: false
       };
     }
     if ( this.text === "mod" ){
-      return { 
+      return {
         newString: str.insert( "%", carrotPosition ),
         newCarrot: carrotPosition + 1,
         error: false
@@ -107,14 +107,14 @@ export default class Button {
         str = replaceSymbols( str );
         str = fillParenthesis.fill( str );
         str = new Solver( str, round, mode );
-        return { 
+        return {
           newString: str.str,
           newCarrot: str.str.length,
           error: false
         };
       } catch( err ){
         let error = err.toString();
-        return { 
+        return {
           newString: error,
           newCarrot: error.length,
           error: true
@@ -123,7 +123,7 @@ export default class Button {
 
     }
     else {
-      return { 
+      return {
         newString: str.insert( this.text, carrotPosition ),
         newCarrot: carrotPosition + this.text.length,
         error: false
@@ -141,8 +141,8 @@ export default class Button {
 function replaceSymbols( str ){
   for ( var i = 0; i < str.length; i++ ){
     if ( precedence.symbols.has( str.charAt( i ) ) ){
-      str = str.replace( "(" 
-                         + precedence.symbolValues[ str.charAt( i ) ] 
+      str = str.replace( "("
+                         + precedence.symbolValues[ str.charAt( i ) ]
                          + ")", i );
       replaceSymbols(str);
     }
@@ -167,8 +167,8 @@ String.prototype.replace = function( newString, index ){
     result = this.substring( 0, index ) + newString;
   }
   else{
-    result = this.substring( 0, index ) 
-             + newString 
+    result = this.substring( 0, index )
+             + newString
              + this.substring( index + 1, this.length );
   }
   return result;
@@ -185,14 +185,14 @@ String.prototype.insert = function( newString, index ){
     result = newString + this;
   }
   else{
-    result = this.substring( 0, index ) 
-             + newString 
+    result = this.substring( 0, index )
+             + newString
              + this.substring( index, this.length );
   }
   return result;
 }
 /**
- * Get the corresponding close parenthesis index 
+ * Get the corresponding close parenthesis index
  * @private
  */
 function getCloseIndex( str, start ) {
@@ -213,17 +213,17 @@ function getCloseIndex( str, start ) {
 function removeFunction( str, carrotPosition, lengthOfFunction ){
   try {
     return {
-      newString: 
+      newString:
         str.substring( 0 , carrotPosition - lengthOfFunction - 1 )
-        + str.substring( 
-            getCloseIndex( str, carrotPosition - 1 ) + 1, 
-            str.length 
+        + str.substring(
+            getCloseIndex( str, carrotPosition - 1 ) + 1,
+            str.length
           ),
       newCarrot: carrotPosition - lengthOfFunction - 1,
       error: false,
     }
   } catch( err ) {
-    return { 
+    return {
       newString: str.replace( "", carrotPosition - 1 ),
       newCarrot: carrotPosition - 1,
       error: false

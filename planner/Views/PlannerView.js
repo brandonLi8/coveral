@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * PlannerView.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/25/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -32,35 +32,35 @@ export default class PlannerView {
     let type; // higlighted || null
     if ( parseInt( node.value ) >= 8 ) type = "highlighted";
     // highlight important ones
-    let card = screen.addChildToParentId( 
-                  "div", type, "card", 
+    let card = screen.addChildToParentId(
+                  "div", type, "card",
                   "", "planner_wrapper" );
-    let heading = screen.addChildToParentNode( 
-                    "div", "heading", null, 
+    let heading = screen.addChildToParentNode(
+                    "div", "heading", null,
                     "", card );
     // now add the delete button
-    let trash = screen.addChildToParentNode( 
-                  "img", node.identifier, 
+    let trash = screen.addChildToParentNode(
+                  "img", node.identifier,
                   "trash", "", heading
                 );
     trash.setAttribute( "src", "./assets/trashcan.png" );
-    trash.onmouseover = function() { 
+    trash.onmouseover = function() {
       trash.setAttribute( "src", "./assets/trashcanHover.png" );
     };
-    trash.onmouseout = function() { 
+    trash.onmouseout = function() {
       trash.setAttribute( "src", "./assets/trashcan.png" );
     };
     trash.onclick = remove;
 
-    let edit = screen.addChildToParentNode( 
-                  "img", node.identifier, 
+    let edit = screen.addChildToParentNode(
+                  "img", node.identifier,
                   "edit", "", heading
                 );
     edit.setAttribute( "src", "./assets/edit.png" );
-    edit.onmouseover = function() { 
+    edit.onmouseover = function() {
       edit.setAttribute( "src", "./assets/editHover.png" );
     };
-    edit.onmouseout = function() { 
+    edit.onmouseout = function() {
       edit.setAttribute( "src", "./assets/edit.png" );
     };
     edit.onclick = function(){
@@ -71,16 +71,16 @@ export default class PlannerView {
     // the value 1 - 10
     screen.addChildToParentNode( "div", "value", null, node.value, heading );
     // the description of the event
-    screen.addChildToParentNode( 
-        "div", "description", 
+    screen.addChildToParentNode(
+        "div", "description",
         null, node.description, card );
-    // create the tags 
-    let tagWrapper = screen.addChildToParentNode( 
-                        "div", "tags", 
+    // create the tags
+    let tagWrapper = screen.addChildToParentNode(
+                        "div", "tags",
                         null, "", card );
     for ( var i = 0 ; i < node.tags.length; i++ ){
-      screen.addChildToParentNode( 
-                        "div", null, null, 
+      screen.addChildToParentNode(
+                        "div", null, null,
                         node.tags[ i ], tagWrapper );
     }
   }
@@ -94,13 +94,13 @@ export default class PlannerView {
   addHeader( ){
     // set up wrappers
     screen.addChildToParentType( "div", "planner_wrapper", null, "", "body" );
-    
-    let header = screen.addChildToParentId( 
-                      "div", "header", null, 
+
+    let header = screen.addChildToParentId(
+                      "div", "header", null,
                       "", "planner_wrapper" );
     screen.addChildToParentId( "div", "left", null, "", "header" );
-    this.container = screen.addChildToParentId( 
-                        "div", "header_content", 
+    this.container = screen.addChildToParentId(
+                        "div", "header_content",
                         null, "", "left" );
     return header;
   }
@@ -110,8 +110,8 @@ export default class PlannerView {
    */
   addImageToHeader( ){
     // add the image to the container
-    let image = screen.addChildToParentNode( 
-                  "img", "planner_icon", 
+    let image = screen.addChildToParentNode(
+                  "img", "planner_icon",
                   null, "", this.container );
     // controller sets up event listeners
     return image;
@@ -121,8 +121,8 @@ export default class PlannerView {
    * @return {DOM} the text
    */
   addLinkToHeader( text ){
-    return screen.addChildToParentId( 
-            "div", "header_content", 
+    return screen.addChildToParentId(
+            "div", "header_content",
             null, text, "left" );
   }
   /**
@@ -130,19 +130,19 @@ export default class PlannerView {
    * @public
    */
   displayNone(){
-    let msg = screen.addChildToParentId( "div", "none", 
-       null, "You have no plans.", "planner_wrapper" 
+    let msg = screen.addChildToParentId( "div", "none",
+       null, "You have no plans.", "planner_wrapper"
     );
     msg.appendChild( document.createElement( "br" ) );
     msg.appendChild( document.createElement( "br" ) );
 
-    let url = screen.addChildToParentNode( "a", null, null, "New Plan", msg ); 
-    
+    let url = screen.addChildToParentNode( "a", null, null, "New Plan", msg );
+
     url.setAttribute( "href", "./new.html" );
     url.setAttribute( "target", "_self" );
   }
   /**
-   * remove a card 
+   * remove a card
    * @param { string } id - the identifier that the model stores
    * @public
    */

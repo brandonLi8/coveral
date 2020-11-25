@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * calculator.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/11/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -33,7 +33,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+
 }
 
 
@@ -52,5 +52,5 @@
 
 #home {
   width: 100px;
-  
+
 }

@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * New.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 2/2/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -39,23 +39,23 @@ export default class Form{
     controller.renderBasics();
     // remove the remove all button
     controller.removeAll.style.display = "none";
-    addReturnButton( "./assets/reset.png", 
-                     "../planner", 
+    addReturnButton( "./assets/reset.png",
+                     "../planner",
                      "./assets/resetHover.png",
-                     "back_to_dashboard_button" 
+                     "back_to_dashboard_button"
     );
     //add the title
-    screen.addChildToParentId( 
-              "div", "new_title", null, 
+    screen.addChildToParentId(
+              "div", "new_title", null,
               options.page, "back_to_dashboard_button" );
 
     // add the title
-    let titleLabel = screen.addChildToParentId( 
-                        "div", "titleLabel", null, 
+    let titleLabel = screen.addChildToParentId(
+                        "div", "titleLabel", null,
                         "Title", "planner_wrapper" );
 
-    let title = screen.addChildToParentId( 
-                    "textarea", "title", null, 
+    let title = screen.addChildToParentId(
+                    "textarea", "title", null,
                     options.title, "planner_wrapper" );
     title.focus();
     title.oninput = function() {
@@ -69,12 +69,12 @@ export default class Form{
       }
     } );
     // add the description
-    let descriptionLabel = screen.addChildToParentId( 
-                              "div", "titleLabel", null, 
+    let descriptionLabel = screen.addChildToParentId(
+                              "div", "titleLabel", null,
                               "Description", "planner_wrapper" );
 
-    let description = screen.addChildToParentId( 
-                                "textarea", "description", null, 
+    let description = screen.addChildToParentId(
+                                "textarea", "description", null,
                                 options.description, "planner_wrapper" );
     description.oninput = function() {
       description.style.height = 50 + "px";
@@ -99,11 +99,11 @@ export default class Form{
     document.getElementById( "planner_wrapper" ).appendChild( slider.getDom() );
 
     // add the tags
-    let tagsLabel = screen.addChildToParentId( 
-                        "div", "titleLabel", null, 
+    let tagsLabel = screen.addChildToParentId(
+                        "div", "titleLabel", null,
                         "tags", "planner_wrapper" );
-    let tags = screen.addChildToParentId( 
-                  "textarea", "tags", null, 
+    let tags = screen.addChildToParentId(
+                  "textarea", "tags", null,
                   options.tags, "planner_wrapper" );
     tags.oninput = function() {
       tags.style.height = 50 + "px";
@@ -113,8 +113,8 @@ export default class Form{
     tags.placeholder = options.tagsPlaceholder;
 
     // the submit button
-    let enter = screen.addChildToParentId( 
-                  "button", "enter", null, 
+    let enter = screen.addChildToParentId(
+                  "button", "enter", null,
                   "Enter", "planner_wrapper" );
     enter.onclick = function(){
       options.submit( title, description, slider, tags );
@@ -126,25 +126,25 @@ export default class Form{
 // function to add the return button
 function addReturnButton( src, url , hoverSrc, id ){
   // add the div to the wrapper
-  let button = screen.addChildToParentId( 
-                "div", id, 
-                null, "", "planner_wrapper" 
+  let button = screen.addChildToParentId(
+                "div", id,
+                null, "", "planner_wrapper"
               );
   // add the image to the button node
-  let image = screen.addChildToParentNode( 
-                "img", null, 
-                "backToDashboard", "", button 
+  let image = screen.addChildToParentNode(
+                "img", null,
+                "backToDashboard", "", button
               );
   image.setAttribute( "src", src );
   // handle user input
-  image.onmouseover = function() { 
+  image.onmouseover = function() {
     image.setAttribute( "src", hoverSrc );
     image.style.cursor = "pointer";
   };
-  image.onmouseout = function() { 
+  image.onmouseout = function() {
     image.setAttribute( "src", src );
   };
-  image.onclick = function() { 
+  image.onclick = function() {
     window.open( url, '_self' );
   }
 }

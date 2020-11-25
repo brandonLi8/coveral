@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * CalculatorView.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/20/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -30,40 +30,40 @@ screen.addChildToParentType( "div", "calculator_wrapper", null, "", "body" );
 /**
  * add the button that brings you back to the dashboard
  */
-addReturnButton( "./assets/reset.png", 
-                 "../dashboard", 
+addReturnButton( "./assets/reset.png",
+                 "../dashboard",
                  "./assets/resetHover.png",
                  "back_to_dashboard_button" )
 // add the help button
 function addReturnButton( src, url , hoverSrc, id ){
   // add the div to the wrapper
-  let button = screen.addChildToParentId( 
-                "div", id, 
-                null, "", "calculator_wrapper" 
+  let button = screen.addChildToParentId(
+                "div", id,
+                null, "", "calculator_wrapper"
               );
   // add the image to the button node
-  let image = screen.addChildToParentNode( 
-                "img", null, 
-                "back_to_dashboard", "", button 
+  let image = screen.addChildToParentNode(
+                "img", null,
+                "back_to_dashboard", "", button
               );
   image.setAttribute( "src", src );
   // handle user input
-  image.onmouseover = function() { 
+  image.onmouseover = function() {
     image.setAttribute( "src", hoverSrc );
   };
-  image.onmouseout = function() { 
+  image.onmouseout = function() {
     image.setAttribute( "src", src );
   };
-  image.onclick = function() { 
+  image.onclick = function() {
     window.open(url, '_self');
   };
 }
 // add a wrapper for the calculator
-screen.addChildToParentId( 
-  "div", "calculator", null, 
+screen.addChildToParentId(
+  "div", "calculator", null,
   "", "calculator_wrapper" );
-screen.addChildToParentId( 
-        "div", "label", null, 
+screen.addChildToParentId(
+        "div", "label", null,
         "calculator" ,"calculator" );
 
 // add a help link
@@ -73,18 +73,18 @@ help.setAttribute( "target", "_self" );
 document.getElementById( "label" ).appendChild( help );
 
 // add the input textfield
-var row = screen.addChildToParentId( 
-            "div", null, "c_row", 
+var row = screen.addChildToParentId(
+            "div", null, "c_row",
             "", "calculator" );
-var input = screen.addChildToParentNode( 
-              "input", "input", 
+var input = screen.addChildToParentNode(
+              "input", "input",
               null, "", row );
-// automatically focus on 
+// automatically focus on
 input.type = "text";
 input.focus();
 
 /**
- * define buttons list - a list in the module ButtonList that is a 
+ * define buttons list - a list in the module ButtonList that is a
  * list of buttons with their attributes respectively (text, type)
  */
 var buttons = buttonList.buttons;
@@ -93,21 +93,21 @@ var buttons = buttonList.buttons;
  * loop through each button in the row and add it to the screen
  */
 for ( var i = 0; i < buttons.length; i++ ){
-  var row = screen.addChildToParentId( 
-              "div", null, "c_row", 
+  var row = screen.addChildToParentId(
+              "div", null, "c_row",
               "", "calculator" );
   for (var j = 0; j < buttons[ i ].length; j++){
     addCalculatorButton( row, buttons[ i ][ j ] );
   }
 }
-function addCalculatorButton( row, buttonNode ){  
-  //add the button 
-  let button = screen.addChildToParentNode( 
-                 "div", buttonNode.text, 
-                 buttonNode.type, "", row );   
+function addCalculatorButton( row, buttonNode ){
+  //add the button
+  let button = screen.addChildToParentNode(
+                 "div", buttonNode.text,
+                 buttonNode.type, "", row );
   //add the label
-  let text = screen.addChildToParentNode( 
-               "p", null, "button_text", 
+  let text = screen.addChildToParentNode(
+               "p", null, "button_text",
                buttonNode.text, button );
   button.onclick = function() { handleButtonPress( buttonNode, text ) };
 }
@@ -115,11 +115,11 @@ function addCalculatorButton( row, buttonNode ){
 /**
  * add listener's for user interaction
  */
-input.addEventListener( "keydown", event => { 
-  controller.handleInput( event, input ) 
-} ); 
+input.addEventListener( "keydown", event => {
+  controller.handleInput( event, input )
+} );
 
 function handleButtonPress( buttonNode , text){
-  controller.handlePressed( buttonNode , text ) 
+  controller.handlePressed( buttonNode , text )
 }
 

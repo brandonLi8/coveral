@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Header.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/23/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -25,7 +25,7 @@
   /* The content wrapper for the header */
   width: 90%;
   height: 100%;
-  margin-left:6%; 
+  margin-left:6%;
   display: flex;
   flex-direction: row;
   white-space: nowrap;
@@ -62,7 +62,7 @@
   }
   to {
     border-radius: 5px;
-    box-shadow: -1px -1px 0px 4px #3B4851, 
+    box-shadow: -1px -1px 0px 4px #3B4851,
                 -1px -1px 0px 5px #777777;
   }
 }

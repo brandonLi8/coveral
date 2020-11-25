@@ -1,15 +1,15 @@
 /**
- * Learning App
+ * Coveral
  * PlannerController.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/29/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * ## Functionality:
- *  1. Store all the data in local storage and allow a interface for the 
+ *  1. Store all the data in local storage and allow a interface for the
  *     controller to access it. The 'plans' will be stored in a object with
- *     the order that they go in as the key and a object with the 
+ *     the order that they go in as the key and a object with the
  *      properties of a planner node as the value.
  *  2. Provide method that gets all of the 'plans' by putting it in a heap
  *     (that I implemented) and returning it.
@@ -24,7 +24,7 @@ var date = new Date();
 
 export default class PlannerModel{
   /**
-   * Since it uses local storage (already constructed) the model won't need a 
+   * Since it uses local storage (already constructed) the model won't need a
    * constructor because it is already made and the model won't be needed to be
    * passes around from different mvc's of the new page and the edit page.
    */
@@ -33,7 +33,7 @@ export default class PlannerModel{
    * @public
    * clear all the data
    */
-  clear( ){ 
+  clear( ){
     localStorage.clear();
     window.open( "./", "_self" );
   }
@@ -65,9 +65,9 @@ export default class PlannerModel{
     for ( var i = 0; i < keys.length; i++ ){
       let key = keys[ i ];
       let current = JSON.parse( localStorage[ key ] );
-      let newPlannerNode = new PlannerNode( 
-                                parseInt( current.value ), 
-                                current.title, 
+      let newPlannerNode = new PlannerNode(
+                                parseInt( current.value ),
+                                current.title,
                                 current.description,
                                 current.tags,
                                 current.identifier );

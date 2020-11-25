@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Stack.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/12/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -11,11 +11,11 @@
  */
 "use strict";
 export default class Stack {
-  constructor( ...args ){ 
-    this.arr = args; 
+  constructor( ...args ){
+    this.arr = args;
   }
 
-  length(){ 
+  length(){
     return this.arr.length;
   }
   /**
@@ -27,14 +27,14 @@ export default class Stack {
   /**
    * since it's preallocated, it is O(n)
    */
-  pop(){ 
+  pop(){
     return this.arr.pop();
   }
   /**
    * On average O(1)
    * But on the case when you fill it up all the way, it is O(N)
    */
-  push(element){ 
+  push(element){
     this.arr.push(element);
   }
   /**

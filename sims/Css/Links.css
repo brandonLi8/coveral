@@ -1,16 +1,16 @@
 /**
- * Learning App
+ * Coveral
  * Links.css
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 2/7/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
  * Style the links ( title of the accordion )
  */
-        
+
 .sim { /* wrapper for the entire simulation */
-  margin: -20px auto 80px auto; 
+  margin: -20px auto 80px auto;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -45,5 +45,5 @@
   margin: 0 0 5px;
   min-height: 20px;
   margin: 0 auto;
-  
+
 }

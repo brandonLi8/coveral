@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * New.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/30/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -17,8 +17,8 @@ var controller = new PlannerController();
 
 import Form from "../Form.js"
 var form = new Form( {
-  page: "New Plan", 
-  title: "", 
+  page: "New Plan",
+  title: "",
   description: "",
   value: 10,
   tags: "",
@@ -35,9 +35,9 @@ var form = new Form( {
         if ( element.trim().length !== 0 ) reduced.push( element )
       }  );
     }
-    controller.submit( 
-        title.value, description.value, 
-        slider.getValue(), reduced 
+    controller.submit(
+        title.value, description.value,
+        slider.getValue(), reduced
     );
     window.open( "../planner", "_self" )
   }

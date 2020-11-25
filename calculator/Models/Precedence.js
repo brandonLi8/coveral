@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Precedence.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/19/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -18,23 +18,23 @@ export default class Precedence {
    * @constructor
    * @public
    */
-  constructor(){ 
+  constructor(){
     // use sets for o(1) average access
     this.operators = new Set([ "+", "-", "×", "÷", "%", "^", "(", ")" ]);
-    this.singleCharOperators = new Set([ 
-      "√", "+", "-", "×", "÷", 
-      "%", "^", "(", ")" 
+    this.singleCharOperators = new Set([
+      "√", "+", "-", "×", "÷",
+      "%", "^", "(", ")"
     ]);
-    this.trig = new Set([ 
-      "sin", "cos", "tan", 
-      "cot", "csc", "sec" 
+    this.trig = new Set([
+      "sin", "cos", "tan",
+      "cot", "csc", "sec"
     ]);
     this.inverse = new Set([ "arccos", "arcsin", "arctan" ]);
     this.additionals = new Set([".", "√" ]);
     this.symbols = new Set([ "ℯ", "π" ]);
     this.symbolValues = {
       "ℯ": 2.71828182845904523536,
-      "π": 3.14159265358979323846, 
+      "π": 3.14159265358979323846,
     };
     this.numbers = new Set([
       "0", "1", "2", "3", "4", "5",
@@ -66,7 +66,7 @@ export default class Precedence {
   isNumber( str ){
     if ( str.charAt(0) === "-" ){
       return this.numbers.has( str.charAt( 1 ) );
-    } 
+    }
     return this.numbers.has( str.charAt( 0 ) );
   }
   /**
@@ -78,12 +78,12 @@ export default class Precedence {
   }
   /**
    * @public
-   * @return {bool} - return if the string is a 
+   * @return {bool} - return if the string is a
    * trig function or the sqrt funtion
    */
   isFunction( str ){
-    return this.trig.has( str ) || 
-           this.inverse.has( str ) || 
+    return this.trig.has( str ) ||
+           this.inverse.has( str ) ||
            str === "√";
   }
 

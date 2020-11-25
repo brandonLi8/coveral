@@ -1,8 +1,8 @@
 /**
- * Learning App
+ * Coveral
  * Node.js
  *
- * @author Brandon Li <brandon.li820@icloud.com> 
+ * @author Brandon Li <brandon.li820@icloud.com>
  * Created on 1/25/19
  * Copyright © 2019 Brandon Li. All rights reserved.
  *
@@ -53,7 +53,7 @@ export default class Node{
     }catch( err ) {
       var parent = null;
     }
-    return "value: " + this.value.toString() 
+    return "value: " + this.value.toString()
            + ", leftChild: " + left
            + ", rightChild: " + right
            + ", parent: " + parent;
